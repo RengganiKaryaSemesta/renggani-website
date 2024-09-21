@@ -1,0 +1,56 @@
+---
+import Header from "@components/organisms/Header.astro";
+import Footer from "@components/organisms/Footer.astro";
+import "../styles/global.css";
+interface Props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="light">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <meta name="robots" content="index, follow" />
+        <!-- Meta Description -->
+        <meta name="description" content={description} />
+
+        <!-- Meta Keywords -->
+        <meta
+            name="keywords"
+            content="pengembangan web, pengembangan perangkat lunak, software house, e-commerce, website gratis, jasa pembuatan website, pembuatan aplikasi, IT solutions, solusi teknologi, teknologi informasi, web development, software development, mobile app development, jasa IT, digital marketing, desain web, website profesional, hosting web, manajemen konten, integrasi sistem, layanan IT, Banyuwangi, Bali"
+        />
+
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="rengganikaryasemesta.com" />
+        <meta
+            property="og:url"
+            content="https://www.rengganikaryasemesta.com"
+        />
+        <meta
+            name="google-site-verification"
+            content="7dviPrN0hKnhLyHuHhuvoUEt7caxYqUziESI7ZsUJDQ"
+        />
+        <meta property="og:image" content="/favicon.webp" />
+        <!-- <script
+            src="https://kit.fontawesome.com/65dbafaf47.js"
+            crossorigin="anonymous"></script> -->
+    </head>
+
+    <body>
+        <Header />
+        <slot />
+        <Footer />
+    </body>
+</html>

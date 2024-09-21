@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import logoColor from "@assets/logo_color.webp";
+import logoWhite from "@assets/logo_white.webp";
+import NavList from "@components/molecules/NavList";
+import SideBarMenu from "@components/molecules/SideBarMenu";
+import HeaderButtonContactUs from "@components/atoms/HeaderButtonContactUs";
+import SideBarButton from "@components/atoms/SideBarButton";
+const currentPathName = Astro.url.pathname;
+---
+
+<div class="relative">
+    <nav
+        id="navbar"
+        role="navigation"
+        class={`py-3 px-5 lg:px-20 fixed top-0 left-0 right-0 z-50 flex items-center justify-between`}
+    >
+        <Image
+            loading={"eager"}
+            src={logoWhite}
+            alt={"logo renggani karya semesta"}
+            width={130}
+            height={51}
+            id="logo-white"
+            quality={100}
+            class={`h-auto dark:block`}
+        />
+        <Image
+            loading={"eager"}
+            src={logoColor}
+            alt={"logo renggani karya semesta"}
+            width={130}
+            height={55}
+            id="logo-color"
+            class={`h-auto hidden dark:hidden`}
+        />
+        <NavList client:load currentPathName={currentPathName} />
+        <HeaderButtonContactUs client:load className="hidden lg:block" />
+        <SideBarButton client:load />
+    </nav>
+    <SideBarMenu client:load currentPathName={currentPathName} />
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const logoWhite = document.getElementById("logo-white");
+        const logoColor = document.getElementById("logo-color");
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 50) {
+                logoColor?.classList.remove("hidden");
+                logoWhite?.classList.add("hidden");
+                navbar?.classList.add("bg-white/50");
+                navbar?.classList.add("dark:bg-gray-900/50");
+                navbar?.classList.remove("bg-transparent");
+                navbar?.classList.add("backdrop-blur-md");
+            } else {
+                navbar?.classList.remove("dark:bg-gray-900/50");
+                navbar?.classList.remove("backdrop-blur-md");
+                navbar?.classList.remove("bg-white/50");
+                navbar?.classList.add("bg-transparent");
+                logoWhite?.classList.remove("hidden");
+                logoColor?.classList.add("hidden");
+            }
+        });
+    });
+</script>

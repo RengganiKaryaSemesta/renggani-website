@@ -1,0 +1,34 @@
+---
+import { Picture } from "astro:assets";
+import banner1 from "@assets/banner_about.jpg";
+---
+<header class="relative">
+    <Picture
+        src={banner1}
+        loading={"eager"}
+        alt={"Banner Service 1 Renggani Karya Semesta"}
+        width={1200}
+        height={600}
+        widths={[450, 720, 1200]}
+        format="webp"
+        sizes={`(max-width: 425px) 450px, (max-width: 720px) 720px,1200px`}
+        quality={80}
+    />
+    <section
+        class="absolute top-0 left-0 bottom-0 right-0 bg-gradient-to-tr from-gray-800/80 to-blue-900/40 flex items-center justify-center"
+    >
+        <article class="text-white text-center w-[700px] px-5">
+            <h1 class="md:text-5xl text-3xl font-bold">Kenali Kami Lebih Jauh <br> Renggani Karya Semesta</h1>
+            <p class="text-lg mt-2">
+                Visi, misi, dan nilai-nilai kami membimbing langkah kami untuk memberikan solusi yang unggul dalam industri kami.
+            </p>
+        </article>
+    </section>
+</header>
+<style lang="scss">
+    picture {
+        img {
+            @apply w-auto h-screen object-cover object-center md:w-full md:h-auto md:max-h-[650px];
+        }
+    }
+</style>

@@ -1,0 +1,132 @@
+---
+import { Icon } from "astro-icon/components";
+import {Image} from "astro:assets"
+import SwiperHomeOurExcellencesContent from "@components/molecules/SwiperHomeOurExcellencesContent.astro";
+import imagePolygon from "@assets/polygon.png"
+---
+
+<section class="px-5 lg:px-20 dark:z-10 py-10 bg-gray-50 text-gray-800 dark:text-gray-200 dark:bg-gray-900 relative">
+    <Image 
+    src={imagePolygon}
+    width={imagePolygon.width-100}
+    height={imagePolygon.height-100}
+    alt={`polygon`}
+    loading={'eager'}
+    class={`absolute md:right-60 right-0 z-0 opacity-30 dark:opacity-5 animate-shakeY`}
+    />
+    <article class="relative">
+        <p
+            class="text-xs lg:text-base dark:text-white dark:border-gray-200 text-blue-800 font-medium font-roboto border-b-2 border-blue-800 inline pb-2"
+        >
+            Kelebihan Kami
+        </p>
+        <div class="grid lg:grid-cols-2 lg:gap-10">
+            <h2 class="lg:text-4xl text-2xl font-bold font-roboto mt-5 dark:text-white">
+                Keunggulan yang Membuat Kami Berbeda
+            </h2>
+            <p class="lg:text-lg text-sm dark:text-gray-500">
+                Tim ahli kami menciptakan solusi yang disesuaikan dengan visi
+                klien dan melampaui ekspektasi mereka.
+            </p>
+        </div>
+    </article>
+    <article class="relative mt-10">
+        <div class="md:flex items-center justify-end gap-2 mb-5 hidden absolute left-0 -bottom-5">
+            <button aria-hidden="true"
+                class="swiper-our-exellences-button-prev swiper-our-exellences-button"
+                aria-label="navigation left"
+            >
+                <Icon name="mdi:arrow-left-thin" />
+            </button>
+            <button aria-hidden="true"
+                class="swiper-our-exellences-button-next swiper-our-exellences-button"
+                aria-label="navigation right"
+            >
+                <Icon name="mdi:arrow-right-thin" />
+            </button>
+        </div>
+        <div
+            class="absolute hidden md:block -left-2 bg-gradient-to-r from-gray-50 dark:from-gray-900 top-0 bottom-0 w-20 z-10"
+        >
+        </div>
+        <swiper-container class="swiper-our-exellences" init="false">
+            <SwiperHomeOurExcellencesContent
+                title="Solusi Inovatif dan Terintegrasi"
+                detail="Renggani Karya Semesta selalu mengedepankan solusi inovatif yang terintegrasi dengan teknologi terbaru. Kami memahami kebutuhan bisnis Anda dan memberikan solusi perangkat lunak yang mampu meningkatkan efisiensi serta produktivitas operasional."
+            />
+            <SwiperHomeOurExcellencesContent
+                title="Tim Ahli dan Berpengalaman"
+                detail="Dengan tim yang terdiri dari para ahli dan profesional berpengalaman di bidangnya, Renggani Karya Semesta siap membantu Anda mewujudkan ide-ide kreatif menjadi kenyataan. Kami berdedikasi untuk memberikan layanan terbaik dan memastikan setiap proyek selesai dengan hasil yang memuaskan."
+            />
+            <SwiperHomeOurExcellencesContent
+                title="Dukungan Pelanggan yang Responsif"
+                detail="Kami memberikan dukungan pelanggan yang cepat dan responsif untuk memastikan setiap kebutuhan dan masalah Anda dapat ditangani dengan segera. Layanan after-sales kami selalu siap membantu Anda agar dapat terus menggunakan produk kami dengan optimal."
+            />
+            <SwiperHomeOurExcellencesContent
+                title="Pendekatan Kolaboratif"
+                detail="Renggani Karya Semesta mengutamakan pendekatan kolaboratif dengan klien. Kami bekerja sama dengan Anda dalam setiap tahap pengembangan, mulai dari perencanaan hingga implementasi, memastikan hasil akhir sesuai dengan visi dan kebutuhan bisnis Anda."
+            />
+            <SwiperHomeOurExcellencesContent
+                title="Teknologi Terdepan"
+                detail="Kami selalu menggunakan teknologi terdepan dalam setiap solusi yang kami tawarkan. Dengan memanfaatkan alat dan platform terbaru, kami memastikan bahwa solusi perangkat lunak yang Anda terima adalah yang paling mutakhir dan efisien."
+            />
+        </swiper-container>
+        <div
+            class="absolute hidden md:block -right-2 bg-gradient-to-l from-gray-50 dark:from-gray-900 top-0 bottom-0 w-20 z-10"
+        >
+        </div>
+    </article>
+</section>
+<style lang="scss">
+    .swiper-our-exellences-button {
+        @apply bg-blue-800 dark:bg-gray-200 dark:text-gray-800 text-white rounded-full shadow-lg p-4 bottom-[40%] to-cyan-700 transition-all duration-200 hover:scale-105 z-20 hidden md:block;
+        &.swiper-button-disabled {
+            @apply bg-blue-300 text-white dark:bg-gray-200 dark:text-gray-500;
+        }
+    }
+    swiper-container::part(pagination) {
+        @apply text-center md:text-start md:absolute md:left-28 md:mb-1;
+    }
+    swiper-container::part(bullet) {
+        @apply bg-blue-300 dark:bg-gray-200 opacity-100 dark:opacity-40;
+    }
+    swiper-container::part(bullet-active) {
+        opacity: 0.9;
+        width: 100px;
+        border-radius: 10px;
+        @apply bg-blue-800 dark:bg-white;
+    }
+</style>
+<script>
+    const swiperElement = document.querySelector(
+        ".swiper-our-exellences",
+    ) as HTMLElement & { initialize: () => void };
+    Object.assign(swiperElement, {
+        slidesPerView: 1.1,
+        spaceBetween: 20,
+        speed: 1000,
+        loop: true,
+        pagination: true,
+        autoplay: {
+            delay: 6000,
+            enabled: true,
+        },
+        navigation: {
+            prevEl: ".swiper-our-exellences-button-prev",
+            nextEl: ".swiper-our-exellences-button-next",
+        },
+        breakpoints: {
+            550: {
+                loop: false,
+                spaceBetween: 30,
+                slidesPerView: 1.5,
+            },
+            1200: {
+                loop: false,
+                spaceBetween: 30,
+                slidesPerView: 2.5,
+            },
+        },
+    });
+    swiperElement?.initialize();
+</script>

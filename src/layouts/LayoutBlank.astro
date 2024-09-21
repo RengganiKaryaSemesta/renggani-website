@@ -1,0 +1,56 @@
+---
+import '../styles/global.css'
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.webp" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+		<!-- Meta Description -->
+		<meta
+			name="description"
+			content="Renggani Karya Semesta adalah software house yang memiliki banyak produk software unggulan. Kami menawarkan solusi IT inovatif untuk kebutuhan bisnis Anda."
+		/>
+
+		<!-- Meta Keywords -->
+		<meta
+			name="keywords"
+			content="Renggani Karya Semesta, software house, produk software, pengembangan perangkat lunak, solusi IT, pengembangan aplikasi, software development"
+		/>
+
+		<!-- Open Graph Meta Tags -->
+		<meta
+			property="og:title"
+			content="Renggani Karya Semesta - Software House dengan Banyak Produk Unggulan"
+		/>
+		<meta
+			property="og:description"
+			content="Renggani Karya Semesta adalah software house yang memiliki banyak produk software unggulan. Kami menawarkan solusi IT inovatif untuk kebutuhan bisnis Anda."
+		/>
+		<meta property="og:site_name" content="rengganikaryasemesta.com">
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:url"
+			content="https://www.rengganikaryasemesta.com"
+		/>
+		<meta name="google-site-verification" content="7dviPrN0hKnhLyHuHhuvoUEt7caxYqUziESI7ZsUJDQ" />
+		<meta property="og:image" content="/favicon.webp" />
+
+	</head>
+
+	<body
+	>
+		<slot />
+	</body>
+</html>

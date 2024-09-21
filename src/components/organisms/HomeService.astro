@@ -1,0 +1,31 @@
+---
+import reactImageBG from '@assets/react-bg.png'
+import {Image} from 'astro:assets'
+import HomeServiceContent from '@components/molecules/HomeServiceContent'
+---
+<section
+    class="px-5 lg:px-20 dark:z-10 py-10 bg-gray-50 text-gray-800 dark:text-gray-200 dark:bg-gray-900 relative"
+>
+    <Image loading={`eager`} src={reactImageBG} width={reactImageBG.width-200} height={reactImageBG.height-200} format='avif' quality={20} alt={`bg react icon`} class={`absolute lg:right-52 top-0 opacity-10`}/>
+    <article class="relative">
+        <p
+            class="text-xs lg:text-base dark:text-white dark:border-gray-200 text-blue-800 font-medium font-roboto border-b-2 border-blue-800 inline pb-2"
+        >
+            Layanan Kami
+        </p>
+        <div class="grid lg:grid-cols-2 lg:gap-10">
+            <h2
+                class="lg:text-4xl text-2xl font-bold font-roboto mt-5 dark:text-white"
+            >
+                Model Kerja Sama
+            </h2>
+            <p class="lg:text-lg text-sm dark:text-gray-500">
+                <!-- Kami menawarkan berbagai layanan inovatif dan terintegrasi untuk
+                membantu bisnis Anda tumbuh dan berkembang secara maksimal. -->
+                Kami menawarkan dua model layanan untuk memenuhi kebutuhan bisnis
+                Anda.
+            </p>
+        </div>
+    </article>
+  <HomeServiceContent client:load/>
+</section>

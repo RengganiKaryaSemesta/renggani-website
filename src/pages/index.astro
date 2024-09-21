@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HomeBanner from "../components/organisms/HomeBanner.astro";
+import HomeOurExcellences from "../components/organisms/HomeOurExcellences.astro";
+import HomePortfolio from "@components/organisms/HomePortfolio.astro";
+import HomeService from "@components/organisms/HomeService.astro";
+import HomeStacks from "@components/organisms/HomeStacks.astro";
+import CallToAction from "@components/organisms/CallToAction.astro";
+---
+
+<Layout
+    title="Renggani Karya Semesta - Software House dengan Banyak Produk Unggulan"
+    description="Renggani Karya Semesta adalah software house yang memiliki banyak produk software unggulan. Kami menawarkan solusi IT inovatif untuk kebutuhan bisnis Anda."
+>
+    <HomeBanner />
+    <HomeOurExcellences />
+    <HomeService/>
+    <HomePortfolio />
+    <HomeStacks/>
+    <CallToAction/>
+</Layout>
+<script>
+    import { register } from "swiper/element/bundle";
+    register();
+</script>

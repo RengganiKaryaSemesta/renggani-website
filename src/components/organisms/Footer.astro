@@ -1,0 +1,71 @@
+---
+import footerBG from "@assets/footer.jpg";
+import logoWhite from "@assets/logo_white.webp";
+import { Image, getImage } from "astro:assets";
+import { Icon } from 'astro-icon/components'
+const footerBGOptiomized = await getImage({
+    src: footerBG,
+    width: 1200,
+    height: 600,
+    loading:'lazy',
+    format: "webp",
+});
+---
+
+<footer
+    class="bg-cover bg-top min-h-52 md:bg-fixed origin-top"
+    style={`background-image: url('${footerBGOptiomized.src}');`}
+>
+    <section class="bg-blue-950/90 dark:bg-blue-900/90">
+        <article class="px-5 lg:px-20 py-10">
+            <Image
+            loading={"lazy"}
+            src={logoWhite}
+            alt={"logo renggani karya semesta"}
+            width={220}
+            height={51}
+            quality={100}
+            format="webp"
+            class={`h-auto dark:block`}
+        />
+        <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-5 font-roboto text-white mt-10">
+            <div class="space-y-5 col-span-2">
+                <p>Jl. Kemiren, Kemiren, Kec. Glagah, Kabupaten Banyuwangi, <br> Jawa Timur 68432</p>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="mailto:cvrengganikaryasemesta@gmail.com" class="flex items-center gap-3" target="_blank" rel="noopener noreferrer"> 
+                        <Icon name="mdi:email" />
+                        cvrengganikaryasemesta@gmail.com</a></li>
+                    <li>
+                        <a href="https://api.whatsapp.com/send?phone=6289512589756" class="flex items-center gap-3" target="_blank" rel="noopener noreferrer"> 
+                        <Icon name="mdi:phone" />
+                        +62 895-1258-9756</a></li>
+                </ul>
+            </div>
+            <div class="space-y-5">
+                <p class="font-semibold">INFORMASI</p>
+                <ul class="space-y-2">
+                    <li><a href="/" >Beranda</a> </li>
+                    <li><a href="/services" >Layanan</a> </li>
+                    <li><a href="/about-us">Tentang</a> </li>
+                    <li><a href="/blogs">Blog</a> </li>
+                </ul> 
+            </div>
+            <div class="space-y-5">
+                <p class="font-semibold">SOSIAL MEDIA</p>
+                <div class="flex gap-2 flex-wrap">
+                    <a href="https://www.instagram.com/rengganikarya.semesta/" target="_blank" rel="noopener noreferrer" aria-label="instagram">
+                        <Icon name="mdi:instagram" />
+                    </a>
+                    <a href="https://www.youtube.com/@rengganikaryasemesta" target="_blank" rel="noopener noreferrer" aria-label="youtube">
+                        <Icon name="mdi:youtube" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        </article>
+        <article class="border-t-2 text-white font-roboto text-center py-5 px-5">
+            © 2024 CV Renggani Karya Semesta all rights reserved.
+        </article>
+    </section>
+</footer>

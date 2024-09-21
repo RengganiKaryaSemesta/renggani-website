@@ -1,0 +1,134 @@
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-ThinItalic.ttf") format("truetype");
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-display: swap;
+    src: url("/Roboto/Roboto-BlackItalic.ttf") format("truetype");
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    font-display: swap;
+    src: url("/Montserrat/static/Montserrat-Regular.ttf")
+        format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Bold Font */
+@font-face {
+    font-family: "Montserrat";
+    font-display: swap;
+    src: url("/Montserrat/static/Montserrat-Bold.ttf")
+        format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Italic Font */
+@font-face {
+    font-family: "Montserrat";
+    font-display: swap;
+    src: url("/Montserrat/static/Montserrat-Italic.ttf")
+        format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* Bold Italic Font */
+@font-face {
+    font-family: "Montserrat";
+    font-display: swap;
+    src: url("/Montserrat/static/Montserrat-BoldItalic.ttf")
+        format("truetype");
+    font-weight: bold;
+    font-style: italic;
+}

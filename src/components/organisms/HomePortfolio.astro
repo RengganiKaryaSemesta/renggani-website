@@ -1,0 +1,89 @@
+---
+import { getImage } from "astro:assets";
+import PortfolioHomeContent from "@components/molecules/PortfolioHomeContent";
+import PortfolioHomeButtonCategory from "@components/atoms/PortfolioHomeButtonCategory";
+import { getCollection } from "astro:content";
+const portfolios = await getCollection(
+    "portfolios",
+    async ({ data }: any) => {
+        try {
+            data.image = await getImage({
+                src: data.image,
+                format: "webp",
+                width: 500,
+                height: 500,
+                loading:'eager'
+            });
+        } catch (error) {
+            console.log(error);
+        }
+        return data;
+    },
+);
+const categories = [
+    "Terbaru",
+    "Web Apps",
+    "Mobile Apps",
+    "Desktop Apps",
+    "Website",
+    "Website Design",
+    "ERP",
+    "CRM",
+    "E-Learning",
+    "E-Commerce",
+    "IoT",
+    "Artificial Intelligence",
+    "BOT",
+];
+---
+
+<section
+    class="min-h-[500px] backdrop-blur-md z-10 relative bg-gray-50 py-10 dark:bg-gray-900"
+>
+    <div
+        class="absolute h-52 from-blue-800 to-gray-50 right-0 bottom-0 blur-[180px] bg-gradient-to-tl dark:blur-[180px] dark:to-gray-900 w-1/2"
+    >
+    </div>
+    <div
+        class="absolute w-64 h-52 bg-cyan-500 left-0 bottom-0 dark:hidden blur-[180px]"
+    >
+    </div>
+    <article class="relative px-5 border-blue-100 dark:border-gray-700 border-b-2 mb-5 lg:px-20">
+        <p
+            class="text-xs lg:text-base dark:text-white dark:border-gray-200 text-blue-800 font-medium font-roboto border-b-2 border-blue-800 inline pb-2"
+        >
+            Portofolio Kami
+        </p>
+        <div class="grid lg:grid-cols-2 lg:gap-10 mb-10">
+            <h2
+                class="lg:text-4xl text-2xl font-bold font-roboto mt-5 dark:text-white"
+            >
+                Proyek Unggulan Kami
+            </h2>
+            <p class="lg:text-lg text-sm dark:text-gray-500">
+                Setiap proyek dirancang untuk menginspirasi dan memberikan hasil
+                luar biasa bagi klien kami.
+            </p>
+        </div>
+        <swiper-container
+            class="swiper-portfolio"
+            controller-control=".swiper-portfolio"
+            slides-per-view="auto"
+            space-between="20"
+            mousewheel="true"
+            free-mode="true"
+        >
+            {
+                categories.map((data, index) => (
+                    <swiper-slide key={index} class="pb-5 w-max">
+                        <PortfolioHomeButtonCategory
+                            client:visible
+                            category={data}
+                        />
+                    </swiper-slide>
+                ))
+            }
+        </swiper-container>
+    </article>
+    <PortfolioHomeContent client:visible portfolios={portfolios} />
+</section>
