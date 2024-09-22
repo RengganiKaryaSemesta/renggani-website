@@ -52,8 +52,7 @@ const PortfolioHomeContent: React.FC<PortfolioHomeContentProps> = ({ portfolios 
     };
     const filteredPortfolios = portfolios.filter(portfolio => portfolio.data.category === isActive || isActive == "Terbaru");
     return (
-        <div>
-            <img src={robotEmptyImageOptimized.src} alt="empty portfolio" width={300} height={500} className="w-40 md:w-auto" />
+        <>
             {
                 filteredPortfolios.length > 0
                     ? <HasContent limit={limit} portfolios={filteredPortfolios} loadMore={loadMore} />
@@ -66,6 +65,6 @@ const PortfolioHomeContent: React.FC<PortfolioHomeContentProps> = ({ portfolios 
                         </div>
                     </article>
             }
-        </div>)
+        </>)
 }
 export default PortfolioHomeContent
