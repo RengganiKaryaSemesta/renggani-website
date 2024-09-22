@@ -19,7 +19,7 @@ const robotEmptyImageOptimized = await getImage({
     format: "webp",
     width: 300,
     height: 500,
-    loading: 'lazy'
+    loading: 'eager'
 })
 
 const HasContent: React.FC<PortfolioHasContentProps> = ({ portfolios, limit, loadMore }) => {
