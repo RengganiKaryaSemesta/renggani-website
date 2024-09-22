@@ -3,7 +3,7 @@ import { categoryActived } from "src/stores/portfolioHomeStore"
 import { useStore } from '@nanostores/react';
 import { useState } from "react";
 import { getImage } from "astro:assets";
-import robotEmptyImage from "@assets/emptyRobot.png"
+import robotEmptyImage from "../../assets/emptyRobot.png"
 
 
 interface PortfolioHomeContentProps {
@@ -19,7 +19,7 @@ const robotEmptyImageOptimized = await getImage({
     format: "webp",
     width: 300,
     height: 500,
-    loading: 'eager'
+    loading: 'lazy'
 })
 
 const HasContent: React.FC<PortfolioHasContentProps> = ({ portfolios, limit, loadMore }) => {
