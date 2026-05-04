@@ -6,14 +6,21 @@ import NavList from "@components/molecules/NavList";
 import SideBarMenu from "@components/molecules/SideBarMenu";
 import HeaderButtonContactUs from "@components/atoms/HeaderButtonContactUs";
 import SideBarButton from "@components/atoms/SideBarButton";
+
+interface Props {
+    isSolid?: boolean;
+}
+const { isSolid: isSolidProp } = Astro.props;
 const currentPathName = Astro.url.pathname;
+const isSolid = isSolidProp || currentPathName.startsWith('/blogs');
 ---
 
 <div class="relative">
     <nav
         id="navbar"
         role="navigation"
-        class={`py-3 px-5 lg:px-20 fixed top-0 left-0 right-0 z-50 flex items-center justify-between`}
+        data-is-solid={isSolid ? "true" : "false"}
+        class={`py-3 px-5 lg:px-20 fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-300 ${isSolid ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}
     >
         <Image
             loading={"eager"}
@@ -23,7 +30,7 @@ const currentPathName = Astro.url.pathname;
             height={51}
             id="logo-white"
             quality={100}
-            class={`h-auto dark:block`}
+            class={`h-auto ${isSolid ? 'hidden' : 'dark:block'}`}
         />
         <Image
             loading={"eager"}
@@ -32,11 +39,11 @@ const currentPathName = Astro.url.pathname;
             width={130}
             height={55}
             id="logo-color"
-            class={`h-auto hidden dark:hidden`}
+            class={`h-auto ${isSolid ? 'block' : 'hidden dark:hidden'}`}
         />
-        <NavList client:load currentPathName={currentPathName} />
-        <HeaderButtonContactUs client:load className="hidden lg:block" />
-        <SideBarButton client:load />
+        <NavList client:load currentPathName={currentPathName} isSolid={isSolid} />
+        <HeaderButtonContactUs client:load className="hidden lg:block" isSolid={isSolid} />
+        <SideBarButton client:load isSolid={isSolid} />
     </nav>
     <SideBarMenu client:load currentPathName={currentPathName} />
 </div>
@@ -46,22 +53,29 @@ const currentPathName = Astro.url.pathname;
         const logoWhite = document.getElementById("logo-white");
         const logoColor = document.getElementById("logo-color");
         const navbar = document.getElementById("navbar");
-        window.addEventListener("scroll", function () {
-            if (window.scrollY > 50) {
-                logoColor?.classList.remove("hidden");
-                logoWhite?.classList.add("hidden");
-                navbar?.classList.add("bg-white/50");
-                navbar?.classList.add("dark:bg-gray-900/50");
+        const isSolid = navbar?.dataset.isSolid === 'true' || window.location.pathname.startsWith('/blogs');
+        
+        function updateNavbar() {
+            if (window.scrollY > 50 || isSolid) {
+                navbar?.classList.add("bg-white/90", "dark:bg-gray-900/90", "backdrop-blur-md", "shadow-sm");
                 navbar?.classList.remove("bg-transparent");
-                navbar?.classList.add("backdrop-blur-md");
+                
+                logoColor?.classList.remove("hidden");
+                logoColor?.classList.add("block");
+                logoWhite?.classList.add("hidden");
+                logoWhite?.classList.remove("dark:block");
             } else {
-                navbar?.classList.remove("dark:bg-gray-900/50");
-                navbar?.classList.remove("backdrop-blur-md");
-                navbar?.classList.remove("bg-white/50");
+                navbar?.classList.remove("bg-white/90", "dark:bg-gray-900/90", "backdrop-blur-md", "shadow-sm");
                 navbar?.classList.add("bg-transparent");
-                logoWhite?.classList.remove("hidden");
+                
                 logoColor?.classList.add("hidden");
+                logoColor?.classList.remove("block");
+                logoWhite?.classList.remove("hidden");
+                logoWhite?.classList.add("dark:block");
             }
-        });
+        }
+
+        window.addEventListener("scroll", updateNavbar);
+        updateNavbar();
     });
 </script>

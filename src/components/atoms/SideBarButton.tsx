@@ -1,10 +1,10 @@
 import { useEffect,  useState } from "react";
 import { mobileMenuState } from "src/stores/toggleMobileMenuStore";
-const SideBarButton = () => {
-    const [scrolled, setScrolled] = useState(false);
+const SideBarButton = ({ isSolid = false }: { isSolid?: boolean }) => {
+    const [scrolled, setScrolled] = useState(isSolid);
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 50 || isSolid) {
                 setScrolled(true);
             } else {
                 setScrolled(false);

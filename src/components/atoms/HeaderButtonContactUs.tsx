@@ -1,13 +1,14 @@
 import { useState, useEffect, type FC } from 'react';
 interface HeaderButtonContactUsProps {
-    className: string
+    className: string;
+    isSolid?: boolean;
 }
-const HeaderButtonContactUs: FC<HeaderButtonContactUsProps> = ({ className }) => {
-    const [scrolled, setScrolled] = useState(false);
+const HeaderButtonContactUs: FC<HeaderButtonContactUsProps> = ({ className, isSolid = false }) => {
+    const [scrolled, setScrolled] = useState(isSolid);
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 50 || isSolid) {
                 setScrolled(true);
             } else {
                 setScrolled(false);
