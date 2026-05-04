@@ -50,7 +50,9 @@ const PortfolioHomeContent: React.FC<PortfolioHomeContentProps> = ({ portfolios 
     const loadMore = () => {
         setLimit((prevCount) => prevCount + 4);
     };
-    const filteredPortfolios = portfolios.filter(portfolio => portfolio.data.category === isActive || isActive == "Terbaru");
+    const filteredPortfolios = portfolios.filter(portfolio => 
+        portfolio.data.category.split(',').map((c: string) => c.trim()).includes(isActive) || isActive == "Terbaru"
+    );
     return (
         <>
             {
