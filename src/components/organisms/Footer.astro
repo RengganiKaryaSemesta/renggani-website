@@ -10,6 +10,8 @@ const footerBGOptiomized = await getImage({
     loading:'lazy',
     format: "webp",
 });
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer
@@ -54,7 +56,7 @@ const footerBGOptiomized = await getImage({
             <div class="space-y-5">
                 <p class="font-semibold">SOSIAL MEDIA</p>
                 <div class="flex gap-2 flex-wrap">
-                    <a href="https://www.instagram.com/rengganikarya.semesta/" target="_blank" rel="noopener noreferrer" aria-label="instagram">
+                    <a href="https://www.instagram.com/rengganiks/" target="_blank" rel="noopener noreferrer" aria-label="instagram">
                         <Icon name="mdi:instagram" />
                     </a>
                     <a href="https://www.youtube.com/@rengganikaryasemesta" target="_blank" rel="noopener noreferrer" aria-label="youtube">
@@ -65,7 +67,7 @@ const footerBGOptiomized = await getImage({
         </div>
         </article>
         <article class="border-t-2 text-white font-roboto text-center py-5 px-5">
-            © 2024 CV Renggani Karya Semesta all rights reserved.
+            © {currentYear} CV Renggani Karya Semesta all rights reserved.
         </article>
     </section>
 </footer>
