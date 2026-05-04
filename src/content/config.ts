@@ -19,7 +19,21 @@ const services = defineCollection({
     }),
 });
 
+const blogs = defineCollection({
+    type: 'content',
+    schema:  ({ image }) => z.object({
+        title: z.string(),
+        category: z.string(),
+        author: z.string(),
+        reviewer: z.string().optional(),
+        banner: image(),
+        created_at: z.string().transform((str) => new Date(str)),
+        description: z.string().optional(),
+    }),
+});
+
 export const collections = {
     portfolios,
-    services
+    services,
+    blogs
 };

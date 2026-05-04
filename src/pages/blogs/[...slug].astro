@@ -1,0 +1,156 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+export async function getStaticPaths() {
+    const blogs = await getCollection("blogs");
+    return blogs.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const blogs = await getCollection("blogs");
+const categories = [...new Set(blogs.map(blog => blog.data.category))];
+---
+
+<Layout title={`${entry.data.title} | Blog Renggani`} description={entry.data.description || ""}>
+    <main class="bg-white dark:bg-gray-900 pt-32 pb-20 font-roboto">
+        <div class="max-w-7xl mx-auto px-5 lg:px-20">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 text-sm text-gray-500 mb-8 overflow-x-auto whitespace-nowrap pb-2">
+                <a href="/" class="hover:text-blue-600">Home</a>
+                <Icon name="mdi:chevron-right" />
+                <a href="/blogs" class="hover:text-blue-600">Blogs</a>
+                <Icon name="mdi:chevron-right" />
+                <span class="text-blue-600 font-medium">{entry.data.category}</span>
+                <Icon name="mdi:chevron-right" />
+                <span class="truncate">{entry.data.title}</span>
+            </nav>
+
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Sidebar -->
+                <aside class="lg:w-1/4 order-2 lg:order-1 space-y-8">
+                    <div class="relative group">
+                        <input 
+                            type="text" 
+                            placeholder="Cari artikel di sini..." 
+                            class="w-full pl-5 pr-12 py-3 rounded-xl border-2 border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-blue-600 outline-none transition-all"
+                        />
+                        <button class="absolute right-4 top-1/2 -translate-y-1/2 text-blue-600">
+                            <Icon name="mdi:magnify" class="text-2xl" />
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-lg dark:text-white border-b pb-2">Daftar Isi</h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-400 text-sm">
+                            <li class="hover:text-blue-600 cursor-pointer transition-colors">Pengenalan</li>
+                            <li class="hover:text-blue-600 cursor-pointer transition-colors">Poin Utama</li>
+                            <li class="hover:text-blue-600 cursor-pointer transition-colors">Kesimpulan</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-6 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl text-white space-y-4 shadow-xl">
+                        <h4 class="font-bold leading-tight">Butuh Solusi IT untuk Bisnis Anda?</h4>
+                        <p class="text-sm opacity-90">Konsultasikan kebutuhan aplikasi atau website Anda secara gratis!</p>
+                        <a href="https://api.whatsapp.com/send?phone=6289512589756" class="block w-full py-3 bg-white text-blue-800 text-center font-bold rounded-xl hover:bg-gray-100 transition-colors">
+                            Mulai Sekarang
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- Content Area -->
+                <div class="lg:w-3/4 order-1 lg:order-2 space-y-8">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 text-sm font-bold text-blue-600 uppercase tracking-widest">
+                            <span>{entry.data.category}</span>
+                            <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                            <span class="text-gray-500 lowercase font-normal italic">5 mins read</span>
+                        </div>
+                        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
+                            {entry.data.title}
+                        </h1>
+                        <div class="flex flex-wrap items-center gap-6 pt-4 text-sm border-b pb-8">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-500">Diperbarui</span>
+                                <span class="font-bold text-gray-900 dark:text-white">
+                                    {entry.data.created_at.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center font-bold text-blue-600">
+                                    {entry.data.author.charAt(0)}
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] text-gray-500 leading-none">Ditulis oleh:</span>
+                                    <span class="font-bold text-gray-900 dark:text-white">{entry.data.author}</span>
+                                </div>
+                            </div>
+                            {entry.data.reviewer && (
+                                <div class="flex items-center gap-3">
+                                    <div class="flex flex-col">
+                                        <span class="text-[10px] text-gray-500 leading-none">Direview oleh:</span>
+                                        <span class="font-bold text-gray-900 dark:text-white">{entry.data.reviewer}</span>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <Image 
+                            src={entry.data.banner} 
+                            alt={entry.data.title}
+                            class="w-full h-auto object-cover max-h-[600px]"
+                            width={1600}
+                            height={900}
+                        />
+                    </div>
+
+                    <div class="prose prose-lg dark:prose-invert max-w-none prose-headings:font-roboto prose-headings:text-blue-900 dark:prose-headings:text-blue-400 prose-p:text-gray-700 dark:prose-p:text-gray-300">
+                        <Content />
+                    </div>
+
+                    <div class="mt-16 pt-8 border-t dark:border-gray-800">
+                        <h3 class="text-xl font-bold dark:text-white mb-6">Bagikan Artikel:</h3>
+                        <div class="flex gap-4">
+                            <button class="w-12 h-12 rounded-full border-2 border-gray-100 dark:border-gray-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                                <Icon name="mdi:facebook" class="text-xl" />
+                            </button>
+                            <button class="w-12 h-12 rounded-full border-2 border-gray-100 dark:border-gray-800 flex items-center justify-center hover:bg-blue-400 hover:text-white transition-all">
+                                <Icon name="mdi:twitter" class="text-xl" />
+                            </button>
+                            <button class="w-12 h-12 rounded-full border-2 border-gray-100 dark:border-gray-800 flex items-center justify-center hover:bg-blue-700 hover:text-white transition-all">
+                                <Icon name="mdi:linkedin" class="text-xl" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style is:global>
+    .prose h2 {
+        @apply text-3xl font-bold mt-10 mb-6;
+    }
+    .prose h3 {
+        @apply text-2xl font-bold mt-8 mb-4;
+    }
+    .prose ul {
+        @apply list-disc list-inside space-y-2 my-6;
+    }
+    .prose ol {
+        @apply list-decimal list-inside space-y-2 my-6;
+    }
+    .prose p {
+        @apply leading-relaxed mb-6;
+    }
+</style>
