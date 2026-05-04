@@ -19,7 +19,7 @@ const portfolios = await getCollection(
         }
         return data;
     },
-);
+).then(data => data.sort((a, b) => b.data.created_at.getTime() - a.data.created_at.getTime()));
 const categories = [
     "Terbaru",
     "Web Apps",
