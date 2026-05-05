@@ -7,13 +7,17 @@ const portfoliosRaw = await getCollection("portfolios");
 const portfolios = await Promise.all(
     portfoliosRaw.map(async (item) => {
         try {
-            item.data.image = await getImage({
+            const optimizedImage = await getImage({
                 src: item.data.image,
                 format: "webp",
                 width: 500,
                 height: 500,
                 loading: "eager",
             });
+            item.data.image = {
+                ...item.data.image,
+                src: optimizedImage.src,
+            };
         } catch (error) {
             console.log(error);
         }
