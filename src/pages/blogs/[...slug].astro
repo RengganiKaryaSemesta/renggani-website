@@ -4,14 +4,15 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
-const { slug } = Astro.params;
-const blogs = await getCollection("blogs");
-const entry = blogs.find((b) => b.slug === slug);
-
-if (!entry) {
-    return Astro.redirect("/404");
+export async function getStaticPaths() {
+    const blogs = await getCollection("blogs");
+    return blogs.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
 }
 
+const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
