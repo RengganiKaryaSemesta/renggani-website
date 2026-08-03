@@ -13,8 +13,6 @@ if (!entry) {
 }
 
 const { Content } = await entry.render();
-
-const categories = [...new Set(blogs.map(blog => blog.data.category))];
 ---
 
 <Layout title={`${entry.data.title} | Blog Renggani`} description={entry.data.description || ""}>

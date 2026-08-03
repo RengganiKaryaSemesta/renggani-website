@@ -12,7 +12,7 @@ interface Props {
 }
 const { isSolid: isSolidProp } = Astro.props;
 const currentPathName = Astro.url.pathname;
-const isSolid = isSolidProp || currentPathName.startsWith('/blogs');
+const isSolid = isSolidProp || currentPathName.startsWith('/blogs') || currentPathName.startsWith('/kebijakan-privasi') || currentPathName.startsWith('/privacy-policy');
 ---
 
 <div class="relative">
@@ -53,7 +53,7 @@ const isSolid = isSolidProp || currentPathName.startsWith('/blogs');
         const logoWhite = document.getElementById("logo-white");
         const logoColor = document.getElementById("logo-color");
         const navbar = document.getElementById("navbar");
-        const isSolid = navbar?.dataset.isSolid === 'true' || window.location.pathname.startsWith('/blogs');
+        const isSolid = navbar?.dataset.isSolid === 'true' || window.location.pathname.startsWith('/blogs') || window.location.pathname.startsWith('/kebijakan-privasi') || window.location.pathname.startsWith('/privacy-policy');
         
         function updateNavbar() {
             if (window.scrollY > 50 || isSolid) {

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import NavList from "@components/molecules/NavList";
 import HeaderButtonContactUs from "@components/atoms/HeaderButtonContactUs";
 import { mobileMenuState } from "src/stores/toggleMobileMenuStore";
