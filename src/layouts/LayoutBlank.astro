@@ -1,56 +1,69 @@
 ---
-import '../styles/global.css'
+import '../styles/global.css';
+
 interface Props {
-	title: string;
+    title: string;
+    description?: string;
+    image?: string;
 }
 
-const { title } = Astro.props;
+const { 
+    title,
+    description = "Renggani Karya Semesta adalah software house yang memiliki banyak produk software unggulan. Kami menawarkan solusi IT inovatif untuk kebutuhan bisnis Anda.",
+    image = "/og-image.jpg"
+} = Astro.props;
+
+const siteUrl = "https://www.rengganikaryasemesta.com";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
+const imageURL = image.startsWith("http") ? image : new URL(image, siteUrl).href;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.webp" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
+        <link rel="canonical" href={canonicalURL} />
+        <meta name="generator" content={Astro.generator} />
 
-		<!-- Meta Description -->
-		<meta
-			name="description"
-			content="Renggani Karya Semesta adalah software house yang memiliki banyak produk software unggulan. Kami menawarkan solusi IT inovatif untuk kebutuhan bisnis Anda."
-		/>
+        <!-- Primary Meta Tags -->
+        <title>{title}</title>
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta
+            name="keywords"
+            content="Renggani Karya Semesta, software house, produk software, pengembangan perangkat lunak, solusi IT, pengembangan aplikasi, software development"
+        />
 
-		<!-- Meta Keywords -->
-		<meta
-			name="keywords"
-			content="Renggani Karya Semesta, software house, produk software, pengembangan perangkat lunak, solusi IT, pengembangan aplikasi, software development"
-		/>
+        <!-- Open Graph / Facebook / WhatsApp Meta Tags -->
+        <meta property="og:site_name" content="CV. Renggani Karya Semesta" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={imageURL} />
+        <meta property="og:image:secure_url" content={imageURL} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:alt" content={title} />
+        <meta property="og:locale" content="id_ID" />
+        <meta property="fb:app_id" content="852463347946532" />
 
-		<!-- Open Graph Meta Tags -->
-		<meta
-			property="og:title"
-			content="Renggani Karya Semesta - Software House dengan Banyak Produk Unggulan"
-		/>
-		<meta
-			property="og:description"
-			content="Renggani Karya Semesta adalah software house yang memiliki banyak produk software unggulan. Kami menawarkan solusi IT inovatif untuk kebutuhan bisnis Anda."
-		/>
-		<meta property="og:site_name" content="rengganikaryasemesta.com">
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:url"
-			content="https://www.rengganikaryasemesta.com"
-		/>
-		<meta name="google-site-verification" content="7dviPrN0hKnhLyHuHhuvoUEt7caxYqUziESI7ZsUJDQ" />
-		<meta property="og:image" content="/favicon.webp" />
-		<meta property="fb:app_id" content="852463347946532" />
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={canonicalURL} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={imageURL} />
 
-	</head>
+        <!-- Google Site Verification -->
+        <meta name="google-site-verification" content="7dviPrN0hKnhLyHuHhuvoUEt7caxYqUziESI7ZsUJDQ" />
+    </head>
 
-	<body
-	>
-		<slot />
-	</body>
+    <body>
+        <slot />
+    </body>
 </html>

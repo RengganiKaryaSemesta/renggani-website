@@ -16,7 +16,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout title={`${entry.data.title} | Blog Renggani`} description={entry.data.description || ""}>
+<Layout title={`${entry.data.title} | Blog Renggani`} description={entry.data.description || ""} type="article">
     <main class="bg-white dark:bg-gray-900 pt-32 pb-20 font-roboto">
         <div class="max-w-7xl mx-auto px-5 lg:px-20">
             <!-- Breadcrumb -->

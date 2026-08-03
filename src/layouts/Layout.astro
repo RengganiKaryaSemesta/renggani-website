@@ -2,54 +2,78 @@
 import Header from "@components/organisms/Header.astro";
 import Footer from "@components/organisms/Footer.astro";
 import "../styles/global.css";
+
 interface Props {
     title: string;
     description: string;
+    image?: string;
+    type?: string;
+    isSolid?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { 
+    title, 
+    description, 
+    image = "/og-image.jpg", 
+    type = "website",
+    isSolid
+} = Astro.props;
+
+const siteUrl = "https://www.rengganikaryasemesta.com";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
+const imageURL = image.startsWith("http") ? image : new URL(image, siteUrl).href;
 ---
 
 <!doctype html>
-<html lang="en" class="light">
+<html lang="id" class="light">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
+        <link rel="canonical" href={canonicalURL} />
         <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-        <meta name="robots" content="index, follow" />
-        <!-- Meta Description -->
-        <meta name="description" content={description} />
 
-        <!-- Meta Keywords -->
+        <!-- Primary Meta Tags -->
+        <title>{title}</title>
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta
             name="keywords"
-            content="pengembangan web, pengembangan perangkat lunak, software house, e-commerce, website gratis, jasa pembuatan website, pembuatan aplikasi, IT solutions, solusi teknologi, teknologi informasi, web development, software development, mobile app development, jasa IT, digital marketing, desain web, website profesional, hosting web, manajemen konten, integrasi sistem, layanan IT, Banyuwangi, Bali"
+            content="CV Renggani Karya Semesta, pengembangan web, pengembangan perangkat lunak, software house, e-commerce, website gratis, jasa pembuatan website, pembuatan aplikasi, IT solutions, solusi teknologi, teknologi informasi, web development, software development, mobile app development, jasa IT, digital marketing, desain web, website profesional, hosting web, manajemen konten, integrasi sistem, layanan IT, Banyuwangi, Bali"
         />
 
-        <!-- Open Graph Meta Tags -->
+        <!-- Open Graph / Facebook / WhatsApp Meta Tags -->
+        <meta property="og:site_name" content="CV. Renggani Karya Semesta" />
+        <meta property="og:type" content={type} />
+        <meta property="og:url" content={canonicalURL} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="rengganikaryasemesta.com" />
-        <meta
-            property="og:url"
-            content="https://www.rengganikaryasemesta.com"
-        />
+        <meta property="og:image" content={imageURL} />
+        <meta property="og:image:secure_url" content={imageURL} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:alt" content={title} />
+        <meta property="og:locale" content="id_ID" />
+        <meta property="fb:app_id" content="852463347946532" />
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={canonicalURL} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={imageURL} />
+
+        <!-- Google Site Verification -->
         <meta
             name="google-site-verification"
             content="7dviPrN0hKnhLyHuHhuvoUEt7caxYqUziESI7ZsUJDQ"
         />
-        <meta property="og:image" content="/favicon.webp" />
-        <meta property="fb:app_id" content="852463347946532" />
-        <!-- <script
-            src="https://kit.fontawesome.com/65dbafaf47.js"
-            crossorigin="anonymous"></script> -->
     </head>
 
     <body>
-        <Header />
+        <Header isSolid={isSolid} />
         <slot />
         <Footer />
     </body>
