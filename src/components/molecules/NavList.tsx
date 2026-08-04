@@ -12,7 +12,7 @@ const NavList: React.FC<NavListProps> = ({ isMobile = false, currentPathName, is
     <NavLink scrolledDefault={isMobile || isSolid} href="/" isActive={currentPathName == '/'}>Beranda</NavLink>
     <NavLink scrolledDefault={isMobile || isSolid} href="/services" isActive={currentPathName == '/services'}>Layanan</NavLink>
     <NavLink scrolledDefault={isMobile || isSolid} href="/blogs" isActive={currentPathName == '/blogs' || currentPathName.startsWith('/blogs')}>Blog</NavLink>
-    <NavLink scrolledDefault={isMobile || isSolid} href="/bukubatik" isActive={currentPathName == '/bukubatik' || currentPathName.startsWith('/bukubatik')}>BukuBatik</NavLink>
+    <NavLink scrolledDefault={isMobile || isSolid} href="/bukubatik" isActive={currentPathName == '/bukubatik' || currentPathName.startsWith('/bukubatik')} isHighlight={true}>BukuBatik</NavLink>
   </ul>
 );
 

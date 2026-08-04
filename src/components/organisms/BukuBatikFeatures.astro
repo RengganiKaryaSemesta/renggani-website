@@ -13,7 +13,7 @@ import { Icon } from "astro-icon/components";
 const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Renggani%2C%20saya%20tertarik%20dengan%20produk%20BukuBatik.%20Mohon%20informasi%20penawaran%20dan%20demo%20sistemnya.";
 ---
 
-<section class="py-20 px-5 lg:px-20 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-roboto relative">
+<section class="py-20 px-5 lg:px-20 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-roboto relative overflow-hidden">
     <div class="max-w-7xl mx-auto space-y-28">
         
         <!-- Section Header -->
@@ -58,6 +58,12 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
             </div>
             <div class="lg:col-span-7">
                 <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-gray-800/90 border-b border-gray-700/80 text-xs text-gray-400 font-mono">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                        <span class="ml-2">Laporan Konversi & HPP Produk</span>
+                    </div>
                     <Image
                         src={laporanProductImg}
                         alt="Fitur HPP dan Konversi Produk BukuBatik"
@@ -71,28 +77,19 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
         <!-- Modul 2: Pembelian, Purchase Request (PR) & Purchase Order (PO) -->
         <div class="grid lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-7 order-2 lg:order-1">
-                <div class="bg-gradient-to-br from-gray-900 to-slate-900 p-8 rounded-3xl border border-gray-700/80 shadow-2xl text-white space-y-6">
-                    <div class="flex items-center gap-3 text-purple-400 font-mono text-xs uppercase tracking-wider">
-                        <Icon name="mdi:transit-connection-horizontal" class="text-lg" />
-                        <span>Alur Pembelian Terintegrasi</span>
+                <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-gray-800/90 border-b border-gray-700/80 text-xs text-gray-400 font-mono">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                        <span class="ml-2">Pengeluaran & Alur PO Pembelian</span>
                     </div>
-                    <div class="grid md:grid-cols-3 gap-4">
-                        <div class="bg-gray-800/80 p-5 rounded-2xl border border-gray-700 space-y-2">
-                            <span class="text-xs text-purple-300 font-semibold uppercase">Tahap 1</span>
-                            <h4 class="font-bold text-base">Purchase Request (PR)</h4>
-                            <p class="text-xs text-gray-400">Pengajuan kebutuhan bahan baku batik dari tim produksi ke bagian pengadaan.</p>
-                        </div>
-                        <div class="bg-gray-800/80 p-5 rounded-2xl border border-gray-700 space-y-2">
-                            <span class="text-xs text-indigo-300 font-semibold uppercase">Tahap 2</span>
-                            <h4 class="font-bold text-base">Purchase Order (PO)</h4>
-                            <p class="text-xs text-gray-400">Penerbitan pesanan resmi ke vendor bahan baku lengkap dengan harga & syarat.</p>
-                        </div>
-                        <div class="bg-gray-800/80 p-5 rounded-2xl border border-gray-700 space-y-2">
-                            <span class="text-xs text-blue-300 font-semibold uppercase">Tahap 3</span>
-                            <h4 class="font-bold text-base">Penerimaan & Tagihan</h4>
-                            <p class="text-xs text-gray-400">Pencatatan barang masuk gudang dan faktur tagihan supplier secara otomatis.</p>
-                        </div>
-                    </div>
+                    <Image
+                        src={biayaImg}
+                        alt="Fitur Purchase Request dan Purchase Order BukuBatik"
+                        class="w-full h-auto object-cover transform group-hover:scale-102 transition-transform duration-500"
+                        quality={95}
+                    />
                 </div>
             </div>
             <div class="lg:col-span-5 space-y-6 order-1 lg:order-2">
@@ -147,6 +144,12 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
             </div>
             <div class="lg:col-span-7">
                 <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-gray-800/90 border-b border-gray-700/80 text-xs text-gray-400 font-mono">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                        <span class="ml-2">Laporan Kartu Piutang Pelanggan</span>
+                    </div>
                     <Image
                         src={kartuPiutangImg}
                         alt="Fitur Kartu Piutang BukuBatik"
@@ -161,6 +164,12 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
         <div class="grid lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-7 order-2 lg:order-1">
                 <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-gray-800/90 border-b border-gray-700/80 text-xs text-gray-400 font-mono">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                        <span class="ml-2">Laporan Keuangan & General Ledger</span>
+                    </div>
                     <Image
                         src={laporanGeneralImg}
                         alt="Fitur Laporan Keuangan Lengkap BukuBatik"
@@ -233,6 +242,12 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
             </div>
             <div class="lg:col-span-7">
                 <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-gray-800/90 border-b border-gray-700/80 text-xs text-gray-400 font-mono">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                        <span class="ml-2">Rekonsiliasi Bank Otomatis</span>
+                    </div>
                     <Image
                         src={rekonsiliasiBankImg}
                         alt="Fitur Rekonsiliasi Bank BukuBatik"
@@ -243,16 +258,22 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
             </div>
         </div>
 
-        <!-- Modul 6: Radar Performa Pelanggan & Keamanan Access -->
+        <!-- Modul 6: Radar Performa & Analisis Kesehatan Pelanggan -->
         <div class="grid lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-7 order-2 lg:order-1">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 bg-gray-900">
-                        <Image src={kontakImg} alt="Radar Kesehatan Pelanggan" class="w-full h-auto object-cover" quality={90} />
+                <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-gray-800/90 border-b border-gray-700/80 text-xs text-gray-400 font-mono">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                        <span class="ml-2">Radar Kesehatan Pelanggan & Profil Kontak</span>
                     </div>
-                    <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 bg-gray-900">
-                        <Image src={loginImg} alt="Akses Login Bebas Khawatir" class="w-full h-auto object-cover" quality={90} />
-                    </div>
+                    <Image
+                        src={kontakImg}
+                        alt="Radar Performa dan Kesehatan Pelanggan BukuBatik"
+                        class="w-full h-auto object-cover transform group-hover:scale-102 transition-transform duration-500"
+                        quality={95}
+                    />
                 </div>
             </div>
             <div class="lg:col-span-5 space-y-6 order-1 lg:order-2">
@@ -260,12 +281,37 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
                     <Icon name="mdi:radar" class="text-2xl" />
                 </div>
                 <h3 class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-900">
-                    Analisis Kesehatan Mitra & Keamanan Berlapis
+                    Radar Performa & Analisis Kesehatan Pelanggan
                 </h3>
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Evaluasi performa transaksi tiap pelanggan dengan radar 5-dimensi (Ketepatan Bayar, Kelancaran Piutang, Volume, Kecepatan, dan Retur), didukung akses login aman SSO Google.
+                    Evaluasi performa transaksi tiap pelanggan dengan diagram radar 5-dimensi (Ketepatan Bayar, Kelancaran Piutang, Volume Transaksi, Kecepatan Pembayaran, dan Tingkat Retur) untuk menjaga kelancaran arus kas bisnis.
                 </p>
-                <div class="pt-2">
+                <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
+                    <li class="flex items-center gap-3">
+                        <Icon name="mdi:check-circle" class="text-purple-500 text-lg shrink-0" />
+                        <span>Analisis visual skor kesehatan kredit mitra bisnis</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <Icon name="mdi:check-circle" class="text-purple-500 text-lg shrink-0" />
+                        <span>Riwayat pesanan & histori pelunasan terpusat</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Modul 7: Keamanan Sistem & Otentikasi Multi-Role -->
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-5 space-y-6">
+                <div class="w-12 h-12 rounded-2xl bg-slate-800 text-white flex items-center justify-center shadow-lg shadow-slate-800/30">
+                    <Icon name="mdi:shield-check-outline" class="text-2xl" />
+                </div>
+                <h3 class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-900">
+                    Keamanan Berlapis & Akses Multi-Role
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Lindungi data finansial sensitif perusahaan Anda dengan otentikasi aman Single Sign-On (SSO Google) dan hak akses bertingkat untuk Admin, Akuntan, Gudang, dan Kasir.
+                </p>
+                <div class="pt-4">
                     <a
                         href={waLinkPenawaran}
                         target="_blank"
@@ -275,6 +321,22 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
                         <Icon name="mdi:whatsapp" class="text-xl" />
                         <span>Ajukan Penawaran BukuBatik</span>
                     </a>
+                </div>
+            </div>
+            <div class="lg:col-span-7">
+                <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-gray-800/90 border-b border-gray-700/80 text-xs text-gray-400 font-mono">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                        <span class="ml-2">Portal Log Masuk Bebas Khawatir (SSO Google)</span>
+                    </div>
+                    <Image
+                        src={loginImg}
+                        alt="Portal Otentikasi dan Keamanan BukuBatik"
+                        class="w-full h-auto object-cover transform group-hover:scale-102 transition-transform duration-500"
+                        quality={95}
+                    />
                 </div>
             </div>
         </div>
