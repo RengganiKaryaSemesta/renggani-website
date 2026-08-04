@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
 
 interface Props {
@@ -26,6 +27,7 @@ const imageURL = image.startsWith("http") ? image : new URL(image, siteUrl).href
         <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
         <link rel="canonical" href={canonicalURL} />
         <meta name="generator" content={Astro.generator} />
+        <ViewTransitions />
 
         <!-- Primary Meta Tags -->
         <title>{title}</title>
