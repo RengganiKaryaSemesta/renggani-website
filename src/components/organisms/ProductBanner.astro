@@ -1,0 +1,39 @@
+---
+import { Picture } from "astro:assets";
+import bannerBg from "@assets/banner_service.jpg";
+---
+<header class="relative">
+    <Picture
+        src={bannerBg}
+        loading={"eager"}
+        alt={"Banner Produk Renggani Karya Semesta"}
+        width={1200}
+        height={600}
+        widths={[450, 720, 1200]}
+        format="webp"
+        sizes={`(max-width: 425px) 450px, (max-width: 720px) 720px, 1200px`}
+        quality={80}
+    />
+    <section
+        class="absolute top-0 left-0 bottom-0 right-0 bg-gradient-to-tr from-gray-950/90 via-blue-950/85 to-purple-900/50 flex items-center justify-center"
+    >
+        <article class="text-white text-center w-[750px] px-5">
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-purple-500/20 text-purple-200 border border-purple-400/30 mb-4 backdrop-blur-sm">
+                Produk Perangkat Lunak SaaS
+            </span>
+            <h1 class="md:text-5xl text-3xl font-bold font-roboto leading-tight">
+                Solusi Software Cerdas & Terintegrasi
+            </h1>
+            <p class="text-base md:text-lg mt-3 text-gray-200 font-roboto">
+                Jelajahi lini produk perangkat lunak unggulan Renggani Karya Semesta yang dirancang khusus untuk mengotomatiskan akuntansi dan efisiensi bisnis Anda.
+            </p>
+        </article>
+    </section>
+</header>
+<style lang="scss">
+    picture {
+        img {
+            @apply w-auto h-screen object-cover object-center md:w-full md:h-auto md:max-h-[650px];
+        }
+    }
+</style>
