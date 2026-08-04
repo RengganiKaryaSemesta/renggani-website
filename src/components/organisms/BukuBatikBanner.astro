@@ -1,0 +1,98 @@
+---
+import { Picture, Image } from "astro:assets";
+import bannerBg from "@assets/banner_service.jpg";
+import dashboardImg from "@assets/buku-batik/dashboard-screen.png";
+import { Icon } from "astro-icon/components";
+
+const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Renggani%2C%20saya%20tertarik%20dengan%20produk%20BukuBatik.%20Mohon%20informasi%20penawaran%20dan%20demo%20sistemnya.";
+const waLinkKonsultasi = "https://api.whatsapp.com/send?phone=6285234104446&text=Halo%20Renggani%2C%20saya%20ingin%20konsultasi%20mengenai%20penggunaan%20BukuBatik%20untuk%20usaha%20saya.";
+---
+
+<header class="relative overflow-hidden bg-gray-950 text-white pt-24 pb-16 lg:pt-32 lg:pb-24 font-roboto">
+    <!-- Ambient Background Glows -->
+    <div class="absolute -top-32 right-1/4 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[160px] pointer-events-none"></div>
+    <div class="absolute top-1/2 -left-32 w-[400px] h-[400px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-20 relative z-10">
+        <!-- Hero Content Header -->
+        <div class="text-center max-w-4xl mx-auto space-y-6">
+            <div class="inline-flex items-center gap-2 bg-purple-500/15 text-purple-300 px-4 py-1.5 rounded-full text-xs lg:text-sm font-medium border border-purple-500/30 backdrop-blur-md">
+                <Icon name="mdi:sparkles" class="text-purple-400 text-base" />
+                <span>Sistem Akuntansi & Operasional Bisnis Batik</span>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                Kelola Bisnis Batik Jadi <br class="hidden sm:inline" />
+                <span class="bg-gradient-to-r from-purple-400 via-indigo-300 to-blue-400 bg-clip-text text-transparent">
+                    Lebih Pintar & Terstruktur
+                </span>
+            </h1>
+
+            <p class="text-base md:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
+                BukuBatik adalah platform akuntansi khusus pengusaha batik dan UMKM. Otomatiskan faktur penjualan, pelacakan piutang, pencatatan biaya, hingga analisis kesehatan pelanggan dalam satu dasbor terpadu.
+            </p>
+
+            <!-- Trust Badge & Stats -->
+            <div class="flex flex-wrap items-center justify-center gap-6 pt-2 text-xs md:text-sm text-gray-400">
+                <div class="flex items-center gap-2">
+                    <Icon name="mdi:check-decagram" class="text-purple-400 text-lg" />
+                    <span>Terpercaya oleh 2,000+ UMKM</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <Icon name="mdi:shield-check" class="text-indigo-400 text-lg" />
+                    <span>Keamanan Data & Multi-Role Access</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <Icon name="mdi:chart-line" class="text-blue-400 text-lg font-bold" />
+                    <span>Laporan Keuangan Real-Time</span>
+                </div>
+            </div>
+
+            <!-- Hero Action Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+                <a
+                    href={waLinkPenawaran}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold px-8 py-4 rounded-full shadow-lg shadow-purple-600/30 hover:shadow-purple-500/50 transition-all duration-300 transform hover:-translate-y-0.5 text-base"
+                >
+                    <Icon name="mdi:whatsapp" class="text-2xl" />
+                    <span>Ajukan Penawaran</span>
+                </a>
+                <a
+                    href={waLinkKonsultasi}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-medium px-7 py-4 rounded-full border border-white/20 backdrop-blur-sm transition-all duration-300 text-base"
+                >
+                    <span>Konsultasi Gratis</span>
+                    <Icon name="mdi:arrow-right" class="text-lg" />
+                </a>
+            </div>
+        </div>
+
+        <!-- Hero Screenshot Showcase Preview -->
+        <div class="mt-14 relative max-w-5xl mx-auto">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-purple-500/30 bg-gray-900 group">
+                <div class="flex items-center gap-2 px-4 py-3 bg-gray-900 border-b border-gray-800">
+                    <div class="flex gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                    </div>
+                    <span class="text-xs text-gray-400 font-mono ml-3">app.bukubatik.com/dashboard</span>
+                </div>
+                <Image
+                    src={dashboardImg}
+                    alt="BukuBatik Dashboard Utama"
+                    class="w-full h-auto object-cover"
+                    quality={95}
+                    loading="eager"
+                />
+            </div>
+            <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900/90 border border-purple-500/40 backdrop-blur-md px-6 py-2 rounded-full text-xs text-purple-200 shadow-xl">
+                ✨ Dasbor Utama BukuBatik - Manajemen Transaksi & Akuntansi Ringkas
+            </div>
+        </div>
+    </div>
+</header>
