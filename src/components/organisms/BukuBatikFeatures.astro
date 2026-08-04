@@ -4,59 +4,63 @@ import penjualanImg from "@assets/buku-batik/penjualan-screen.png";
 import biayaImg from "@assets/buku-batik/biaya-screen.png";
 import kontakImg from "@assets/buku-batik/kontak-screen.png";
 import loginImg from "@assets/buku-batik/login-screen.png";
+import kartuPiutangImg from "@assets/buku-batik/kartu-piutang-screen.png";
+import laporanGeneralImg from "@assets/buku-batik/laporan-general-screen.png";
+import laporanProductImg from "@assets/buku-batik/laporan-product-screen.png";
+import rekonsiliasiBankImg from "@assets/buku-batik/rekonsiliasi-bank-screen.png";
 import { Icon } from "astro-icon/components";
 
 const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Renggani%2C%20saya%20tertarik%20dengan%20produk%20BukuBatik.%20Mohon%20informasi%20penawaran%20dan%20demo%20sistemnya.";
 ---
 
 <section class="py-20 px-5 lg:px-20 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-roboto relative">
-    <div class="max-w-7xl mx-auto space-y-24">
+    <div class="max-w-7xl mx-auto space-y-28">
         
         <!-- Section Header -->
         <div class="text-center max-w-3xl mx-auto space-y-4">
             <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-950/80 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800">
-                Fitur & Modul Utama
+                Fitur & Modul Lengkap BukuBatik
             </span>
             <h2 class="text-3xl lg:text-5xl font-bold dark:text-white text-gray-900 tracking-tight">
-                Pengelolaan Operasional Batik Secara Spesifik
+                Solusi Akuntansi & Operasional Pabrik / Industri Batik
             </h2>
             <p class="text-base lg:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                Antarmuka modern yang dirancang untuk kecepatan transaksi, pengawasan piutang, kontrol biaya, serta analisis tingkat kesehatan pelanggan Anda.
+                Dari kalkulasi HPP konversi produk, Purchase Order (PO), Credit & Debit Memos, Rekonsiliasi Bank, hingga Kartu Piutang dan Laporan Keuangan Standar Akuntansi.
             </p>
         </div>
 
-        <!-- Showcase 1: Penjualan & Faktur (Belum bayar, Telat bayar, Piutang) -->
+        <!-- Modul 1: HPP, Konversi Produk & Persediaan Gudang -->
         <div class="grid lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-5 space-y-6">
-                <div class="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-lg shadow-purple-600/30">
-                    <Icon name="mdi:file-document-outline" class="text-2xl" />
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-purple-600/30">
+                    <Icon name="mdi:calculator-variant" class="text-2xl" />
                 </div>
                 <h3 class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-900">
-                    Manajemen Faktur Penjualan & Pelacakan Piutang
+                    Kalkulasi HPP & Konversi Produk Bahan Baku
                 </h3>
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Pantau status seluruh faktur penjualan secara terpusat. BukuBatik mengelompokkan tagihan berdasarkan status <strong class="text-purple-600 dark:text-purple-400">Belum Bayar</strong>, <strong class="text-red-500">Telat Bayar</strong>, hingga <strong class="text-green-500">Pembayaran 30 Hari</strong> secara otomatis sehingga arus kas piutang Anda selalu terkontrol.
+                    Sistem khusus industri batik untuk mencatat transaksi konversi bahan baku (kain mori, malam, canting, pewarna) menjadi barang jadi (kain batik & pakaian). Otomatis menghitung Nilai Persediaan dari formula <strong class="text-purple-500">HPP × Stok</strong> serta riwayat mutasi per periode.
                 </p>
                 <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
                     <li class="flex items-center gap-3">
                         <Icon name="mdi:check-circle" class="text-purple-500 text-lg shrink-0" />
-                        <span>Filter otomatis faktur selesai, belum dibayar & terlambat</span>
+                        <span>Riwayat konversi produk bahan baku ke barang jadi</span>
                     </li>
                     <li class="flex items-center gap-3">
                         <Icon name="mdi:check-circle" class="text-purple-500 text-lg shrink-0" />
-                        <span>Pencatatan nomor transaksi & tanggal jatuh tempo akurat</span>
+                        <span>Hitung nilai persediaan HPP × stok secara presisi</span>
                     </li>
                     <li class="flex items-center gap-3">
                         <Icon name="mdi:check-circle" class="text-purple-500 text-lg shrink-0" />
-                        <span>Ringkasan total penjualan bulanan real-time</span>
+                        <span>Mutasi gudang (saldo awal, Qty masuk/keluar, saldo akhir)</span>
                     </li>
                 </ul>
             </div>
             <div class="lg:col-span-7">
                 <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
                     <Image
-                        src={penjualanImg}
-                        alt="Fitur Faktur Penjualan BukuBatik"
+                        src={laporanProductImg}
+                        alt="Fitur HPP dan Konversi Produk BukuBatik"
                         class="w-full h-auto object-cover transform group-hover:scale-102 transition-transform duration-500"
                         quality={95}
                     />
@@ -64,77 +68,88 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
             </div>
         </div>
 
-        <!-- Showcase 2: Monitoring Biaya Operasional -->
+        <!-- Modul 2: Pembelian, Purchase Request (PR) & Purchase Order (PO) -->
         <div class="grid lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-7 order-2 lg:order-1">
-                <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
-                    <Image
-                        src={biayaImg}
-                        alt="Fitur Monitoring Biaya Operasional BukuBatik"
-                        class="w-full h-auto object-cover transform group-hover:scale-102 transition-transform duration-500"
-                        quality={95}
-                    />
+                <div class="bg-gradient-to-br from-gray-900 to-slate-900 p-8 rounded-3xl border border-gray-700/80 shadow-2xl text-white space-y-6">
+                    <div class="flex items-center gap-3 text-purple-400 font-mono text-xs uppercase tracking-wider">
+                        <Icon name="mdi:transit-connection-horizontal" class="text-lg" />
+                        <span>Alur Pembelian Terintegrasi</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-gray-800/80 p-5 rounded-2xl border border-gray-700 space-y-2">
+                            <span class="text-xs text-purple-300 font-semibold uppercase">Tahap 1</span>
+                            <h4 class="font-bold text-base">Purchase Request (PR)</h4>
+                            <p class="text-xs text-gray-400">Pengajuan kebutuhan bahan baku batik dari tim produksi ke bagian pengadaan.</p>
+                        </div>
+                        <div class="bg-gray-800/80 p-5 rounded-2xl border border-gray-700 space-y-2">
+                            <span class="text-xs text-indigo-300 font-semibold uppercase">Tahap 2</span>
+                            <h4 class="font-bold text-base">Purchase Order (PO)</h4>
+                            <p class="text-xs text-gray-400">Penerbitan pesanan resmi ke vendor bahan baku lengkap dengan harga & syarat.</p>
+                        </div>
+                        <div class="bg-gray-800/80 p-5 rounded-2xl border border-gray-700 space-y-2">
+                            <span class="text-xs text-blue-300 font-semibold uppercase">Tahap 3</span>
+                            <h4 class="font-bold text-base">Penerimaan & Tagihan</h4>
+                            <p class="text-xs text-gray-400">Pencatatan barang masuk gudang dan faktur tagihan supplier secara otomatis.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="lg:col-span-5 space-y-6 order-1 lg:order-2">
                 <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-lg shadow-indigo-600/30">
-                    <Icon name="mdi:cash-register" class="text-2xl" />
+                    <Icon name="mdi:cart-arrow-down" class="text-2xl" />
                 </div>
                 <h3 class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-900">
-                    Pengendalian Biaya Operasional & Produksi
+                    Alur Pembelian: PR, PO & Kontrol Supplier
                 </h3>
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Kendalikan pengeluaran usaha batik Anda dengan transparansi penuh. Catat transaksi biaya operasional (EXP), pantau beban berjalan bulan ini, dan cegah kebocoran anggaran operasional.
+                    Kelola rantai pasok pengadaan kain dan bahan kain batik secara rapi. Dari draf pengajuan <strong class="text-indigo-500">Purchase Request (PR)</strong>, approval <strong class="text-indigo-500">Purchase Order (PO)</strong>, hingga penerimaan fisik stok di gudang.
                 </p>
                 <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
                     <li class="flex items-center gap-3">
                         <Icon name="mdi:check-circle" class="text-indigo-500 text-lg shrink-0" />
-                        <span>Kategori pengeluaran operasional yang fleksibel</span>
+                        <span>Manajemen dokumen Purchase Request & Order</span>
                     </li>
                     <li class="flex items-center gap-3">
                         <Icon name="mdi:check-circle" class="text-indigo-500 text-lg shrink-0" />
-                        <span>Pencatatan penerima biaya & riwayat pengeluaran</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <Icon name="mdi:check-circle" class="text-indigo-500 text-lg shrink-0" />
-                        <span>Integrasi langsung ke laporan Laba Rugi usaha</span>
+                        <span>Verifikasi faktur pembelian vendor & retur barang</span>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <!-- Showcase 3: Radar Statistik Performa & Kesehatan Pelanggan -->
+        <!-- Modul 3: Kartu Piutang, Credit & Debit Memos -->
         <div class="grid lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-5 space-y-6">
                 <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-600/30">
-                    <Icon name="mdi:radar" class="text-2xl" />
+                    <Icon name="mdi:card-account-details-outline" class="text-2xl" />
                 </div>
                 <h3 class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-900">
-                    Radar Analisis Kesehatan Pelanggan & Piutang
+                    Kartu Piutang, Credit & Debit Memos
                 </h3>
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Fitur unggulan eksklusif BukuBatik yang mengevaluasi indeks kesehatan mitra bisnis Anda. Pantau ketepatan pembayaran, kelancaran pelunasan piutang, hingga keberhasilan retur barang untuk keputusan kredit usaha yang lebih cerdas.
+                    Pantau rincian saldo piutang per pelanggan (<em class="not-italic text-blue-500 font-semibold">Customer Ledger</em>). BukuBatik otomatis mencatat penambahan debit dari faktur baru, pelunasan kredit dari pembayaran & retur, serta penerbitan <strong class="text-blue-500">Credit Memo</strong> & <strong class="text-blue-500">Debit Memo</strong> untuk koreksi saldo berjalan.
                 </p>
                 <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
                     <li class="flex items-center gap-3">
                         <Icon name="mdi:check-circle" class="text-blue-500 text-lg shrink-0" />
-                        <span>Skor Indeks Sehat (misal: 79/100 Grade A)</span>
+                        <span>Laporan Kartu Piutang per pelanggan (mutasi debit/kredit)</span>
                     </li>
                     <li class="flex items-center gap-3">
                         <Icon name="mdi:check-circle" class="text-blue-500 text-lg shrink-0" />
-                        <span>Diagram radar 5 dimensi performa transaksi</span>
+                        <span>Penerbitan Debit & Credit Memos untuk retur/diskon</span>
                     </li>
                     <li class="flex items-center gap-3">
                         <Icon name="mdi:check-circle" class="text-blue-500 text-lg shrink-0" />
-                        <span>Metrik kelancaran bayar tepat waktu & kebersihan retur</span>
+                        <span>Riwayat bukti transaksi & saldo akhir piutang real-time</span>
                     </li>
                 </ul>
             </div>
             <div class="lg:col-span-7">
                 <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
                     <Image
-                        src={kontakImg}
-                        alt="Radar Performa Pelanggan BukuBatik"
+                        src={kartuPiutangImg}
+                        alt="Fitur Kartu Piutang BukuBatik"
                         class="w-full h-auto object-cover transform group-hover:scale-102 transition-transform duration-500"
                         quality={95}
                     />
@@ -142,13 +157,13 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
             </div>
         </div>
 
-        <!-- Showcase 4: Tampilan Login & Keamanan Akun -->
+        <!-- Modul 4: Laporan Keuangan Standar Akuntansi -->
         <div class="grid lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-7 order-2 lg:order-1">
                 <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
                     <Image
-                        src={loginImg}
-                        alt="Tampilan Akses Login BukuBatik"
+                        src={laporanGeneralImg}
+                        alt="Fitur Laporan Keuangan Lengkap BukuBatik"
                         class="w-full h-auto object-cover transform group-hover:scale-102 transition-transform duration-500"
                         quality={95}
                     />
@@ -156,22 +171,108 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
             </div>
             <div class="lg:col-span-5 space-y-6 order-1 lg:order-2">
                 <div class="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-lg shadow-purple-600/30">
-                    <Icon name="mdi:shield-lock-outline" class="text-2xl" />
+                    <Icon name="mdi:file-chart-outline" class="text-2xl" />
                 </div>
                 <h3 class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-900">
-                    Akses Aman, Cepat & Bebas Khawatir
+                    Laporan Keuangan Komprehensif
                 </h3>
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Sistem otentikasi BukuBatik dilengkapi keamanan berlapis dan integrasi Single Sign-On (SSO Google) untuk memudahkan tim akuntansi dan pemilik bisnis mengakses data keuangan di mana saja secara aman.
+                    Hasilkan laporan keuangan yang akurat dan siap diunduh/dicetak kapan saja tanpa perlu menyusun jurnal manual yang rumit.
+                </p>
+                <div class="grid grid-cols-2 gap-3 text-xs font-medium text-gray-700 dark:text-gray-300">
+                    <div class="p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center gap-2">
+                        <Icon name="mdi:notebook-outline" class="text-purple-500 text-base" />
+                        <span>Buku Besar</span>
+                    </div>
+                    <div class="p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center gap-2">
+                        <Icon name="mdi:swap-horizontal" class="text-purple-500 text-base" />
+                        <span>Jurnal Umum</span>
+                    </div>
+                    <div class="p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center gap-2">
+                        <Icon name="mdi:scale-balance" class="text-purple-500 text-base" />
+                        <span>Neraca Saldo</span>
+                    </div>
+                    <div class="p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center gap-2">
+                        <Icon name="mdi:chart-line" class="text-purple-500 text-base" />
+                        <span>Laba Rugi</span>
+                    </div>
+                    <div class="p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center gap-2">
+                        <Icon name="mdi:bank-transfer" class="text-purple-500 text-base" />
+                        <span>Arus Kas</span>
+                    </div>
+                    <div class="p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center gap-2">
+                        <Icon name="mdi:account-cash" class="text-purple-500 text-base" />
+                        <span>Perubahan Modal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modul 5: Rekonsiliasi Bank & Monitoring Biaya Operasional -->
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-5 space-y-6">
+                <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-lg shadow-indigo-600/30">
+                    <Icon name="mdi:bank-check" class="text-2xl" />
+                </div>
+                <h3 class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-900">
+                    Rekonsiliasi Bank & Pencocokan Otomatis
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Cocokkan transaksi di rekening koran bank dengan catatan jurnal kas & bank bisnis Anda secara otomatis. Fitur <strong class="text-indigo-500">Pencocokan Otomatis</strong> BukuBatik mendeteksi sisa transaksi yang belum direkonsiliasi dalam hitungan detik.
+                </p>
+                <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
+                    <li class="flex items-center gap-3">
+                        <Icon name="mdi:check-circle" class="text-indigo-500 text-lg shrink-0" />
+                        <span>Fitur Pencocokan Otomatis Rekening Koran & Jurnal</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <Icon name="mdi:check-circle" class="text-indigo-500 text-lg shrink-0" />
+                        <span>Monitoring saldo akhir kas & bank bisnis real-time</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="lg:col-span-7">
+                <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-900 group">
+                    <Image
+                        src={rekonsiliasiBankImg}
+                        alt="Fitur Rekonsiliasi Bank BukuBatik"
+                        class="w-full h-auto object-cover transform group-hover:scale-102 transition-transform duration-500"
+                        quality={95}
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Modul 6: Radar Performa Pelanggan & Keamanan Access -->
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-7 order-2 lg:order-1">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 bg-gray-900">
+                        <Image src={kontakImg} alt="Radar Kesehatan Pelanggan" class="w-full h-auto object-cover" quality={90} />
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 bg-gray-900">
+                        <Image src={loginImg} alt="Akses Login Bebas Khawatir" class="w-full h-auto object-cover" quality={90} />
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-5 space-y-6 order-1 lg:order-2">
+                <div class="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-lg shadow-purple-600/30">
+                    <Icon name="mdi:radar" class="text-2xl" />
+                </div>
+                <h3 class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-900">
+                    Analisis Kesehatan Mitra & Keamanan Berlapis
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Evaluasi performa transaksi tiap pelanggan dengan radar 5-dimensi (Ketepatan Bayar, Kelancaran Piutang, Volume, Kecepatan, dan Retur), didukung akses login aman SSO Google.
                 </p>
                 <div class="pt-2">
                     <a
                         href={waLinkPenawaran}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold px-6 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all text-sm"
+                        class="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-purple-600/30 hover:shadow-purple-500/50 transition-all text-base"
                     >
-                        <Icon name="mdi:whatsapp" class="text-lg" />
+                        <Icon name="mdi:whatsapp" class="text-xl" />
                         <span>Ajukan Penawaran BukuBatik</span>
                     </a>
                 </div>
