@@ -2,9 +2,7 @@ import type { CollectionEntry } from "astro:content";
 import { categoryActived } from "src/stores/portfolioHomeStore"
 import { useStore } from '@nanostores/react';
 import { useState } from "react";
-import { getImage } from "astro:assets";
 import robotEmptyImage from "../../assets/emptyRobot.png"
-
 
 interface PortfolioHomeContentProps {
     portfolios: CollectionEntry<'portfolios'>[];
@@ -14,13 +12,7 @@ interface PortfolioHasContentProps extends PortfolioHomeContentProps {
     loadMore: () => void
 }
 
-const robotEmptyImageOptimized = await getImage({
-    src: robotEmptyImage,
-    format: "webp",
-    width: 300,
-    height: 500,
-    loading: 'lazy'
-})
+const robotImgSrc = typeof robotEmptyImage === 'object' && robotEmptyImage !== null && 'src' in robotEmptyImage ? (robotEmptyImage as { src: string }).src : String(robotEmptyImage);
 
 const HasContent: React.FC<PortfolioHasContentProps> = ({ portfolios, limit, loadMore }) => {
     const paginateData = portfolios.slice(0, limit)
@@ -59,7 +51,7 @@ const PortfolioHomeContent: React.FC<PortfolioHomeContentProps> = ({ portfolios 
                 filteredPortfolios.length > 0
                     ? <HasContent limit={limit} portfolios={filteredPortfolios} loadMore={loadMore} />
                     : <article className="flex items-center justify-center flex-col md:flex-row px-5 lg:px-20">
-                        <img src={robotEmptyImageOptimized.src} alt="empty portfolio" width={300} height={500} className="w-40 md:w-auto" />
+                        <img src={robotImgSrc} alt="empty portfolio" width={300} height={500} className="w-40 md:w-auto" />
                         <div className="max-w-[500px] text-center md:text-left">
                             <h3 className="text-base lg:text-xl dark:text-white font-roboto font-bold">Belum ada proyek unggulan</h3>
                             <p className="text-xs lg:text-base mb-3 dark:text-gray-500">Tambahkan proyek Anda ke dalam daftar unggulan kami dan buat proyek bersama kami!</p>
