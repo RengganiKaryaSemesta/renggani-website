@@ -10,6 +10,7 @@ interface Props {
     image?: string;
     type?: string;
     isSolid?: boolean;
+    keywords?: string;
 }
 
 const { 
@@ -17,7 +18,8 @@ const {
     description, 
     image = "/og-image.jpg", 
     type = "website",
-    isSolid
+    isSolid,
+    keywords = "CV Renggani Karya Semesta, pengembangan web, pengembangan perangkat lunak, software house, e-commerce, website gratis, jasa pembuatan website, pembuatan aplikasi, IT solutions, solusi teknologi, teknologi informasi, web development, software development, mobile app development, jasa IT, digital marketing, desain web, website profesional, hosting web, manajemen konten, integrasi sistem, layanan IT, Banyuwangi, Bali"
 } = Astro.props;
 
 const siteUrl = "https://www.rengganikaryasemesta.com";
@@ -40,10 +42,7 @@ const imageURL = image.startsWith("http") ? image : new URL(image, siteUrl).href
         <meta name="title" content={title} />
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow, max-image-preview:large" />
-        <meta
-            name="keywords"
-            content="CV Renggani Karya Semesta, pengembangan web, pengembangan perangkat lunak, software house, e-commerce, website gratis, jasa pembuatan website, pembuatan aplikasi, IT solutions, solusi teknologi, teknologi informasi, web development, software development, mobile app development, jasa IT, digital marketing, desain web, website profesional, hosting web, manajemen konten, integrasi sistem, layanan IT, Banyuwangi, Bali"
-        />
+        <meta name="keywords" content={keywords} />
 
         <!-- Open Graph / Facebook / WhatsApp Meta Tags -->
         <meta property="og:site_name" content="CV. Renggani Karya Semesta" />
@@ -72,6 +71,8 @@ const imageURL = image.startsWith("http") ? image : new URL(image, siteUrl).href
             name="google-site-verification"
             content="7dviPrN0hKnhLyHuHhuvoUEt7caxYqUziESI7ZsUJDQ"
         />
+
+        <slot name="head" />
     </head>
 
     <body>

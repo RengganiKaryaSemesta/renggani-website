@@ -3,12 +3,71 @@ import Layout from "../../layouts/Layout.astro";
 import BukuBatikBanner from "@components/organisms/BukuBatikBanner.astro";
 import BukuBatikFeatures from "@components/organisms/BukuBatikFeatures.astro";
 import CallToAction from "@components/organisms/CallToAction.astro";
+
+const pageTitle = "BukuBatik — Sistem Akuntansi & Operasional Pabrik Batik | Renggani";
+const pageDescription = "BukuBatik adalah sistem akuntansi & ERP khusus industri batik dan UMKM. Otomatisasi kalkulasi HPP konversi produk, Purchase Order (PO), Kartu Piutang, Laporan Keuangan, dan Rekonsiliasi Bank otomatis.";
+const pageKeywords = "buku batik, bukubatik, sistem akuntansi batik, erp industri batik, aplikasi keuangan pabrik batik, kalkulasi hpp batik, kartu piutang pelanggan, purchase order batik, rekonsiliasi bank otomatis, software house banyuwangi, cv renggani karya semesta";
+const ogImageUrl = "https://www.rengganikaryasemesta.com/buku-batik.png";
+
+// JSON-LD Structured Data Schema.org for Google Search Rich Snippets
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "BukuBatik",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, Cloud",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "IDR",
+        "availability": "https://schema.org/InStock"
+      },
+      "description": pageDescription,
+      "publisher": {
+        "@type": "Organization",
+        "name": "CV. Renggani Karya Semesta",
+        "url": "https://www.rengganikaryasemesta.com"
+      },
+      "featureList": [
+        "Kalkulasi HPP Konversi Produk Bahan Baku",
+        "Alur Purchase Request (PR) & Purchase Order (PO)",
+        "Kartu Piutang & Customer Ledger",
+        "Credit Memo & Debit Memo",
+        "Laporan Keuangan & General Ledger",
+        "Rekonsiliasi Bank Otomatis",
+        "Radar Performa & Kesehatan Pelanggan"
+      ]
+    },
+    {
+      "@type": "Product",
+      "name": "BukuBatik ERP & Accounting System",
+      "image": ogImageUrl,
+      "description": pageDescription,
+      "brand": {
+        "@type": "Brand",
+        "name": "BukuBatik"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "CV. Renggani Karya Semesta"
+      }
+    }
+  ]
+};
 ---
 
 <Layout
-    title="BukuBatik — Sistem Akuntansi & Operasional Cerdas Bisnis Batik"
-    description="BukuBatik adalah platform sistem akuntansi cerdas khusus bisnis batik dan UMKM. Otomatisasi faktur penjualan, pelacakan piutang, kontrol biaya operasional, dan indeks kesehatan pelanggan dalam satu aplikasi terpadu."
+    title={pageTitle}
+    description={pageDescription}
+    keywords={pageKeywords}
+    image={ogImageUrl}
+    type="product"
 >
+    <!-- JSON-LD Structured Data for Rich Search Snippets -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} slot="head" />
+
     <BukuBatikBanner />
     <BukuBatikFeatures />
     <CallToAction />
