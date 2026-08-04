@@ -1,16 +1,19 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
+import { getPosts, urlFor } from "../../utils/sanity";
 
-const blogs = await getCollection("blogs");
-const sortedBlogs = blogs.sort((a, b) => b.data.created_at.getTime() - a.data.created_at.getTime());
+const blogs = await getPosts();
+const sortedBlogs = blogs.sort((a: any, b: any) => {
+    const dateA = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+    const dateB = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+    return dateB - dateA;
+});
 
 const featuredBlog = sortedBlogs[0];
 const otherBlogs = sortedBlogs.slice(1);
 
-const categories = [...new Set(blogs.map(blog => blog.data.category))];
+const categories = [...new Set(blogs.flatMap((blog: any) => blog.categories ? blog.categories.map((c: any) => c.title) : []))];
 ---
 
 <Layout title="Blog | CV Renggani Karya Semesta" description="Tips dan trik terbaru seputar bisnis dan teknologi dari CV Renggani Karya Semesta.">
@@ -42,7 +45,7 @@ const categories = [...new Set(blogs.map(blog => blog.data.category))];
                     <div class="space-y-5">
                         <h2 class="text-xl font-bold dark:text-white font-roboto border-b-2 border-gray-100 dark:border-gray-700 pb-3">Topik</h2>
                         <ul class="space-y-3">
-                            {categories.map(category => (
+                            {categories.map((category: any) => (
                                 <li>
                                     <a href={`/blogs?category=${category}`} class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors font-roboto block">
                                         {category}
@@ -65,32 +68,42 @@ const categories = [...new Set(blogs.map(blog => blog.data.category))];
                 <div class="lg:w-2/3 space-y-12">
                     <!-- Featured Blog -->
                     {featuredBlog && (
-                        <a href={`/blogs/${featuredBlog.slug}`} class="block group relative overflow-hidden rounded-3xl shadow-2xl transition-transform duration-500 hover:-translate-y-2">
+                        <a href={`/blogs/${featuredBlog.slug.current}`} class="block group relative overflow-hidden rounded-3xl shadow-2xl transition-transform duration-500 hover:-translate-y-2">
                             <div class="relative h-[400px] lg:h-[500px]">
-                                <Image 
-                                    src={featuredBlog.data.banner} 
-                                    alt={featuredBlog.data.title}
-                                    class="w-full h-full object-cover"
-                                    width={1200}
-                                    height={800}
-                                />
+                                {featuredBlog.mainImage ? (
+                                    <img 
+                                        src={urlFor(featuredBlog.mainImage).width(1200).height(800).url()} 
+                                        alt={featuredBlog.title}
+                                        class="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <div class="w-full h-full bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center text-white text-2xl font-bold">
+                                        {featuredBlog.title}
+                                    </div>
+                                )}
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 p-8 lg:p-12 text-white space-y-4 w-full">
-                                    <span class="px-4 py-1 bg-blue-600 rounded-full text-sm font-semibold uppercase tracking-wider">
-                                        {featuredBlog.data.category}
-                                    </span>
+                                    {featuredBlog.categories?.[0]?.title && (
+                                        <span class="px-4 py-1 bg-blue-600 rounded-full text-sm font-semibold uppercase tracking-wider">
+                                            {featuredBlog.categories[0].title}
+                                        </span>
+                                    )}
                                     <h2 class="text-3xl lg:text-4xl font-bold font-roboto group-hover:text-blue-400 transition-colors">
-                                        {featuredBlog.data.title}
+                                        {featuredBlog.title}
                                     </h2>
-                                    <p class="text-gray-200 line-clamp-2 font-roboto max-w-2xl">
-                                        {featuredBlog.data.description}
-                                    </p>
-                                    <div class="flex items-center gap-3 pt-4">
-                                        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-bold">
-                                            {featuredBlog.data.author.charAt(0)}
+                                    {featuredBlog.excerpt && (
+                                        <p class="text-gray-200 line-clamp-2 font-roboto max-w-2xl">
+                                            {featuredBlog.excerpt}
+                                        </p>
+                                    )}
+                                    {featuredBlog.author && (
+                                        <div class="flex items-center gap-3 pt-4">
+                                            <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-bold">
+                                                {featuredBlog.author.name.charAt(0)}
+                                            </div>
+                                            <span class="font-medium font-roboto">{featuredBlog.author.name}</span>
                                         </div>
-                                        <span class="font-medium font-roboto">{featuredBlog.data.author}</span>
-                                    </div>
+                                    )}
                                 </div>
                             </div>
                         </a>
@@ -105,28 +118,34 @@ const categories = [...new Set(blogs.map(blog => blog.data.category))];
                             </a>
                         </div>
                         <div class="grid md:grid-cols-2 gap-8">
-                            {otherBlogs.map(blog => (
-                                <a href={`/blogs/${blog.slug}`} class="group space-y-4 block">
-                                    <div class="relative h-56 overflow-hidden rounded-2xl shadow-lg">
-                                        <Image 
-                                            src={blog.data.banner} 
-                                            alt={blog.data.title}
-                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                            width={600}
-                                            height={400}
-                                        />
+                            {otherBlogs.map((blog: any) => (
+                                <a href={`/blogs/${blog.slug.current}`} class="group space-y-4 block">
+                                    <div class="relative h-56 overflow-hidden rounded-2xl shadow-lg bg-gray-100 dark:bg-gray-800">
+                                        {blog.mainImage ? (
+                                            <img 
+                                                src={urlFor(blog.mainImage).width(600).height(400).url()} 
+                                                alt={blog.title}
+                                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            />
+                                        ) : (
+                                            <div class="w-full h-full flex items-center justify-center text-gray-400 font-bold">
+                                                No Image
+                                            </div>
+                                        )}
                                     </div>
                                     <div class="space-y-2">
-                                        <span class="text-blue-600 font-bold text-sm uppercase tracking-wider font-roboto">
-                                            {blog.data.category}
-                                        </span>
+                                        {blog.categories?.[0]?.title && (
+                                            <span class="text-blue-600 font-bold text-sm uppercase tracking-wider font-roboto">
+                                                {blog.categories[0].title}
+                                            </span>
+                                        )}
                                         <h3 class="text-xl font-bold dark:text-white font-roboto group-hover:text-blue-600 transition-colors leading-tight">
-                                            {blog.data.title}
+                                            {blog.title}
                                         </h3>
                                         <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-roboto">
-                                            <span>{blog.data.created_at.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-                                            <span>•</span>
-                                            <span>5 mins read</span>
+                                            {blog.publishedAt && (
+                                                <span>{new Date(blog.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                                            )}
                                         </div>
                                     </div>
                                 </a>
