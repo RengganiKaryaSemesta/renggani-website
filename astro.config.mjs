@@ -15,6 +15,10 @@ const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
 // Official Astro Vercel Integration Configuration
 // https://docs.astro.build/en/guides/integrations-guide/vercel/
 export default defineConfig({
+  prefetch: {
+    prefetchAll: false,
+    defaultStrategy: 'tap',
+  },
   adapter: vercel(),
   image: {
     dangerouslyProcessSVG: true,
