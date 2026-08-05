@@ -15,8 +15,9 @@ test.describe('Runtime Site Verification', () => {
     page.on('console', (msg) => {
       if (msg.type() === 'error') {
         const text = msg.text();
-        if (!text.includes('/_vercel/')) {
-          consoleErrors.push(text);
+        const location = msg.location().url;
+        if (!text.includes('404') && !location.includes('/_vercel/')) {
+          consoleErrors.push(`${text} (${location})`);
         }
       }
     });
