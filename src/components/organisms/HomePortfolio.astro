@@ -1,8 +1,58 @@
 ---
 import PortfolioHomeContent from "@components/molecules/PortfolioHomeContent";
 import PortfolioHomeButtonCategory from "@components/atoms/PortfolioHomeButtonCategory";
+import laboutiqueImg from "@assets/laboutique.png";
+import webappsRestoandaImg from "@assets/webapps-restoanda.png";
+import valeriaImg from "@assets/valeria.png";
+import sysBookingImg from "@assets/sys-booking.png";
+import gciImg from "@assets/gci.png";
+import plnbekasiImg from "@assets/plnbekasi.png";
+import mobileMajangAksiImg from "@assets/mobile-majang-aksi.jpg";
+import mobileRestoandaImg from "@assets/mobile-restoanda.png";
+import santiImg from "@assets/santi.png";
+import bukuBatikImg from "@assets/buku-batik.png";
+import dlhImg from "@assets/dlh.png";
 import { getCollection } from "astro:content";
-const portfolios = await getCollection("portfolios");
+
+const portfolioImageMap: Record<string, ImageMetadata> = {
+    "../../assets/laboutique.png": laboutiqueImg,
+    "../../assets/webapps-restoanda.png": webappsRestoandaImg,
+    "../../assets/valeria.png": valeriaImg,
+    "../../assets/sys-booking.png": sysBookingImg,
+    "../../assets/gci.png": gciImg,
+    "../../assets/plnbekasi.png": plnbekasiImg,
+    "../../assets/mobile-majang-aksi.jpg": mobileMajangAksiImg,
+    "../../assets/mobile-restoanda.png": mobileRestoandaImg,
+    "../../assets/santi.png": santiImg,
+    "../../assets/buku-batik.png": bukuBatikImg,
+    "../../assets/dlh.png": dlhImg,
+};
+
+const rawPortfolios = await getCollection("portfolios");
+const portfolios = rawPortfolios.map((item) => {
+    const rawImg = item.data.image;
+    const imgObj = typeof rawImg === "string" ? portfolioImageMap[rawImg] : rawImg;
+    const resolvedSrc = imgObj && typeof imgObj === "object" && "src" in imgObj ? imgObj.src : String(rawImg);
+    const resolvedWidth = imgObj && typeof imgObj === "object" && "width" in imgObj ? imgObj.width : 500;
+    const resolvedHeight = imgObj && typeof imgObj === "object" && "height" in imgObj ? imgObj.height : 500;
+
+    return {
+        id: item.id,
+        slug: item.id,
+        body: item.body,
+        collection: item.collection,
+        data: {
+            title: item.data.title,
+            category: item.data.category,
+            created_at: item.data.created_at,
+            image: {
+                src: resolvedSrc,
+                width: resolvedWidth,
+                height: resolvedHeight
+            }
+        }
+    };
+});
 portfolios.sort((a, b) => new Date(b.data.created_at).getTime() - new Date(a.data.created_at).getTime());
 const categories = [
     "Terbaru",
