@@ -24,7 +24,6 @@ const {
     keywords = "CV Renggani Karya Semesta, pengembangan web, pengembangan perangkat lunak, software house, e-commerce, website gratis, jasa pembuatan website, pembuatan aplikasi, IT solutions, solusi teknologi, teknologi informasi, web development, software development, mobile app development, jasa IT, digital marketing, desain web, website profesional, hosting web, manajemen konten, integrasi sistem, layanan IT, Banyuwangi, Bali"
 } = Astro.props;
 
-const siteUrl = Astro.site ? Astro.site.href : "https://www.rengganikaryasemesta.com";
 const currentOrigin = Astro.url.origin;
 const canonicalURL = new URL(Astro.url.pathname, currentOrigin).href;
 const imageURL = image.startsWith("http") ? image : new URL(image, currentOrigin).href;
