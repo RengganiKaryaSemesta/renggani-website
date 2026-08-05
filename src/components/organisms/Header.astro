@@ -26,20 +26,20 @@ const isSolid = isSolidProp || currentPathName.startsWith('/blogs') || currentPa
             loading={"eager"}
             src={logoWhite}
             alt={"logo renggani karya semesta"}
-            width={130}
-            height={51}
+            width={logoWhite.width}
+            height={logoWhite.height}
             id="logo-white"
             quality={100}
-            class={`h-auto ${isSolid ? 'hidden' : 'dark:block'}`}
+            class={`w-32 h-auto ${isSolid ? 'hidden' : 'dark:block'}`}
         />
         <Image
             loading={"eager"}
             src={logoColor}
             alt={"logo renggani karya semesta"}
-            width={130}
-            height={55}
+            width={logoColor.width}
+            height={logoColor.height}
             id="logo-color"
-            class={`h-auto ${isSolid ? 'block' : 'hidden dark:hidden'}`}
+            class={`w-32 h-auto ${isSolid ? 'block' : 'hidden dark:hidden'}`}
         />
         <NavList client:load currentPathName={currentPathName} isSolid={isSolid} />
         <HeaderButtonContactUs client:load className="hidden lg:block" isSolid={isSolid} />
