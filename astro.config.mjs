@@ -3,7 +3,7 @@ import { loadEnv } from "vite";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
-import vercel from '@astrojs/vercel/static';
+import vercel from '@astrojs/vercel';
 import icon from "astro-icon";
 
 const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(

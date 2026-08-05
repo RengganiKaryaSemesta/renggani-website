@@ -21,8 +21,8 @@ const HasContent: React.FC<PortfolioHasContentProps> = ({ portfolios, limit, loa
             <div className="grid md:grid-cols-6 gap-5">
                 {
                     paginateData.map(item => (
-                        <div className={`shadow-lg relative overflow-hidden rounded-lg group ${item.data.category=='Mobile Apps'?'lg:col-span-1 col-span-6':'md:col-span-3 col-span-6'}`} key={item.slug}>
-                            <img src={item.data.image.src} alt={item.slug} width={item.data.image.width} height={300} className={`object-cover h-52 xl:h-72 object-top rounded-lg w-full`} />
+                        <div className={`shadow-lg relative overflow-hidden rounded-lg group ${item.data.category=='Mobile Apps'?'lg:col-span-1 col-span-6':'md:col-span-3 col-span-6'}`} key={item.id}>
+                            <img src={item.data.image.src} alt={item.id} width={item.data.image.width} height={300} className={`object-cover h-52 xl:h-72 object-top rounded-lg w-full`} />
                             <div className="absolute group-hover:max-h-full max-h-0 h-[100%] transition-all duration-500 dark:from-gray-800 from-blue-800/60 w-full bottom-0  bg-gradient-to-t dark:to-gray-900/40" />
                             <div className="absolute bottom-0 w-full min-h-full flex items-center justify-center text-center p-3 font-roboto group-hover:backdrop-blur-sm">
                                 <span className="border-2 px-4 py-2 rounded-full text-white group-hover:translate-x-0 duration-500 transition-all translate-x-[500px]">

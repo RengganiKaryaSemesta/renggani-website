@@ -1,17 +1,20 @@
-import { defineCollection,z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
 
 const portfolios = defineCollection({
-    type: 'content',
-    schema:  ({ image }) => z.object({
+    loader: glob({ pattern: "**/*.md", base: "./src/content/portfolios" }),
+    schema: ({ image }) => z.object({
         title: z.string(),
         category: z.string(),
         created_at: z.string().transform((str) => new Date(str)),
         image: image()
     }),
 });
+
 const services = defineCollection({
-    type: 'content',
-    schema:  ({ image }) => z.object({
+    loader: glob({ pattern: "**/*.md", base: "./src/content/services" }),
+    schema: ({ image }) => z.object({
         title: z.string(),
         detail: z.string(),
         created_at: z.string().transform((str) => new Date(str)),
@@ -20,8 +23,8 @@ const services = defineCollection({
 });
 
 const blogs = defineCollection({
-    type: 'content',
-    schema:  ({ image }) => z.object({
+    loader: glob({ pattern: "**/*.md", base: "./src/content/blogs" }),
+    schema: ({ image }) => z.object({
         title: z.string(),
         category: z.string(),
         author: z.string(),
