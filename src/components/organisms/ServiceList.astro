@@ -1,7 +1,21 @@
 ---
 import { Image } from "astro:assets";
 import imagePolygon from "@assets/polygon.png";
+import websiteDevImg from "@assets/website-development.png";
+import mobileDevImg from "@assets/mobile-development.png";
+import erpImg from "@assets/erp.png";
+import ecommerceImg from "@assets/e-commerce.png";
+import customDevImg from "@assets/custom-development.png";
 import { getCollection } from "astro:content";
+
+const serviceImages: Record<string, ImageMetadata> = {
+    "../../assets/website-development.png": websiteDevImg,
+    "../../assets/mobile-development.png": mobileDevImg,
+    "../../assets/erp.png": erpImg,
+    "../../assets/e-commerce.png": ecommerceImg,
+    "../../assets/custom-development.png": customDevImg,
+};
+
 const services = await getCollection("services");
 ---
 
@@ -54,20 +68,19 @@ const services = await getCollection("services");
     </article>
     <article class="relative mt-10 flex flex-wrap gap-5">
         {
-            services.map((item, index) => (
-                <div
-                    class={`border-2 grid relative md:grid-cols-2 p-5 gap-10 overflow-hidden xl:w-[80%] rounded-xl bg-gray-50 ${index % 2 != 0 && "ml-auto"}`}
-                >
-                    <Image
-                        class="h-auto"
-                        src={item.data.image}
-                        width={item.data.image.width - 200}
-                        height={item.data.image.height - 200}
-                        alt={`image thumb ${index}`}
-                        quality={100}
-                        class={`w-[250px] h-auto lg:w-[300px]`}
-                        format="webp"
-                    />
+            services.map((item, index) => {
+                const imgSrc = typeof item.data.image === "string" ? (serviceImages[item.data.image] || item.data.image) : item.data.image;
+                return (
+                    <div
+                        class={`border-2 grid relative md:grid-cols-2 p-5 gap-10 overflow-hidden xl:w-[80%] rounded-xl bg-gray-50 ${index % 2 != 0 && "ml-auto"}`}
+                    >
+                        <Image
+                            src={imgSrc}
+                            alt={`image thumb ${index}`}
+                            quality={100}
+                            class={`w-[250px] h-auto lg:w-[300px]`}
+                            format="webp"
+                        />
                     <p class="absolute text-[5rem] font-roboto md:left-[40%] right-10 text-gray-800/60 md:top-[30%]">
                         {index + 1}
                     </p>
@@ -78,7 +91,8 @@ const services = await getCollection("services");
                         <p class="lg:text-lg text-base">{item.data.detail}</p>
                     </div>
                 </div>
-            ))
+                );
+            })
         }
     </article>
 </section>

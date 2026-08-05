@@ -1,30 +1,9 @@
 ---
-import { getImage } from "astro:assets";
 import PortfolioHomeContent from "@components/molecules/PortfolioHomeContent";
 import PortfolioHomeButtonCategory from "@components/atoms/PortfolioHomeButtonCategory";
 import { getCollection } from "astro:content";
-const portfoliosRaw = await getCollection("portfolios");
-const portfolios = await Promise.all(
-    portfoliosRaw.map(async (item) => {
-        try {
-            const optimizedImage = await getImage({
-                src: item.data.image,
-                format: "webp",
-                width: 500,
-                height: 500,
-                loading: "eager",
-            });
-            item.data.image = {
-                ...item.data.image,
-                src: optimizedImage.src,
-            };
-        } catch (error) {
-            console.log(error);
-        }
-        return item;
-    })
-);
-portfolios.sort((a, b) => b.data.created_at.getTime() - a.data.created_at.getTime());
+const portfolios = await getCollection("portfolios");
+portfolios.sort((a, b) => new Date(b.data.created_at).getTime() - new Date(a.data.created_at).getTime());
 const categories = [
     "Terbaru",
     "Web Apps",

@@ -1,9 +1,14 @@
-import { getImage } from 'astro:assets'
 import projectBasedImage from '@assets/project-based.jpg'
 import onDemandImage from '@assets/on-demand.jpg'
 import { useState } from 'react';
-const projectBasedImageOptimized = await getImage({ src: projectBasedImage, width: 400, height: 400, format: 'webp' });
-const onDemandImageOptimized = await getImage({ src: onDemandImage, width: 400, height: 400, format: 'webp' });
+
+const projectBasedSrc = typeof projectBasedImage === 'object' && projectBasedImage !== null && 'src' in projectBasedImage ? (projectBasedImage as { src: string }).src : String(projectBasedImage);
+const projectBasedWidth = typeof projectBasedImage === 'object' && projectBasedImage !== null && 'width' in projectBasedImage ? (projectBasedImage as { width: number }).width : 400;
+const projectBasedHeight = typeof projectBasedImage === 'object' && projectBasedImage !== null && 'height' in projectBasedImage ? (projectBasedImage as { height: number }).height : 400;
+
+const onDemandSrc = typeof onDemandImage === 'object' && onDemandImage !== null && 'src' in onDemandImage ? (onDemandImage as { src: string }).src : String(onDemandImage);
+const onDemandWidth = typeof onDemandImage === 'object' && onDemandImage !== null && 'width' in onDemandImage ? (onDemandImage as { width: number }).width : 400;
+const onDemandHeight = typeof onDemandImage === 'object' && onDemandImage !== null && 'height' in onDemandImage ? (onDemandImage as { height: number }).height : 400;
 const HomeServiceContent = () => {
     const [active, setActive] = useState<string>('service-1')
     return (
@@ -46,7 +51,7 @@ const HomeServiceContent = () => {
                         </svg>
                     </a>
                 </div>
-                <img src={projectBasedImageOptimized.src} alt="project based" width={projectBasedImageOptimized.rawOptions.width} height={projectBasedImageOptimized.rawOptions.height} className={`h-full hidden md:block object-cover ${active != 'service-1' ? 'lg:rounded-l-xl w-72' : 'w-72 xl:w-1/2'}`} />
+                <img src={projectBasedSrc} alt="project based" width={projectBasedWidth} height={projectBasedHeight} className={`h-full hidden md:block object-cover ${active != 'service-1' ? 'lg:rounded-l-xl w-72' : 'w-72 xl:w-1/2'}`} />
             </div>
 
             <div onClick={() => {
@@ -89,7 +94,7 @@ const HomeServiceContent = () => {
                         </svg>
                     </a>
                 </div>
-                <img src={onDemandImageOptimized.src} alt="project based" width={onDemandImageOptimized.rawOptions.width} height={onDemandImageOptimized.rawOptions.height} className={`h-full origin-right object-cover hidden md:block rounded-r-xl w-72 ${active == 'service-2' && 'w-72 xl:w-1/2'}`} />
+                <img src={onDemandSrc} alt="project based" width={onDemandWidth} height={onDemandHeight} className={`h-full origin-right object-cover hidden md:block rounded-r-xl w-72 ${active == 'service-2' && 'w-72 xl:w-1/2'}`} />
             </div>
         </article>
     )
