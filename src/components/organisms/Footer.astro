@@ -12,6 +12,8 @@ const footerBGOptiomized = await getImage({
 });
 
 const currentYear = new Date().getFullYear();
+const email1 = `${"cvrengganikaryasemesta"}@${"gmail.com"}`;
+const email2 = `${"contact"}@${"rengganikaryasemesta.com"}`;
 ---
 
 <footer
@@ -35,15 +37,15 @@ const currentYear = new Date().getFullYear();
                 <p>Jl. Kemiren, Kemiren, Kec. Glagah, Kabupaten Banyuwangi, <br> Jawa Timur 68432</p>
                 <ul class="space-y-2 text-sm">
                     <li>
-                        <a href="mailto:cvrengganikaryasemesta@gmail.com" class="flex items-center gap-3 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer"> 
+                        <a href={`mailto:${email1}`} class="flex items-center gap-3 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer"> 
                             <Icon name="mdi:email" class="shrink-0 text-base" />
-                            <span>cvrengganikaryasemesta@gmail.com</span>
+                            <span>{email1}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="mailto:contact@rengganikaryasemesta.com" class="flex items-center gap-3 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer"> 
+                        <a href={`mailto:${email2}`} class="flex items-center gap-3 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer"> 
                             <Icon name="mdi:email-outline" class="shrink-0 text-base" />
-                            <span>contact@rengganikaryasemesta.com</span>
+                            <span>{email2}</span>
                         </a>
                     </li>
                     <li>

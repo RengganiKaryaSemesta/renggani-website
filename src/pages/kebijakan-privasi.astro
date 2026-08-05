@@ -3,6 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 
 const lastUpdated = "3 Agustus 2026";
+const email1 = `${"cvrengganikaryasemesta"}@${"gmail.com"}`;
+const email2 = `${"contact"}@${"rengganikaryasemesta.com"}`;
+const email3 = `${"achrizal15"}@${"gmail.com"}`;
 ---
 
 <Layout
@@ -393,21 +396,21 @@ const lastUpdated = "3 Agustus 2026";
                                     </div>
                                     <ul class="space-y-2 text-xs font-medium">
                                         <li>
-                                            <a href="mailto:cvrengganikaryasemesta@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline break-all flex items-center gap-1.5">
+                                            <a href={`mailto:${email1}`} class="text-blue-600 dark:text-blue-400 hover:underline break-all flex items-center gap-1.5">
                                                 <Icon name="mdi:email-outline" class="text-sm shrink-0" />
-                                                <span>cvrengganikaryasemesta@gmail.com</span>
+                                                <span>{email1}</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="mailto:contact@rengganikaryasemesta.com" class="text-blue-600 dark:text-blue-400 hover:underline break-all flex items-center gap-1.5">
+                                            <a href={`mailto:${email2}`} class="text-blue-600 dark:text-blue-400 hover:underline break-all flex items-center gap-1.5">
                                                 <Icon name="mdi:email-outline" class="text-sm shrink-0" />
-                                                <span>contact@rengganikaryasemesta.com</span>
+                                                <span>{email2}</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="mailto:achrizal15@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline break-all flex items-center gap-1.5">
+                                            <a href={`mailto:${email3}`} class="text-blue-600 dark:text-blue-400 hover:underline break-all flex items-center gap-1.5">
                                                 <Icon name="mdi:email-outline" class="text-sm shrink-0" />
-                                                <span>achrizal15@gmail.com</span>
+                                                <span>{email3}</span>
                                             </a>
                                         </li>
                                     </ul>
