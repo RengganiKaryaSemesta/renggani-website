@@ -28,4 +28,8 @@ pnpm-debug.log*
 .agents/
 skills-lock.json
 
+# playwright test results & reports
+test-results/
+playwright-report/
+
 

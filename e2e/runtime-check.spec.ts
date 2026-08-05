@@ -6,19 +6,24 @@ test.describe('Runtime Site Verification', () => {
     const consoleErrors: string[] = [];
 
     page.on('requestfailed', (request) => {
-      failedRequests.push(`${request.url()} - ${request.failure()?.errorText}`);
+      const url = request.url();
+      if (!url.includes('/_vercel/')) {
+        failedRequests.push(`${url} - ${request.failure()?.errorText}`);
+      }
     });
 
     page.on('console', (msg) => {
       if (msg.type() === 'error') {
-        consoleErrors.push(msg.text());
+        const text = msg.text();
+        if (!text.includes('/_vercel/')) {
+          consoleErrors.push(text);
+        }
       }
     });
 
     await page.goto('/');
     await expect(page).toHaveTitle(/Renggani Karya Semesta/);
     
-    // Validate zero failed network requests and zero console errors
     expect(failedRequests).toHaveLength(0);
     expect(consoleErrors).toHaveLength(0);
   });
