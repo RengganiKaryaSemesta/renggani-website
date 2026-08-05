@@ -16,9 +16,10 @@ const {
     image = "/og-image.jpg"
 } = Astro.props;
 
-const siteUrl = "https://www.rengganikaryasemesta.com";
-const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
-const imageURL = image.startsWith("http") ? image : new URL(image, siteUrl).href;
+const siteUrl = Astro.site ? Astro.site.href : "https://www.rengganikaryasemesta.com";
+const currentOrigin = Astro.url.origin;
+const canonicalURL = new URL(Astro.url.pathname, currentOrigin).href;
+const imageURL = image.startsWith("http") ? image : new URL(image, currentOrigin).href;
 ---
 
 <!doctype html>
