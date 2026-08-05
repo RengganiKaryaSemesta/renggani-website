@@ -16,6 +16,9 @@ const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
 // https://docs.astro.build/en/guides/integrations-guide/vercel/
 export default defineConfig({
   adapter: vercel(),
+  image: {
+    dangerouslyProcessSVG: true,
+  },
   integrations: [
     react(),
     tailwind(),
