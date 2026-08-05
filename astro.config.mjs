@@ -19,6 +19,23 @@ export default defineConfig({
   image: {
     dangerouslyProcessSVG: true,
   },
+  vite: {
+    customLogger: {
+      warn(msg, options) {
+        if (typeof msg === 'string' && (msg.includes('deprecated') || msg.includes('esbuildOptions'))) return;
+        console.warn(msg, options);
+      },
+      warnOnce(msg, options) {
+        if (typeof msg === 'string' && (msg.includes('deprecated') || msg.includes('esbuildOptions'))) return;
+        console.warn(msg, options);
+      },
+      error(msg, options) { console.error(msg, options); },
+      info() {},
+      clearScreen() {},
+      hasErrorLogged() { return false; },
+      hasWarned: false,
+    },
+  },
   integrations: [
     react(),
     tailwind(),
