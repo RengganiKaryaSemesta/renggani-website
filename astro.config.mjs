@@ -6,6 +6,8 @@ import tailwind from "@astrojs/tailwind";
 import vercel from '@astrojs/vercel';
 import icon from "astro-icon";
 
+import sitemap from "@astrojs/sitemap";
+
 const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
   process.env.NODE_ENV ?? "development",
   process.cwd(),
@@ -15,6 +17,7 @@ const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
 // Official Astro Vercel Integration Configuration
 // https://docs.astro.build/en/guides/integrations-guide/vercel/
 export default defineConfig({
+  site: 'https://rengganikaryasemesta.com',
   prefetch: {
     prefetchAll: false,
     defaultStrategy: 'tap',
@@ -44,6 +47,7 @@ export default defineConfig({
     react(),
     tailwind(),
     icon(),
+    sitemap(),
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID || '4dg8jgb1',
       dataset: PUBLIC_SANITY_DATASET || 'production',

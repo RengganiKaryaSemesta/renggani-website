@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 import { getPosts, urlFor } from "../../utils/sanity";
+import BlogSearchFilter from "@components/organisms/BlogSearchFilter";
 
 const blogs = await getPosts();
 const sortedBlogs = blogs.sort((a: any, b: any) => {
@@ -13,147 +14,105 @@ const sortedBlogs = blogs.sort((a: any, b: any) => {
 const featuredBlog = sortedBlogs[0];
 const otherBlogs = sortedBlogs.slice(1);
 
-const categories = [...new Set(blogs.flatMap((blog: any) => blog.categories ? blog.categories.map((c: any) => c.title) : []))];
+const mappedOtherBlogs = otherBlogs.map((blog: any) => ({
+    ...blog,
+    imageUrl: blog.mainImage ? urlFor(blog.mainImage).width(600).height(400).url() : undefined,
+}));
+
+const rawCategories: string[] = blogs.flatMap((blog: any) => blog.categories ? blog.categories.map((c: any) => String(c.title || '')) : []);
+const categories: string[] = Array.from(new Set(rawCategories)).filter((c): c is string => Boolean(c));
 ---
 
-<Layout title="Blog | CV Renggani Karya Semesta" description="Tips dan trik terbaru seputar bisnis dan teknologi dari CV Renggani Karya Semesta.">
-    <main class="bg-white dark:bg-gray-900 pt-32 pb-20">
-        <div class="max-w-7xl mx-auto px-5 lg:px-20">
-            <div class="flex flex-col lg:flex-row gap-10">
-                <!-- Sidebar -->
-                <aside class="lg:w-1/3 space-y-10">
-                    <div class="space-y-5">
-                        <h1 class="text-3xl font-bold text-blue-900 dark:text-white font-roboto uppercase leading-tight">
-                            RENGGANI <br/> <span class="text-blue-600">INSIGHTS</span>
-                        </h1>
-                        <p class="text-gray-600 dark:text-gray-400 font-roboto">
-                            Dapatkan tips, trik, dan berita terbaru seputar teknologi, bisnis, dan solusi IT dari tim ahli kami.
-                        </p>
-                        
-                        <div class="relative group">
-                            <input 
-                                type="text" 
-                                placeholder="Cari artikel di sini..." 
-                                class="w-full pl-5 pr-20 py-3 rounded-lg border-2 border-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-blue-600 outline-none transition-all font-roboto"
-                            />
-                            <button class="absolute right-2 top-2 bottom-2 px-6 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700 transition-colors font-roboto">
-                                Cari
-                            </button>
-                        </div>
-                    </div>
+<Layout title="Blog & Wawasan Teknologi | CV Renggani Karya Semesta" description="Tips, panduan bisnis, dan artikel teknologi terbaru dari tim ahli CV Renggani Karya Semesta.">
+    <main class="bg-white dark:bg-gray-900 pt-32 pb-20 font-roboto">
+        <div class="max-w-7xl mx-auto px-5 lg:px-20 space-y-16">
+            
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-gray-100 dark:border-gray-800">
+                <div class="space-y-3 max-w-2xl">
+                    <span class="px-4 py-1.5 rounded-full bg-blue-100 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 font-semibold text-xs uppercase tracking-wider border border-blue-200 dark:border-blue-800">
+                        Renggani Insights
+                    </span>
+                    <h1 class="text-3xl lg:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+                        Blog & Wawasan Teknologi
+                    </h1>
+                    <p class="text-base text-gray-600 dark:text-gray-400">
+                        Dapatkan inspirasi, panduan bisnis, dan berita teknologi IT terkini untuk mengakselerasi pertumbuhan perusahaan Anda.
+                    </p>
+                </div>
 
-                    <div class="space-y-5">
-                        <h2 class="text-xl font-bold dark:text-white font-roboto border-b-2 border-gray-100 dark:border-gray-700 pb-3">Topik</h2>
-                        <ul class="space-y-3">
-                            {categories.map((category: any) => (
-                                <li>
-                                    <a href={`/blogs?category=${category}`} class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors font-roboto block">
-                                        {category}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div class="p-6 bg-blue-50 dark:bg-gray-800 rounded-2xl space-y-4">
-                        <h3 class="font-bold text-lg dark:text-white font-roboto">Berlangganan Newsletter</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 font-roboto">Dapatkan kurasi artikel terbaik langsung ke email Anda.</p>
-                        <button class="w-full py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-bold rounded-lg hover:bg-blue-600 hover:text-white transition-all font-roboto">
-                            Subscribe
-                        </button>
-                    </div>
-                </aside>
-
-                <!-- Main Content -->
-                <div class="lg:w-2/3 space-y-12">
-                    <!-- Featured Blog -->
-                    {featuredBlog && (
-                        <a href={`/blogs/${featuredBlog.slug.current}`} class="block group relative overflow-hidden rounded-3xl shadow-2xl transition-transform duration-500 hover:-translate-y-2">
-                            <div class="relative h-[400px] lg:h-[500px]">
-                                {featuredBlog.mainImage ? (
-                                    <img 
-                                        src={urlFor(featuredBlog.mainImage).width(1200).height(800).url()} 
-                                        alt={featuredBlog.title}
-                                        class="w-full h-full object-cover"
-                                    />
-                                ) : (
-                                    <div class="w-full h-full bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center text-white text-2xl font-bold">
-                                        {featuredBlog.title}
-                                    </div>
-                                )}
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                                <div class="absolute bottom-0 left-0 p-8 lg:p-12 text-white space-y-4 w-full">
-                                    {featuredBlog.categories?.[0]?.title && (
-                                        <span class="px-4 py-1 bg-blue-600 rounded-full text-sm font-semibold uppercase tracking-wider">
-                                            {featuredBlog.categories[0].title}
-                                        </span>
-                                    )}
-                                    <h2 class="text-3xl lg:text-4xl font-bold font-roboto group-hover:text-blue-400 transition-colors">
-                                        {featuredBlog.title}
-                                    </h2>
-                                    {featuredBlog.excerpt && (
-                                        <p class="text-gray-200 line-clamp-2 font-roboto max-w-2xl">
-                                            {featuredBlog.excerpt}
-                                        </p>
-                                    )}
-                                    {featuredBlog.author && (
-                                        <div class="flex items-center gap-3 pt-4">
-                                            <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-bold">
-                                                {featuredBlog.author.name.charAt(0)}
-                                            </div>
-                                            <span class="font-medium font-roboto">{featuredBlog.author.name}</span>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </a>
-                    )}
-
-                    <!-- Articles Grid -->
-                    <div class="space-y-8">
-                        <div class="flex items-center justify-between">
-                            <h2 class="text-3xl font-bold dark:text-white font-roboto">Artikel</h2>
-                            <a href="#" class="text-blue-600 font-bold flex items-center gap-2 hover:gap-3 transition-all font-roboto">
-                                Lihat semua <Icon name="mdi:arrow-right" />
-                            </a>
-                        </div>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            {otherBlogs.map((blog: any) => (
-                                <a href={`/blogs/${blog.slug.current}`} class="group space-y-4 block">
-                                    <div class="relative h-56 overflow-hidden rounded-2xl shadow-lg bg-gray-100 dark:bg-gray-800">
-                                        {blog.mainImage ? (
-                                            <img 
-                                                src={urlFor(blog.mainImage).width(600).height(400).url()} 
-                                                alt={blog.title}
-                                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                            />
-                                        ) : (
-                                            <div class="w-full h-full flex items-center justify-center text-gray-400 font-bold">
-                                                No Image
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div class="space-y-2">
-                                        {blog.categories?.[0]?.title && (
-                                            <span class="text-blue-600 font-bold text-sm uppercase tracking-wider font-roboto">
-                                                {blog.categories[0].title}
-                                            </span>
-                                        )}
-                                        <h3 class="text-xl font-bold dark:text-white font-roboto group-hover:text-blue-600 transition-colors leading-tight">
-                                            {blog.title}
-                                        </h3>
-                                        <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 font-roboto">
-                                            {blog.publishedAt && (
-                                                <span>{new Date(blog.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-                                            )}
-                                        </div>
-                                    </div>
-                                </a>
-                            ))}
-                        </div>
-                    </div>
+                <div class="p-6 bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-2xl shadow-lg max-w-xs shrink-0 space-y-3">
+                    <h3 class="font-bold text-sm">Berlangganan Insight</h3>
+                    <p class="text-xs text-blue-100">Kurasi artikel terbaik dikirim langsung ke email Anda.</p>
+                    <a href="https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Renggani%2C%20saya%20ingin%20berlangganan%20newsletter%20artikel." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-white text-blue-900 font-bold text-xs rounded-xl hover:bg-blue-50 transition-colors shadow-sm">
+                        <Icon name="mdi:email-outline" class="text-base text-blue-600" />
+                        <span>Langganan via WA</span>
+                    </a>
                 </div>
             </div>
+
+            <!-- Featured Blog Hero -->
+            {featuredBlog && (
+                <div class="space-y-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+                        Artikel Utama
+                    </span>
+                    <a href={`/blogs/${featuredBlog.slug.current}`} class="block group relative overflow-hidden rounded-3xl shadow-2xl transition-transform duration-500 hover:-translate-y-1">
+                        <div class="relative h-[380px] lg:h-[480px]">
+                            {featuredBlog.mainImage ? (
+                                <img 
+                                    src={urlFor(featuredBlog.mainImage).width(1200).height(800).url()} 
+                                    alt={featuredBlog.title}
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                />
+                            ) : (
+                                <div class="w-full h-full bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900 flex items-center justify-center text-white text-2xl font-bold p-8">
+                                    {featuredBlog.title}
+                                </div>
+                            )}
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-6 lg:p-12 text-white space-y-4 w-full max-w-4xl">
+                                {featuredBlog.categories?.[0]?.title && (
+                                    <span class="px-4 py-1.5 bg-blue-600 rounded-full text-xs font-semibold uppercase tracking-wider shadow-md">
+                                        {featuredBlog.categories[0].title}
+                                    </span>
+                                )}
+                                <h2 class="text-2xl lg:text-4xl font-extrabold font-roboto group-hover:text-blue-300 transition-colors leading-tight">
+                                    {featuredBlog.title}
+                                </h2>
+                                {featuredBlog.excerpt && (
+                                    <p class="text-gray-200 line-clamp-2 font-roboto text-sm lg:text-base leading-relaxed">
+                                        {featuredBlog.excerpt}
+                                    </p>
+                                )}
+                                {featuredBlog.author && (
+                                    <div class="flex items-center gap-3 pt-2 text-xs lg:text-sm text-gray-300 font-medium">
+                                        <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center font-bold text-white shadow-md">
+                                            {featuredBlog.author.name.charAt(0)}
+                                        </div>
+                                        <span>{featuredBlog.author.name}</span>
+                                        {featuredBlog.publishedAt && (
+                                            <>
+                                                <span>•</span>
+                                                <span>{new Date(featuredBlog.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                                            </>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            )}
+
+            <!-- Interactive Search & Articles List -->
+            <div class="space-y-6">
+                <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-900 dark:text-white">
+                    Jelajahi Artikel
+                </h2>
+                <BlogSearchFilter client:visible blogs={mappedOtherBlogs} categories={categories} />
+            </div>
+
         </div>
     </main>
 </Layout>

@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import BukuBatikBanner from "@components/organisms/BukuBatikBanner.astro";
 import BukuBatikFeatures from "@components/organisms/BukuBatikFeatures.astro";
+import BukuBatikSearchFilter from "@components/organisms/BukuBatikSearchFilter";
 import CallToAction from "@components/organisms/CallToAction.astro";
 
 const pageTitle = "BukuBatik — Sistem Akuntansi & ERP Cerdas Perusahaan | Renggani";
@@ -69,6 +70,26 @@ const structuredData = {
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} slot="head" />
 
     <BukuBatikBanner />
+    
+    <!-- Interactive Module Search & Filter -->
+    <section class="py-16 px-5 lg:px-20 bg-gray-100 dark:bg-gray-950 font-roboto border-y border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-950 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800">
+                    Pencarian Modul Interaktif
+                </span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-white">
+                    Temukan Fitur Sesuai Kebutuhan Usaha Anda
+                </h2>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    Gunakan filter kategori atau kata kunci untuk melihat spesifikasi detail dari tiap modul BukuBatik ERP.
+                </p>
+            </div>
+            
+            <BukuBatikSearchFilter client:visible />
+        </div>
+    </section>
+
     <BukuBatikFeatures />
     <CallToAction />
 </Layout>
