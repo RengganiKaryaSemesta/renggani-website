@@ -35,6 +35,7 @@ const portfolios = rawPortfolios.map((item) => {
     const resolvedSrc = imgObj && typeof imgObj === "object" && "src" in imgObj ? imgObj.src : String(rawImg);
     const resolvedWidth = imgObj && typeof imgObj === "object" && "width" in imgObj ? imgObj.width : 500;
     const resolvedHeight = imgObj && typeof imgObj === "object" && "height" in imgObj ? imgObj.height : 500;
+    const resolvedFormat = imgObj && typeof imgObj === "object" && "format" in imgObj ? (imgObj.format as any) : "webp";
 
     return {
         id: item.id,
@@ -48,7 +49,8 @@ const portfolios = rawPortfolios.map((item) => {
             image: {
                 src: resolvedSrc,
                 width: resolvedWidth,
-                height: resolvedHeight
+                height: resolvedHeight,
+                format: resolvedFormat
             }
         }
     };
