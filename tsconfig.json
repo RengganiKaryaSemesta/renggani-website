@@ -3,6 +3,12 @@
   "compilerOptions": {
     "types": ["@sanity/astro/module"],
     "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "baseUrl": ".",
