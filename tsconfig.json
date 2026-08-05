@@ -2,6 +2,7 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "types": ["@sanity/astro/module"],
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "baseUrl": ".",
