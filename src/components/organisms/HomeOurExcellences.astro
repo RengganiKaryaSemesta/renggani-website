@@ -98,35 +98,42 @@ import imagePolygon from "@assets/polygon.png"
     }
 </style>
 <script>
-    const swiperElement = document.querySelector(
-        ".swiper-our-exellences",
-    ) as HTMLElement & { initialize: () => void };
-    Object.assign(swiperElement, {
-        slidesPerView: 1.1,
-        spaceBetween: 20,
-        speed: 1000,
-        loop: true,
-        pagination: true,
-        autoplay: {
-            delay: 6000,
-            enabled: true,
-        },
-        navigation: {
-            prevEl: ".swiper-our-exellences-button-prev",
-            nextEl: ".swiper-our-exellences-button-next",
-        },
-        breakpoints: {
-            550: {
-                loop: false,
-                spaceBetween: 30,
-                slidesPerView: 1.5,
-            },
-            1200: {
-                loop: false,
-                spaceBetween: 30,
-                slidesPerView: 2.5,
-            },
-        },
+    import { register } from "swiper/element/bundle";
+    register();
+
+    customElements.whenDefined("swiper-container").then(() => {
+        const swiperElement = document.querySelector(
+            ".swiper-our-exellences",
+        ) as any;
+        if (swiperElement) {
+            Object.assign(swiperElement, {
+                slidesPerView: 1.1,
+                spaceBetween: 20,
+                speed: 1000,
+                loop: true,
+                pagination: true,
+                autoplay: {
+                    delay: 6000,
+                    enabled: true,
+                },
+                navigation: {
+                    prevEl: ".swiper-our-exellences-button-prev",
+                    nextEl: ".swiper-our-exellences-button-next",
+                },
+                breakpoints: {
+                    550: {
+                        loop: false,
+                        spaceBetween: 30,
+                        slidesPerView: 1.5,
+                    },
+                    1200: {
+                        loop: false,
+                        spaceBetween: 30,
+                        slidesPerView: 2.5,
+                    },
+                },
+            });
+            swiperElement.initialize();
+        }
     });
-    swiperElement?.initialize();
 </script>
