@@ -35,19 +35,21 @@ const email2 = `${"contact"}@${"rengganikaryasemesta.com"}`;
         <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-5 font-roboto text-white mt-10">
             <div class="space-y-5 col-span-2">
                 <p>Jl. Kemiren, Kemiren, Kec. Glagah, Kabupaten Banyuwangi, <br> Jawa Timur 68432</p>
+                <!--email_off-->
                 <ul class="space-y-2 text-sm">
                     <li>
-                        <a href={`mailto:${email1}`} class="flex items-center gap-3 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer"> 
+                        <a href={`mailto:${email1}`} data-astro-reload data-astro-prefetch="false" class="flex items-center gap-3 hover:text-blue-300 transition-colors" target="_blank" rel="external noopener noreferrer"> 
                             <Icon name="mdi:email" class="shrink-0 text-base" />
                             <span>{email1}</span>
                         </a>
                     </li>
                     <li>
-                        <a href={`mailto:${email2}`} class="flex items-center gap-3 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer"> 
+                        <a href={`mailto:${email2}`} data-astro-reload data-astro-prefetch="false" class="flex items-center gap-3 hover:text-blue-300 transition-colors" target="_blank" rel="external noopener noreferrer"> 
                             <Icon name="mdi:email-outline" class="shrink-0 text-base" />
                             <span>{email2}</span>
                         </a>
                     </li>
+                <!--/email_off-->
                     <li>
                         <a href="https://api.whatsapp.com/send?phone=6289512589756" class="flex items-center gap-3 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer"> 
                             <Icon name="mdi:whatsapp" class="shrink-0 text-base" />
