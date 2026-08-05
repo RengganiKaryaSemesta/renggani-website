@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/global.css';
 
 interface Props {
@@ -67,5 +68,6 @@ const imageURL = image.startsWith("http") ? image : new URL(image, siteUrl).href
 
     <body>
         <slot />
+        <SpeedInsights />
     </body>
 </html>
