@@ -1,0 +1,496 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Feature {
+  name: string;
+  included: boolean | string;
+}
+
+interface Plan {
+  name: string;
+  slug: string;
+  monthlyPrice: string;
+  yearlyPrice: string;
+  yearlyPriceNumeric: string;
+  monthlyPriceNumeric: string;
+  savings: string;
+  description: string;
+  features: Feature[];
+  recommended: boolean;
+}
+
+const pricingPlans: Plan[] = [
+  {
+    name: "Basic",
+    slug: "basic",
+    monthlyPrice: "Rp300.000",
+    yearlyPrice: "Rp3.000.000",
+    monthlyPriceNumeric: "300k",
+    yearlyPriceNumeric: "3.0M",
+    savings: "Hemat Rp600.000",
+    description: "Sangat cocok untuk usaha mikro/kecil yang baru memulai digitalisasi pembukuan.",
+    features: [
+      { name: "Pencatatan Penjualan (Sales)", included: true },
+      { name: "Pencatatan Pembelian (Purchase)", included: true },
+      { name: "Product Bundling", included: "Hanya Baca (Read-only)" },
+      { name: "Multi Unit Satuan", included: false },
+      { name: "Batch Conversion Bahan Baku", included: false },
+      { name: "Price Rules (Skema Harga Khusus)", included: false },
+      { name: "Rekonsiliasi Kas & Bank", included: false },
+      { name: "Kapasitas Gudang (Warehouse)", included: "1 Gudang" },
+      { name: "Kapasitas Kantor Cabang (Branch)", included: "1 Cabang" },
+    ],
+    recommended: false,
+  },
+  {
+    name: "Business",
+    slug: "business",
+    monthlyPrice: "Rp650.000",
+    yearlyPrice: "Rp6.500.000",
+    monthlyPriceNumeric: "650k",
+    yearlyPriceNumeric: "6.5M",
+    savings: "Hemat Rp1.300.000",
+    description: "Paket paling populer untuk bisnis berkembang yang membutuhkan multi-cabang & rekonsiliasi otomatis.",
+    features: [
+      { name: "Pencatatan Penjualan (Sales)", included: true },
+      { name: "Pencatatan Pembelian (Purchase)", included: true },
+      { name: "Product Bundling", included: "Akses Penuh (Full)" },
+      { name: "Multi Unit Satuan", included: true },
+      { name: "Batch Conversion Bahan Baku", included: false },
+      { name: "Price Rules (Skema Harga Khusus)", included: false },
+      { name: "Rekonsiliasi Kas & Bank", included: true },
+      { name: "Kapasitas Gudang (Warehouse)", included: "2 Gudang" },
+      { name: "Kapasitas Kantor Cabang (Branch)", included: "2 Cabang" },
+    ],
+    recommended: true,
+  },
+  {
+    name: "Enterprise",
+    slug: "enterprise",
+    monthlyPrice: "Rp1.000.000",
+    yearlyPrice: "Rp10.000.000",
+    monthlyPriceNumeric: "1.0M",
+    yearlyPriceNumeric: "10.0M",
+    savings: "Hemat Rp2.000.000",
+    description: "Solusi terlengkap untuk perusahaan skala menengah dengan kebutuhan kustomisasi modul penuh.",
+    features: [
+      { name: "Pencatatan Penjualan (Sales)", included: true },
+      { name: "Pencatatan Pembelian (Purchase)", included: true },
+      { name: "Product Bundling", included: "Akses Penuh (Full)" },
+      { name: "Multi Unit Satuan", included: true },
+      { name: "Batch Conversion Bahan Baku", included: true },
+      { name: "Price Rules (Skema Harga Khusus)", included: true },
+      { name: "Rekonsiliasi Kas & Bank", included: true },
+      { name: "Kapasitas Gudang (Warehouse)", included: "Tanpa Batas" },
+      { name: "Kapasitas Kantor Cabang (Branch)", included: "5 Cabang" },
+    ],
+    recommended: false,
+  },
+];
+
+const additionalInfo: {
+  branchCost: Record<string, string>;
+  customModule: Record<string, string>;
+  customModuleCost: Record<string, string>;
+} = {
+  branchCost: {
+    basic: "Rp300.000 / bln",
+    business: "Rp650.000 / bln",
+    enterprise: "Rp1.000.000 / bln",
+  },
+  customModule: {
+    basic: "Tidak didukung",
+    business: "Bisa diajukan (Request)",
+    enterprise: "Bisa diajukan (Request)",
+  },
+  customModuleCost: {
+    basic: "—",
+    business: "Sesuai kompleksitas",
+    enterprise: "Sesuai kompleksitas",
+  }
+};
+
+const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Renggani%2C%20saya%20tertarik%20dengan%20produk%20BukuBatik.%20Mohon%20informasi%20penawaran%20dan%20demo%20sistemnya.";
+---
+
+<section class="py-24 px-5 lg:px-20 bg-slate-50 dark:bg-slate-950 font-roboto transition-colors duration-300">
+  <div class="max-w-7xl mx-auto space-y-20">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <span class="text-xs font-mono font-bold uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-950/80 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800">
+        SKEMA HARGA TRANSPARAN
+      </span>
+      <h2 class="text-4xl lg:text-5xl font-black dark:text-white text-slate-900 tracking-tight leading-none">
+        Investasi Tepat untuk Kendali Bisnis yang Kuat
+      </h2>
+      <p class="text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+        Pilih paket yang sesuai dengan volume operasional Anda saat ini. Anda dapat melakukan migrasi paket seiring pertumbuhan bisnis.
+      </p>
+    </div>
+
+    <!-- Monthly / Yearly Billing Toggle -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+      <span class="text-sm font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Bayar Bulanan</span>
+      
+      <button 
+        id="billing-toggle" 
+        type="button" 
+        class="relative inline-flex h-8 w-16 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-slate-200 dark:bg-slate-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950" 
+        role="switch" 
+        aria-checked="false"
+      >
+        <span class="sr-only">Ubah skema penagihan</span>
+        <span 
+          id="billing-toggle-thumb" 
+          class="pointer-events-none inline-block h-7 w-7 transform rounded-full bg-white dark:bg-slate-100 shadow-md ring-0 transition duration-300 ease-in-out translate-x-0"
+        ></span>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <span class="text-sm font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Bayar Tahunan</span>
+        <span class="bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 text-xs px-3 py-1 rounded-full font-extrabold border border-emerald-200 dark:border-emerald-800">
+          Hemat s.d 17%
+        </span>
+      </div>
+    </div>
+
+    <!-- Pricing Cards Grid -->
+    <div class="grid lg:grid-cols-3 gap-8 items-stretch pt-4">
+      {pricingPlans.map((plan) => (
+        <div 
+          class={`relative flex flex-col justify-between p-8 lg:p-10 rounded-3xl border-2 transition-all duration-300 hover:shadow-2xl ${
+            plan.recommended 
+              ? 'bg-white dark:bg-slate-900 border-purple-500 shadow-xl shadow-purple-500/10 dark:shadow-purple-500/5 lg:scale-105 z-10' 
+              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-800'
+          }`}
+        >
+          {plan.recommended && (
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-md">
+              Paling Populer
+            </div>
+          )}
+
+          <div>
+            <!-- Header Card -->
+            <div class="border-b border-slate-100 dark:border-slate-800/80 pb-6 mb-6">
+              <h3 class="text-2xl font-black text-slate-900 dark:text-white">{plan.name}</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 min-h-[32px]">{plan.description}</p>
+              
+              <!-- Price Indicator -->
+              <div class="mt-6 min-h-[80px] flex items-baseline">
+                <!-- Monthly Price Block -->
+                <div class="monthly-price-block transition-opacity duration-200">
+                  <span class="text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white font-mono">{plan.monthlyPrice}</span>
+                  <span class="text-sm font-semibold text-slate-500 dark:text-slate-400 ml-1">/bulan</span>
+                </div>
+                <!-- Yearly Price Block (Hidden by default) -->
+                <div class="yearly-price-block hidden transition-opacity duration-200">
+                  <div class="flex items-baseline">
+                    <span class="text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white font-mono">{plan.yearlyPrice}</span>
+                    <span class="text-sm font-semibold text-slate-500 dark:text-slate-400 ml-1">/tahun</span>
+                  </div>
+                  <div class="text-xs text-emerald-600 dark:text-emerald-400 font-bold mt-1.5 flex items-center gap-1">
+                    <Icon name="mdi:sparkles" class="text-sm" />
+                    <span>{plan.savings} (Setara {plan.monthlyPriceNumeric}/bln)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Features -->
+            <ul class="space-y-4 mb-8">
+              {plan.features.slice(0, 7).map((feat) => (
+                <li class="flex items-start gap-3">
+                  {feat.included === true ? (
+                    <div class="mt-0.5 rounded-full p-0.5 bg-emerald-100 dark:bg-emerald-950 shrink-0 border border-emerald-200 dark:border-emerald-900">
+                      <Icon name="mdi:check" class="text-emerald-600 dark:text-emerald-400 text-sm w-4 h-4" />
+                    </div>
+                  ) : feat.included === false ? (
+                    <div class="mt-0.5 rounded-full p-0.5 bg-slate-100 dark:bg-slate-900 shrink-0 border border-slate-200 dark:border-slate-800">
+                      <Icon name="mdi:close" class="text-slate-400 dark:text-slate-600 text-sm w-4 h-4" />
+                    </div>
+                  ) : (
+                    <div class="mt-0.5 rounded-full p-0.5 bg-blue-100 dark:bg-blue-950 shrink-0 border border-blue-200 dark:border-blue-900">
+                      <Icon name="mdi:information-variant" class="text-blue-600 dark:text-blue-400 text-sm w-4 h-4" />
+                    </div>
+                  )}
+                  <div class="flex-1 min-w-0">
+                    <span class="text-sm text-slate-700 dark:text-slate-300 font-medium">{feat.name}</span>
+                    {typeof feat.included === "string" && (
+                      <span class="block text-xs font-semibold text-purple-600 dark:text-purple-400 mt-0.5">{feat.included}</span>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Bottom Section Card -->
+          <div>
+            <div class="bg-slate-50 dark:bg-slate-950 rounded-2xl p-4 border border-slate-150 dark:border-slate-900 space-y-2 mb-8">
+              <div class="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                <span>Warehouse Gudang</span>
+                <span class="text-slate-800 dark:text-slate-200">{plan.features.find(f => f.name.includes("Gudang"))?.included}</span>
+              </div>
+              <div class="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
+                <span>Cabang Aktif</span>
+                <span class="text-slate-800 dark:text-slate-200">{plan.features.find(f => f.name.includes("Cabang"))?.included}</span>
+              </div>
+              <div class="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-200/50 dark:border-slate-800/50">
+                <span>Biaya per Cabang Aktif</span>
+                <span class="text-purple-600 dark:text-purple-400 font-bold">{additionalInfo.branchCost[plan.slug]}</span>
+              </div>
+            </div>
+
+            <a
+              href={waLinkPenawaran}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`block w-full py-4 px-6 rounded-xl font-bold text-center text-sm tracking-wide uppercase transition-all duration-300 active:scale-[0.98] ${
+                plan.recommended
+                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/35 hover:-translate-y-0.5'
+                  : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200'
+              }`}
+            >
+              Ajukan Penawaran
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Complete Features Matrix Section -->
+    <div class="pt-16 space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <h3 class="text-2xl lg:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+          Perbandingan Fitur Detail
+        </h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400">
+          Ulas secara mendalam modul dan limitasi spesifik di setiap paket sistem BukuBatik.
+        </p>
+      </div>
+
+      <!-- Comparison Matrix Table -->
+      <div class="border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-lg bg-white dark:bg-slate-900">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 text-xs font-black text-slate-700 dark:text-slate-300 uppercase tracking-widest">
+                <th class="p-6 min-w-[280px]">Fitur / Rincian Modul</th>
+                <th class="p-6 text-center w-[200px]">Basic</th>
+                <th class="p-6 text-center w-[200px]">Business</th>
+                <th class="p-6 text-center w-[200px] bg-purple-50/50 dark:bg-purple-950/20">Business (Best Value)</th>
+                <th class="p-6 text-center w-[200px]">Enterprise</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-150 dark:divide-slate-800/60 text-sm">
+              <!-- Group: Fungsionalitas Modul -->
+              <tr class="bg-slate-50/70 dark:bg-slate-950/30 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                <td colspan="5" class="p-4 pl-6 border-y border-slate-200 dark:border-slate-800/80">Modul Operasional & Akuntansi</td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Pencatatan Penjualan (Sales)</td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Pencatatan Pembelian (Purchase)</td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Product Bundling (Paket Produk)</td>
+                <td class="p-6 text-center text-slate-500 dark:text-slate-400 font-semibold text-xs">Hanya Baca</td>
+                <td class="p-6 text-center text-purple-600 dark:text-purple-400 font-extrabold text-xs">Penuh (Full)</td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 text-purple-600 dark:text-purple-400 font-extrabold text-xs">Penuh (Full)</td>
+                <td class="p-6 text-center text-purple-600 dark:text-purple-400 font-extrabold text-xs">Penuh (Full)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Multi Unit (Konversi Satuan Produk)</td>
+                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Batch Conversion Bahan Baku</td>
+                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Price Rules (Formula Diskon & Harga)</td>
+                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Rekonsiliasi Kas & Rekening Bank</td>
+                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
+              </tr>
+
+              <!-- Group: Kapasitas & Limitasi -->
+              <tr class="bg-slate-50/70 dark:bg-slate-950/30 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                <td colspan="5" class="p-4 pl-6 border-y border-slate-200 dark:border-slate-800/80">Kapasitas & Alokasi Cabang</td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Limitasi Lokasi Gudang (Warehouse)</td>
+                <td class="p-6 text-center font-semibold text-slate-800 dark:text-slate-200">1 Gudang</td>
+                <td class="p-6 text-center font-semibold text-slate-800 dark:text-slate-200">2 Gudang</td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 font-black text-slate-900 dark:text-white">2 Gudang</td>
+                <td class="p-6 text-center font-semibold text-purple-600 dark:text-purple-400">Unlimited</td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Limitasi Kantor Cabang (Branch)</td>
+                <td class="p-6 text-center font-semibold text-slate-800 dark:text-slate-200">1 Cabang</td>
+                <td class="p-6 text-center font-semibold text-slate-800 dark:text-slate-200">2 Cabang</td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 font-black text-slate-900 dark:text-white">2 Cabang</td>
+                <td class="p-6 text-center font-semibold text-slate-800 dark:text-slate-200">5 Cabang</td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Biaya per Cabang Tambahan Aktif</td>
+                <td class="p-6 text-center font-bold text-purple-600 dark:text-purple-400">Rp300.000 / bln</td>
+                <td class="p-6 text-center font-bold text-purple-600 dark:text-purple-400">Rp650.000 / bln</td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 font-black text-purple-600 dark:text-purple-400">Rp650.000 / bln</td>
+                <td class="p-6 text-center font-bold text-purple-600 dark:text-purple-400">Rp1.000.000 / bln</td>
+              </tr>
+
+              <!-- Group: Kustomisasi & Modul Ekstra -->
+              <tr class="bg-slate-50/70 dark:bg-slate-950/30 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                <td colspan="5" class="p-4 pl-6 border-y border-slate-200 dark:border-slate-800/80">Kustomisasi Modul Khusus</td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Ketersediaan Custom Module</td>
+                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
+                <td class="p-6 text-center text-xs font-bold text-amber-600 dark:text-amber-400">Dapat Diajukan</td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 text-xs font-bold text-amber-600 dark:text-amber-400">Dapat Diajukan</td>
+                <td class="p-6 text-center text-xs font-bold text-amber-600 dark:text-amber-400">Dapat Diajukan</td>
+              </tr>
+              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
+                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Biaya Kustomisasi Module</td>
+                <td class="p-6 text-center text-slate-400">—</td>
+                <td class="p-6 text-center text-xs font-semibold text-slate-700 dark:text-slate-300">Tergantung Kompleksitas</td>
+                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 text-xs font-semibold text-slate-700 dark:text-slate-300">Tergantung Kompleksitas</td>
+                <td class="p-6 text-center text-xs font-semibold text-slate-700 dark:text-slate-300">Tergantung Kompleksitas</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Mobile scroll hint -->
+        <div class="block lg:hidden bg-slate-50 dark:bg-slate-950 text-center p-3 text-xs font-bold text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800">
+          ← Geser baris tabel ke samping untuk melihat detail paket lainnya →
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section (Upgraded to a premium side-by-side grid list as per design systems best practice) -->
+    <div class="pt-16 space-y-12">
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <h3 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+          FAQ & Rincian Informasi
+        </h3>
+        <p class="text-base text-slate-500 dark:text-slate-400">
+          Pertanyaan umum mengenai alur penagihan, kustomisasi modul, dan skalabilitas sistem BukuBatik.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div class="space-y-2">
+          <h4 class="text-lg font-bold text-slate-950 dark:text-slate-100 flex items-center gap-2">
+            <Icon name="mdi:help-circle-outline" class="text-purple-600 dark:text-purple-400 shrink-0 text-xl" />
+            <span>Bagaimana perhitungan biaya setup awal?</span>
+          </h4>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed pl-7">
+            Biaya setup disesuaikan dengan volume data awal migrasi Anda, kebutuhan integrasi sistem lama, serta pelatihan staf operasional. Silakan konsultasikan dengan kami melalui WhatsApp.
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-lg font-bold text-slate-955 dark:text-slate-100 flex items-center gap-2">
+            <Icon name="mdi:help-circle-outline" class="text-purple-600 dark:text-purple-400 shrink-0 text-xl" />
+            <span>Apakah saya bisa migrasi paket sewaktu-waktu?</span>
+          </h4>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed pl-7">
+            Tentu. Anda dapat meningkatkan (upgrade) atau menyesuaikan paket Anda sejalan dengan ekspansi operasional cabang, gudang, maupun penambahan kapasitas integrasi sistem.
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-lg font-bold text-slate-950 dark:text-slate-100 flex items-center gap-2">
+            <Icon name="mdi:help-circle-outline" class="text-purple-600 dark:text-purple-400 shrink-0 text-xl" />
+            <span>Bagaimana penambahan cabang dihitung?</span>
+          </h4>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed pl-7">
+            Penambahan cabang aktif melebihi limitasi bawaan paket akan dikenai biaya berlangganan tambahan sesuai tarif per cabang aktif di paket yang Anda gunakan (contoh: paket Business Rp650.000/cabang/bulan).
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-lg font-bold text-slate-950 dark:text-slate-100 flex items-center gap-2">
+            <Icon name="mdi:help-circle-outline" class="text-purple-600 dark:text-purple-400 shrink-0 text-xl" />
+            <span>Dapatkah kami memesan fitur khusus (custom)?</span>
+          </h4>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed pl-7">
+            Ya. Renggani menyediakan layanan pengerjaan Custom Module eksklusif untuk bisnis Anda (khusus paket Business dan Enterprise) guna memfasilitasi kebutuhan integrasi atau alur bisnis yang sangat spesifik.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Astro View Transitions page-load hook
+  function initBillingToggle() {
+    const toggle = document.getElementById('billing-toggle');
+    const thumb = document.getElementById('billing-toggle-thumb');
+    const monthlyBlocks = document.querySelectorAll('.monthly-price-block');
+    const yearlyBlocks = document.querySelectorAll('.yearly-price-block');
+
+    if (toggle && thumb) {
+      if (toggle.dataset.billingInitialized === 'true') return;
+      toggle.dataset.billingInitialized = 'true';
+
+      toggle.addEventListener('click', () => {
+        const isYearly = toggle.getAttribute('aria-checked') === 'true';
+        toggle.setAttribute('aria-checked', (!isYearly).toString());
+        
+        if (isYearly) {
+          // Switch to monthly (Default State)
+          toggle.classList.remove('bg-purple-600');
+          toggle.classList.add('bg-slate-200', 'dark:bg-slate-800');
+          thumb.classList.remove('translate-x-8');
+          thumb.classList.add('translate-x-0');
+          
+          monthlyBlocks.forEach(block => block.classList.remove('hidden'));
+          yearlyBlocks.forEach(block => block.classList.add('hidden'));
+        } else {
+          // Switch to yearly
+          toggle.classList.remove('bg-slate-200', 'dark:bg-slate-800');
+          toggle.classList.add('bg-purple-600');
+          thumb.classList.remove('translate-x-0');
+          thumb.classList.add('translate-x-8');
+          
+          monthlyBlocks.forEach(block => block.classList.add('hidden'));
+          yearlyBlocks.forEach(block => block.classList.remove('hidden'));
+        }
+      });
+    }
+  }
+
+  // Run on initial load and navigation
+  initBillingToggle();
+  document.addEventListener('astro:page-load', initBillingToggle);
+</script>

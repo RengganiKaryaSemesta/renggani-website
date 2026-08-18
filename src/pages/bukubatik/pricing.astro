@@ -1,0 +1,84 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PricingList from "@components/organisms/PricingList.astro";
+
+const pageTitle = "BukuBatik Pricing — Paket Harga Sistem Akuntansi & ERP | Renggani";
+const pageDescription = "Lihat paket harga BukuBatik dengan opsi Basic, Business, dan Enterprise. Pilih solusi akuntansi & ERP yang tepat untuk bisnis Anda.";
+const pageKeywords = "buku batik, bukubatik, harga sistem akuntansi, erp umkm, paket software akuntansi, pricing buku batik";
+const ogImageUrl = "https://www.rengganikaryasemesta.com/buku-batik-pricing.png";
+
+// JSON-LD Structured Data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "BukuBatik",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, Cloud",
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "300000",
+        "highPrice": "1000000",
+        "priceCurrency": "IDR",
+        "offerCount": "3"
+      },
+      "description": pageDescription,
+      "publisher": {
+        "@type": "Organization",
+        "name": "CV. Renggani Karya Semesta",
+        "url": "https://www.rengganikaryasemesta.com"
+      }
+    }
+  ]
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  image={ogImageUrl}
+  type="product"
+>
+  <!-- JSON-LD Structured Data -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} slot="head" />
+
+  <!-- Hero Section -->
+  <section class="py-16 px-5 lg:px-20 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-900 dark:to-purple-950 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto text-center space-y-6">
+      <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400 bg-white dark:bg-purple-950/50 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800 shadow-sm">
+        Harga & Paket
+      </span>
+      <h1 class="text-4xl lg:text-6xl font-extrabold dark:text-white text-gray-900 tracking-tight">
+        Paket Harga BukuBatik
+      </h1>
+      <p class="text-lg lg:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+        Pilih paket sistem akuntansi & ERP yang paling sesuai dengan kebutuhan dan skala bisnis Anda
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing Components -->
+  <PricingList />
+
+  <!-- SEO CTA Section -->
+  <section class="py-12 px-5 lg:px-20 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+    <div class="max-w-4xl mx-auto text-center space-y-4">
+      <h2 class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-900">
+        Masih Bingung Memilih Paket?
+      </h2>
+      <p class="text-gray-600 dark:text-gray-400">
+        Tim kami siap membantu Anda memilih paket yang tepat dan memberikan demo gratis sistem BukuBatik
+      </p>
+      <a
+        href="https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Renggani%2C%20saya%20tertarik%20dengan%20produk%20BukuBatik.%20Mohon%20informasi%20penawaran%20dan%20demo%20sistemnya."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-purple-600/30 hover:shadow-purple-500/50 transition-all text-base"
+      >
+        <span>Konsultasi Gratis via WhatsApp</span>
+      </a>
+    </div>
+  </section>
+</Layout>
