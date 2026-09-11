@@ -125,13 +125,29 @@ test.describe('Runtime Site Verification', () => {
     await expect(desktopTable.getByText('≤ 125').first()).toBeVisible();
     await expect(desktopTable.getByText('≤ 250').first()).toBeVisible();
 
-    // Verify exact prices (200k, 500k, 850k)
+    // Verify exact monthly prices (200k, 500k, 850k)
     await expect(comparisonSection.getByText('Rp200.000').first()).toBeVisible();
     await expect(comparisonSection.getByText('Rp500.000').first()).toBeVisible();
     await expect(comparisonSection.getByText('Rp850.000').first()).toBeVisible();
 
-    // Verify special disbursement feature row exists
+    // Verify billing toggle interaction (Monthly -> Yearly)
+    const rksToggle = page.locator('#rks-billing-toggle');
+    await expect(rksToggle).toBeVisible();
+    await rksToggle.click();
+
+    // Verify exact yearly prices (2.000.000, 5.000.000, 8.500.000)
+    await expect(comparisonSection.getByText('Rp2.000.000').first()).toBeVisible();
+    await expect(comparisonSection.getByText('Rp5.000.000').first()).toBeVisible();
+    await expect(comparisonSection.getByText('Rp8.500.000').first()).toBeVisible();
+
+    // Toggle back to monthly
+    await rksToggle.click();
+    await expect(comparisonSection.getByText('Rp200.000').first()).toBeVisible();
+
+    // Verify special disbursement feature row exists and shows +Rp8.000 / karyawan
     await expect(desktopTable.getByText('Disbursement ke rekening', { exact: true })).toBeVisible();
+    await expect(comparisonSection.getByText('+Rp8.000 / karyawan').first()).toBeVisible();
+    await expect(comparisonSection.getByText('Transparansi Biaya Auto-Disbursement Bank')).toBeVisible();
 
     expect(failedRequests).toHaveLength(0);
     expect(consoleErrors).toHaveLength(0);

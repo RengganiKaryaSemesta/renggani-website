@@ -17,11 +17,27 @@ interface FeatureGroup {
   items: FeatureItem[];
 }
 
-const plans = [
+interface Plan {
+  id: string;
+  name: string;
+  monthlyPrice: string;
+  yearlyPrice: string;
+  savings: string;
+  capacity: string;
+  description: string;
+  isPopular: boolean;
+  highlights: string[];
+  whatsappMsgMonthly: string;
+  whatsappMsgYearly: string;
+}
+
+const plans: Plan[] = [
   {
     id: "starter",
     name: "Starter",
-    price: "Rp200.000",
+    monthlyPrice: "Rp200.000",
+    yearlyPrice: "Rp2.000.000",
+    savings: "Hemat Rp400.000",
     capacity: "≤ 50",
     description: "Sangat cocok untuk UMKM dan bisnis berkembang yang ingin presensi selfie GPS bebas repot.",
     isPopular: false,
@@ -32,13 +48,17 @@ const plans = [
       "Riwayat Kehadiran Real-time",
       "1 Lokasi / Kantor Cabang",
     ],
-    whatsappMsg:
-      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Starter (Rp200.000/bln - Kapasitas s/d 50 Karyawan). Mohon informasi penawaran dan jadwal demonya.",
+    whatsappMsgMonthly:
+      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Starter Bulanan (Rp200.000/bln - Kapasitas s/d 50 Karyawan). Mohon informasi penawaran dan jadwal demonya.",
+    whatsappMsgYearly:
+      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Starter Tahunan (Rp2.000.000/thn - Hemat Rp400rb). Mohon informasi penawaran dan jadwal demonya.",
   },
   {
     id: "bisnis",
     name: "Bisnis",
-    price: "Rp500.000",
+    monthlyPrice: "Rp500.000",
+    yearlyPrice: "Rp5.000.000",
+    savings: "Hemat Rp1.000.000",
     capacity: "≤ 125",
     description: "Paling populer! Dilengkapi Liveness Face Recognition AI, multi-cabang & manajemen shift.",
     isPopular: true,
@@ -49,13 +69,17 @@ const plans = [
       "Pengajuan Izin, Sakit & Cuti Online",
       "Multi-Cabang & Shift Fleksibel",
     ],
-    whatsappMsg:
-      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Bisnis (Rp500.000/bln - Paling Populer). Mohon penawaran dan jadwal demonya.",
+    whatsappMsgMonthly:
+      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Bisnis Bulanan (Rp500.000/bln - Paling Populer). Mohon penawaran dan jadwal demonya.",
+    whatsappMsgYearly:
+      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Bisnis Tahunan (Rp5.000.000/thn - Hemat Rp1.000.000). Mohon penawaran dan jadwal demonya.",
   },
   {
     id: "enterprise",
     name: "Enterprise",
-    price: "Rp850.000",
+    monthlyPrice: "Rp850.000",
+    yearlyPrice: "Rp8.500.000",
+    savings: "Hemat Rp1.700.000",
     capacity: "≤ 250",
     description: "Solusi end-to-end presensi + full automated payroll, BPJS, PPh 21 & auto-disbursement rekening.",
     isPopular: false,
@@ -64,10 +88,13 @@ const plans = [
       "Kapasitas s/d 250 Karyawan",
       "Perhitungan Gaji, Lembur & THR Otomatis",
       "Kalkulasi Pajak PPh 21 & Iuran BPJS",
-      "Slip Gaji Digital & Auto-Disbursement Bank",
+      "Slip Gaji Digital & Cetak Massal",
+      "Auto-Disbursement Bank (+Rp8.000 / karyawan)",
     ],
-    whatsappMsg:
-      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Enterprise (Rp850.000/bln - Full Payroll & Auto-Disbursement). Mohon informasi penawaran korporasi dan konsultasi teknis.",
+    whatsappMsgMonthly:
+      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Enterprise Bulanan (Rp850.000/bln + disbursement Rp8.000/karyawan). Mohon informasi penawaran korporasi dan konsultasi teknis.",
+    whatsappMsgYearly:
+      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Enterprise Tahunan (Rp8.500.000/thn - Hemat Rp1.700.000 + disbursement Rp8.000/karyawan). Mohon informasi penawaran korporasi dan konsultasi teknis.",
   },
 ];
 
@@ -104,14 +131,20 @@ const featureGroups: FeatureGroup[] = [
       { name: "PPh 21 & BPJS", starter: false, bisnis: false, enterprise: true },
       { name: "Slip gaji digital", starter: false, bisnis: false, enterprise: true },
       { name: "Komponen gaji kustom", starter: false, bisnis: false, enterprise: true },
-      { name: "Disbursement ke rekening", starter: false, bisnis: false, enterprise: true, isSpecial: true },
+      { 
+        name: "Disbursement ke rekening", 
+        starter: false, 
+        bisnis: false, 
+        enterprise: "+Rp8.000 / karyawan", 
+        isSpecial: true 
+      },
     ],
   },
 ];
 ---
 
 <section id="komparasi-paket" class="py-24 px-5 lg:px-20 bg-slate-50 dark:bg-slate-950 font-roboto border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
-  <div class="max-w-7xl mx-auto space-y-20">
+  <div class="max-w-7xl mx-auto space-y-16">
     
     <!-- Section Header -->
     <div class="text-center max-w-3xl mx-auto space-y-4">
@@ -122,11 +155,37 @@ const featureGroups: FeatureGroup[] = [
         Pilihan Tepat Sesuai Skala Tim Anda
       </h2>
       <p class="text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-        Pilih paket yang sesuai dengan jumlah karyawan dan kebutuhan otomasi HR Anda saat ini. Skalabilitas mudah tanpa kendala migrasi.
+        Pilih paket yang sesuai dengan jumlah karyawan dan kebutuhan otomasi HR Anda saat ini. Tersedia opsi bayar bulanan maupun tahunan yang lebih hemat.
       </p>
     </div>
 
-    <!-- 3 Pricing Cards Grid (Identical Structure to BukuBatik) -->
+    <!-- Monthly / Yearly Billing Toggle (Identical to BukuBatik) -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+      <span class="text-sm font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Bayar Bulanan</span>
+      
+      <button 
+        id="rks-billing-toggle" 
+        type="button" 
+        class="relative inline-flex h-8 w-16 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-slate-200 dark:bg-slate-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-rose-900 focus:ring-offset-2 dark:focus:ring-offset-slate-950" 
+        role="switch" 
+        aria-checked="false"
+      >
+        <span class="sr-only">Ubah skema penagihan RKSWorkmate</span>
+        <span 
+          id="rks-billing-toggle-thumb" 
+          class="pointer-events-none inline-block h-7 w-7 transform rounded-full bg-white dark:bg-slate-100 shadow-md ring-0 transition duration-300 ease-in-out translate-x-0"
+        ></span>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <span class="text-sm font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Bayar Tahunan</span>
+        <span class="bg-rose-100 dark:bg-rose-950/80 text-rose-900 dark:text-rose-300 text-xs px-3 py-1 rounded-full font-extrabold border border-rose-200 dark:border-rose-900/50">
+          Hemat s.d 17%
+        </span>
+      </div>
+    </div>
+
+    <!-- 3 Pricing Cards Grid -->
     <div class="grid lg:grid-cols-3 gap-8 items-stretch pt-4">
       {plans.map((plan) => (
         <div 
@@ -149,14 +208,29 @@ const featureGroups: FeatureGroup[] = [
               <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 min-h-[36px]">{plan.description}</p>
             </div>
 
-            <!-- Price Display -->
-            <div class="mb-4">
+            <!-- Price Display (Supports Monthly & Yearly Switch) -->
+            <div class="mb-4 min-h-[76px]">
               <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Investasi Mulai</span>
-              <div class="flex items-baseline gap-1 mt-1">
+              
+              <!-- Monthly Price Block -->
+              <div class="rks-monthly-block flex items-baseline gap-1 mt-1 transition-opacity duration-200">
                 <span class="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white font-mono tracking-tight">
-                  {plan.price}
+                  {plan.monthlyPrice}
                 </span>
                 <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">/bulan</span>
+              </div>
+
+              <!-- Yearly Price Block (Hidden by default) -->
+              <div class="rks-yearly-block hidden transition-opacity duration-200 mt-1">
+                <div class="flex items-baseline gap-1">
+                  <span class="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white font-mono tracking-tight">
+                    {plan.yearlyPrice}
+                  </span>
+                  <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">/tahun</span>
+                </div>
+                <span class="text-[11px] font-bold text-rose-900 dark:text-rose-400 mt-1 block">
+                  ✓ {plan.savings} (2 Bulan Bebas Biaya)
+                </span>
               </div>
             </div>
 
@@ -182,11 +256,12 @@ const featureGroups: FeatureGroup[] = [
 
           <!-- Card WhatsApp Action Button -->
           <div class="pt-6 border-t border-slate-100 dark:border-slate-800/80">
+            <!-- Monthly WhatsApp CTA -->
             <a
-              href={`https://api.whatsapp.com/send?phone=6289512589756&text=${encodeURIComponent(plan.whatsappMsg)}`}
+              href={`https://api.whatsapp.com/send?phone=6289512589756&text=${encodeURIComponent(plan.whatsappMsgMonthly)}`}
               target="_blank"
               rel="noopener noreferrer"
-              class={`w-full py-3.5 px-4 rounded-xl text-center text-xs lg:text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
+              class={`rks-monthly-cta w-full py-3.5 px-4 rounded-xl text-center text-xs lg:text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
                 plan.isPopular
                   ? 'bg-rose-900 hover:bg-rose-850 text-white shadow-lg shadow-rose-900/20 hover:shadow-rose-900/35 hover:-translate-y-0.5'
                   : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 hover:-translate-y-0.5'
@@ -194,6 +269,21 @@ const featureGroups: FeatureGroup[] = [
             >
               <Icon name="mdi:whatsapp" class="text-lg" />
               <span>Pilih {plan.name}</span>
+            </a>
+
+            <!-- Yearly WhatsApp CTA (Hidden by default) -->
+            <a
+              href={`https://api.whatsapp.com/send?phone=6289512589756&text=${encodeURIComponent(plan.whatsappMsgYearly)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`rks-yearly-cta hidden w-full py-3.5 px-4 rounded-xl text-center text-xs lg:text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
+                plan.isPopular
+                  ? 'bg-rose-900 hover:bg-rose-850 text-white shadow-lg shadow-rose-900/20 hover:shadow-rose-900/35 hover:-translate-y-0.5'
+                  : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 hover:-translate-y-0.5'
+              }`}
+            >
+              <Icon name="mdi:whatsapp" class="text-lg" />
+              <span>Pilih {plan.name} (Tahunan)</span>
             </a>
           </div>
         </div>
@@ -230,7 +320,17 @@ const featureGroups: FeatureGroup[] = [
                   >
                     <div class="space-y-1">
                       <div class="text-base font-bold text-slate-900 dark:text-white">{plan.name}</div>
-                      <div class="text-xl font-extrabold text-rose-900 dark:text-rose-400 font-mono">{plan.price}</div>
+                      
+                      <!-- Monthly Price in table header -->
+                      <div class="rks-monthly-block text-xl font-extrabold text-rose-900 dark:text-rose-400 font-mono">
+                        {plan.monthlyPrice}
+                      </div>
+                      
+                      <!-- Yearly Price in table header (hidden by default) -->
+                      <div class="rks-yearly-block hidden text-xl font-extrabold text-rose-900 dark:text-rose-400 font-mono">
+                        {plan.yearlyPrice}
+                      </div>
+
                       <span class="text-xs text-slate-500 dark:text-slate-400 block font-semibold">{plan.capacity} Karyawan</span>
                     </div>
                   </th>
@@ -285,7 +385,7 @@ const featureGroups: FeatureGroup[] = [
                       <!-- Enterprise -->
                       <td class="py-4 px-6 text-center">
                         {typeof item.enterprise === "string" ? (
-                          <span class="font-extrabold text-slate-900 dark:text-white bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-lg text-xs">
+                          <span class="font-bold text-rose-900 dark:text-rose-300 bg-rose-100/80 dark:bg-rose-950/70 border border-rose-200 dark:border-rose-900 px-3 py-1 rounded-lg text-xs inline-block">
                             {item.enterprise}
                           </span>
                         ) : (
@@ -300,7 +400,67 @@ const featureGroups: FeatureGroup[] = [
           </table>
         </div>
       </div>
+
+      <!-- Additional Info Callout for Disbursement -->
+      <div class="p-5 rounded-2xl bg-rose-50/80 dark:bg-rose-950/20 border border-rose-200/80 dark:border-rose-900/40 text-xs text-slate-700 dark:text-slate-300 flex items-start gap-3.5 shadow-sm">
+        <Icon name="mdi:information-outline" class="text-rose-900 dark:text-rose-400 text-xl shrink-0 mt-0.5" />
+        <div class="space-y-1">
+          <span class="font-bold text-slate-900 dark:text-white uppercase tracking-wider block text-xs">
+            Transparansi Biaya Auto-Disbursement Bank
+          </span>
+          <p class="leading-relaxed">
+            Untuk otomasi transfer gaji langsung ke rekening bank karyawan (fitur Auto-Disbursement pada paket Enterprise), dikenakan biaya tambahan operasional perbankan sebesar <strong class="text-rose-900 dark:text-rose-300 font-bold">Rp8.000 per karyawan</strong> per siklus penggajian.
+          </p>
+        </div>
+      </div>
     </div>
 
   </div>
 </section>
+
+<script>
+  function setupRksBillingToggle() {
+    const toggle = document.getElementById("rks-billing-toggle");
+    const thumb = document.getElementById("rks-billing-toggle-thumb");
+    const monthlyBlocks = document.querySelectorAll<HTMLElement>(".rks-monthly-block");
+    const yearlyBlocks = document.querySelectorAll<HTMLElement>(".rks-yearly-block");
+    const monthlyCtas = document.querySelectorAll<HTMLElement>(".rks-monthly-cta");
+    const yearlyCtas = document.querySelectorAll<HTMLElement>(".rks-yearly-cta");
+
+    if (!toggle || !thumb) return;
+
+    let isYearly = false;
+
+    toggle.addEventListener("click", () => {
+      isYearly = !isYearly;
+      toggle.setAttribute("aria-checked", isYearly ? "true" : "false");
+
+      if (isYearly) {
+        thumb.classList.remove("translate-x-0");
+        thumb.classList.add("translate-x-8");
+        toggle.classList.remove("bg-slate-200", "dark:bg-slate-800");
+        toggle.classList.add("bg-rose-900");
+
+        monthlyBlocks.forEach((el) => el.classList.add("hidden"));
+        yearlyBlocks.forEach((el) => el.classList.remove("hidden"));
+        monthlyCtas.forEach((el) => el.classList.add("hidden"));
+        yearlyCtas.forEach((el) => el.classList.remove("hidden"));
+      } else {
+        thumb.classList.remove("translate-x-8");
+        thumb.classList.add("translate-x-0");
+        toggle.classList.remove("bg-rose-900");
+        toggle.classList.add("bg-slate-200", "dark:bg-slate-800");
+
+        monthlyBlocks.forEach((el) => el.classList.remove("hidden"));
+        yearlyBlocks.forEach((el) => el.classList.add("hidden"));
+        monthlyCtas.forEach((el) => el.classList.remove("hidden"));
+        yearlyCtas.forEach((el) => el.classList.add("hidden"));
+      }
+    });
+  }
+
+  document.addEventListener("astro:page-load", setupRksBillingToggle);
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    setupRksBillingToggle();
+  }
+</script>
