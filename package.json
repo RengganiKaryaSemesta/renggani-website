@@ -35,7 +35,7 @@
     "@types/react-dom": "^19.0.4",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^2.0.0",
-    "astro": "^7.1.6",
+    "astro": "^7.3.2",
     "astro-icon": "^1.1.5",
     "astro-portabletext": "^0.13.0",
     "groq": "^6.8.0",
@@ -69,6 +69,7 @@
     "uuid": "^11.1.1",
     "smol-toml": "^1.6.1",
     "esbuild": "^0.25.0",
-    "sharp": "^0.35.0"
+    "sharp": "^0.35.4",
+    "adm-zip": "^0.6.1"
   }
 }
