@@ -21,6 +21,7 @@ const plans = [
   {
     id: "starter",
     name: "Starter",
+    price: "Rp200.000",
     capacity: "≤ 50",
     description: "Sangat cocok untuk UMKM dan bisnis berkembang yang ingin presensi selfie GPS bebas repot.",
     isPopular: false,
@@ -32,11 +33,12 @@ const plans = [
       "1 Lokasi / Kantor Cabang",
     ],
     whatsappMsg:
-      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Starter (Kapasitas s/d 50 Karyawan). Mohon informasi penawaran dan jadwal demonya.",
+      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Starter (Rp200.000/bln - Kapasitas s/d 50 Karyawan). Mohon informasi penawaran dan jadwal demonya.",
   },
   {
     id: "bisnis",
     name: "Bisnis",
+    price: "Rp500.000",
     capacity: "≤ 125",
     description: "Paling populer! Dilengkapi Liveness Face Recognition AI, multi-cabang & manajemen shift.",
     isPopular: true,
@@ -48,11 +50,12 @@ const plans = [
       "Multi-Cabang & Shift Fleksibel",
     ],
     whatsappMsg:
-      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Bisnis (Kapasitas s/d 125 Karyawan dengan Face Recognition). Mohon penawaran dan jadwal demonya.",
+      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Bisnis (Rp500.000/bln - Paling Populer). Mohon penawaran dan jadwal demonya.",
   },
   {
     id: "enterprise",
     name: "Enterprise",
+    price: "Rp850.000",
     capacity: "≤ 250",
     description: "Solusi end-to-end presensi + full automated payroll, BPJS, PPh 21 & auto-disbursement rekening.",
     isPopular: false,
@@ -64,7 +67,7 @@ const plans = [
       "Slip Gaji Digital & Auto-Disbursement Bank",
     ],
     whatsappMsg:
-      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Enterprise (Kapasitas s/d 250 Karyawan dengan Full Payroll & Disbursement). Mohon informasi penawaran korporasi dan konsultasi teknis.",
+      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Enterprise (Rp850.000/bln - Full Payroll & Auto-Disbursement). Mohon informasi penawaran korporasi dan konsultasi teknis.",
   },
 ];
 
@@ -146,15 +149,21 @@ const featureGroups: FeatureGroup[] = [
               <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 min-h-[36px]">{plan.description}</p>
             </div>
 
-            <!-- Capacity Display -->
-            <div class="mb-6">
-              <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Kapasitas Karyawan</span>
-              <div class="flex items-baseline gap-1.5 mt-1">
-                <span class="text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white font-mono tracking-tight">
-                  {plan.capacity}
+            <!-- Price Display -->
+            <div class="mb-4">
+              <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Investasi Mulai</span>
+              <div class="flex items-baseline gap-1 mt-1">
+                <span class="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white font-mono tracking-tight">
+                  {plan.price}
                 </span>
-                <span class="text-sm font-semibold text-slate-500 dark:text-slate-400">Karyawan</span>
+                <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">/bulan</span>
               </div>
+            </div>
+
+            <!-- Capacity Display Badge -->
+            <div class="mb-6 p-3 rounded-2xl bg-rose-50/60 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/30 flex items-center justify-between">
+              <span class="text-xs text-slate-600 dark:text-slate-400 font-medium">Kapasitas Maksimal</span>
+              <span class="text-sm font-extrabold text-rose-900 dark:text-rose-300 font-mono">{plan.capacity} Karyawan</span>
             </div>
 
             <!-- Bullet Highlights -->
@@ -221,8 +230,8 @@ const featureGroups: FeatureGroup[] = [
                   >
                     <div class="space-y-1">
                       <div class="text-base font-bold text-slate-900 dark:text-white">{plan.name}</div>
-                      <div class="text-xl font-extrabold text-rose-900 dark:text-rose-400 font-mono">{plan.capacity}</div>
-                      <span class="text-xs text-slate-500 dark:text-slate-400 block">Karyawan</span>
+                      <div class="text-xl font-extrabold text-rose-900 dark:text-rose-400 font-mono">{plan.price}</div>
+                      <span class="text-xs text-slate-500 dark:text-slate-400 block font-semibold">{plan.capacity} Karyawan</span>
                     </div>
                   </th>
                 ))}

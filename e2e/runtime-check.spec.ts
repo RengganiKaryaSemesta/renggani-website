@@ -105,6 +105,12 @@ test.describe('Runtime Site Verification', () => {
     await page.goto('/rksworkmate');
     await expect(page).toHaveTitle(/RKSWorkmate/);
 
+    // Verify navbar is visible and solid immediately without scrolling
+    const navbar = page.locator('#navbar');
+    await expect(navbar).toBeVisible();
+    await expect(page.locator('#logo-color')).toBeVisible();
+    await expect(navbar.getByText('Beranda')).toBeVisible();
+
     // Verify hero CTA exists
     const heroCta = page.locator('#rks-hero-cta-demo');
     await expect(heroCta).toBeVisible();
@@ -118,6 +124,11 @@ test.describe('Runtime Site Verification', () => {
     await expect(desktopTable.getByText('≤ 50').first()).toBeVisible();
     await expect(desktopTable.getByText('≤ 125').first()).toBeVisible();
     await expect(desktopTable.getByText('≤ 250').first()).toBeVisible();
+
+    // Verify exact prices (200k, 500k, 850k)
+    await expect(comparisonSection.getByText('Rp200.000').first()).toBeVisible();
+    await expect(comparisonSection.getByText('Rp500.000').first()).toBeVisible();
+    await expect(comparisonSection.getByText('Rp850.000').first()).toBeVisible();
 
     // Verify special disbursement feature row exists
     await expect(desktopTable.getByText('Disbursement ke rekening', { exact: true })).toBeVisible();
@@ -149,6 +160,12 @@ test.describe('Runtime Site Verification', () => {
 
     await page.goto('/bukubatik');
     await expect(page).toHaveTitle(/Sistem Akuntansi Modern/);
+
+    // Verify navbar is visible and solid immediately without scrolling
+    const navbar = page.locator('#navbar');
+    await expect(navbar).toBeVisible();
+    await expect(page.locator('#logo-color')).toBeVisible();
+    await expect(navbar.getByText('Beranda')).toBeVisible();
 
     // Verify main headline and pure accounting positioning
     const heading = page.locator('#bukubatik-hero-heading');

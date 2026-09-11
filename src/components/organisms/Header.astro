@@ -12,7 +12,16 @@ interface Props {
 }
 const { isSolid: isSolidProp } = Astro.props;
 const currentPathName = Astro.url.pathname;
-const isSolid = isSolidProp || currentPathName.startsWith('/blogs') || currentPathName.startsWith('/kebijakan-privasi') || currentPathName.startsWith('/privacy-policy');
+const isSolid = isSolidProp 
+    || currentPathName.startsWith('/bukubatik') 
+    || currentPathName.startsWith('/rksworkmate') 
+    || currentPathName.startsWith('/services') 
+    || currentPathName.startsWith('/blogs') 
+    || currentPathName.startsWith('/about-us') 
+    || currentPathName.startsWith('/portfolios') 
+    || currentPathName.startsWith('/contact-us') 
+    || currentPathName.startsWith('/kebijakan-privasi') 
+    || currentPathName.startsWith('/privacy-policy');
 ---
 
 <div class="relative">
@@ -20,7 +29,7 @@ const isSolid = isSolidProp || currentPathName.startsWith('/blogs') || currentPa
         id="navbar"
         role="navigation"
         data-is-solid={isSolid ? "true" : "false"}
-        class={`py-3 px-5 lg:px-20 fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-300 ${isSolid ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}
+        class={`py-3 px-5 lg:px-20 fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-300 ${isSolid ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 dark:border-slate-800' : 'bg-transparent'}`}
     >
         <Image
             loading={"eager"}
@@ -53,11 +62,21 @@ const isSolid = isSolidProp || currentPathName.startsWith('/blogs') || currentPa
         const logoWhite = document.getElementById("logo-white");
         const logoColor = document.getElementById("logo-color");
         const navbar = document.getElementById("navbar");
-        const isSolid = navbar?.dataset.isSolid === 'true' || window.location.pathname.startsWith('/blogs') || window.location.pathname.startsWith('/kebijakan-privasi') || window.location.pathname.startsWith('/privacy-policy');
+        const path = window.location.pathname;
+        const isSolid = navbar?.dataset.isSolid === 'true' 
+            || path.startsWith('/bukubatik')
+            || path.startsWith('/rksworkmate')
+            || path.startsWith('/services')
+            || path.startsWith('/blogs')
+            || path.startsWith('/about-us')
+            || path.startsWith('/portfolios')
+            || path.startsWith('/contact-us')
+            || path.startsWith('/kebijakan-privasi')
+            || path.startsWith('/privacy-policy');
         
         function updateNavbar() {
             if (window.scrollY > 50 || isSolid) {
-                navbar?.classList.add("bg-white/90", "dark:bg-gray-900/90", "backdrop-blur-md", "shadow-sm");
+                navbar?.classList.add("bg-white/95", "dark:bg-gray-900/95", "backdrop-blur-md", "shadow-sm", "border-b", "border-slate-200/80", "dark:border-slate-800");
                 navbar?.classList.remove("bg-transparent");
                 
                 logoColor?.classList.remove("hidden");
@@ -65,7 +84,7 @@ const isSolid = isSolidProp || currentPathName.startsWith('/blogs') || currentPa
                 logoWhite?.classList.add("hidden");
                 logoWhite?.classList.remove("dark:block");
             } else {
-                navbar?.classList.remove("bg-white/90", "dark:bg-gray-900/90", "backdrop-blur-md", "shadow-sm");
+                navbar?.classList.remove("bg-white/95", "dark:bg-gray-900/95", "backdrop-blur-md", "shadow-sm", "border-b", "border-slate-200/80", "dark:border-slate-800");
                 navbar?.classList.add("bg-transparent");
                 
                 logoColor?.classList.add("hidden");

@@ -20,7 +20,7 @@ const HeaderButtonContactUs: FC<HeaderButtonContactUsProps> = ({ className, isSo
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [isSolid]);
     return (
         <a href="https://api.whatsapp.com/send?phone=6289512589756" target="_blank" rel="noopener noreferrer" aria-label="contact us" className={`relative inline-block px-6 py-3 text-blue-800 border-2 border-blue-800 dark:text-gray-500 dark:border-gray-500 transition-transform duration-500 ease-out group overflow-hidden rounded-full ${!scrolled && 'shadow-xl'} ${className}`}
         >
