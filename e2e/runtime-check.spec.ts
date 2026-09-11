@@ -69,6 +69,14 @@ test.describe('Runtime Site Verification', () => {
     await expect(monthlyBlock).toBeVisible();
     await expect(yearlyBlock).toBeHidden();
 
+    // Verify matrix table features
+    const matrixTable = page.locator('#bukubatik-matrix-table');
+    await expect(matrixTable).toBeVisible();
+    await expect(matrixTable.getByText('Purchase Invoice').first()).toBeVisible();
+    await expect(matrixTable.getByText('Stock Opname').first()).toBeVisible();
+    await expect(matrixTable.getByText('Rekonsiliasi Bank', { exact: true })).toBeVisible();
+    await expect(matrixTable.getByText('Maksimal Cabang').first()).toBeVisible();
+
     expect(failedRequests).toHaveLength(0);
     expect(consoleErrors).toHaveLength(0);
   });

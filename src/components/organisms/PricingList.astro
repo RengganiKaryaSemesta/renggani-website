@@ -1,10 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
-
-interface Feature {
-  name: string;
-  included: boolean | string;
-}
+import FeatureCheckIcon from "@components/atoms/FeatureCheckIcon.astro";
+import PlanBadge from "@components/atoms/PlanBadge.astro";
 
 interface Plan {
   name: string;
@@ -15,102 +12,162 @@ interface Plan {
   monthlyPriceNumeric: string;
   savings: string;
   description: string;
-  features: Feature[];
+  highlights: string[];
+  maxBranch: string;
+  additionalBranchFee: string;
   recommended: boolean;
+  whatsappMsg: string;
 }
 
 const pricingPlans: Plan[] = [
   {
-    name: "Basic",
-    slug: "basic",
+    name: "Starter",
+    slug: "starter",
     monthlyPrice: "Rp300.000",
     yearlyPrice: "Rp3.000.000",
-    monthlyPriceNumeric: "300k",
+    monthlyPriceNumeric: "250k",
     yearlyPriceNumeric: "3.0M",
     savings: "Hemat Rp600.000",
-    description: "Sangat cocok untuk usaha mikro/kecil yang baru memulai digitalisasi pembukuan.",
-    features: [
-      { name: "Pencatatan Penjualan (Sales)", included: true },
-      { name: "Pencatatan Pembelian (Purchase)", included: true },
-      { name: "Product Bundling", included: "Hanya Baca (Read-only)" },
-      { name: "Multi Unit Satuan", included: false },
-      { name: "Batch Conversion Bahan Baku", included: false },
-      { name: "Price Rules (Skema Harga Khusus)", included: false },
-      { name: "Rekonsiliasi Kas & Bank", included: false },
-      { name: "Kapasitas Gudang (Warehouse)", included: "1 Gudang" },
-      { name: "Kapasitas Kantor Cabang (Branch)", included: "1 Cabang" },
+    description: "Sangat cocok untuk usaha mikro & kecil yang baru memulai digitalisasi pencatatan penjualan, pembelian, dan keuangan usaha.",
+    highlights: [
+      "Purchase Invoice, Payment & Return",
+      "Sales Invoice, Payment & Return",
+      "Average Cost Valuation",
+      "Biaya, Jurnal Umum & Tutup Buku",
+      "Bank Transfer, Deposit & Withdrawal",
+      "Asset Management & Penyusutan",
+      "Kapasitas 1 Cabang Usaha",
     ],
+    maxBranch: "1 Cabang",
+    additionalBranchFee: "—",
     recommended: false,
+    whatsappMsg: "Halo Renggani, saya tertarik dengan paket BukuBatik Starter (Rp300.000/bln). Mohon informasi penawaran dan demo sistemnya.",
   },
   {
-    name: "Business",
-    slug: "business",
+    name: "Bisnis",
+    slug: "bisnis",
     monthlyPrice: "Rp650.000",
     yearlyPrice: "Rp6.500.000",
-    monthlyPriceNumeric: "650k",
+    monthlyPriceNumeric: "541k",
     yearlyPriceNumeric: "6.5M",
     savings: "Hemat Rp1.300.000",
-    description: "Paket paling populer untuk bisnis berkembang yang membutuhkan multi-cabang & rekonsiliasi otomatis.",
-    features: [
-      { name: "Pencatatan Penjualan (Sales)", included: true },
-      { name: "Pencatatan Pembelian (Purchase)", included: true },
-      { name: "Product Bundling", included: "Akses Penuh (Full)" },
-      { name: "Multi Unit Satuan", included: true },
-      { name: "Batch Conversion Bahan Baku", included: false },
-      { name: "Price Rules (Skema Harga Khusus)", included: false },
-      { name: "Rekonsiliasi Kas & Bank", included: true },
-      { name: "Kapasitas Gudang (Warehouse)", included: "2 Gudang" },
-      { name: "Kapasitas Kantor Cabang (Branch)", included: "2 Cabang" },
+    description: "Paling populer untuk bisnis berkembang yang membutuhkan alur Purchase & Sales Order, Stock Opname, dan Multi-Cabang.",
+    highlights: [
+      "Seluruh fitur paket Starter",
+      "Purchase Order & Sales Order",
+      "Stock Opname Rutin",
+      "Multi-Cabang (Maksimal 5 Cabang)",
+      "Cabang Tambahan Berbayar",
+      "Dukungan Manajemen Shift",
     ],
+    maxBranch: "5 Cabang",
+    additionalBranchFee: "Berbayar",
     recommended: true,
+    whatsappMsg: "Halo Renggani, saya tertarik dengan paket BukuBatik Bisnis (Rp650.000/bln - Paling Populer). Mohon informasi penawaran dan jadwal demo sistemnya.",
   },
   {
     name: "Enterprise",
     slug: "enterprise",
     monthlyPrice: "Rp1.000.000",
     yearlyPrice: "Rp10.000.000",
-    monthlyPriceNumeric: "1.0M",
+    monthlyPriceNumeric: "833k",
     yearlyPriceNumeric: "10.0M",
     savings: "Hemat Rp2.000.000",
-    description: "Solusi terlengkap untuk perusahaan skala menengah dengan kebutuhan kustomisasi modul penuh.",
-    features: [
-      { name: "Pencatatan Penjualan (Sales)", included: true },
-      { name: "Pencatatan Pembelian (Purchase)", included: true },
-      { name: "Product Bundling", included: "Akses Penuh (Full)" },
-      { name: "Multi Unit Satuan", included: true },
-      { name: "Batch Conversion Bahan Baku", included: true },
-      { name: "Price Rules (Skema Harga Khusus)", included: true },
-      { name: "Rekonsiliasi Kas & Bank", included: true },
-      { name: "Kapasitas Gudang (Warehouse)", included: "Tanpa Batas" },
-      { name: "Kapasitas Kantor Cabang (Branch)", included: "5 Cabang" },
+    description: "Solusi terlengkap untuk perusahaan dengan kebutuhan alur quote, FIFO, konversi produksi bahan baku, rekonsiliasi bank, dan cabang tak terbatas.",
+    highlights: [
+      "Seluruh fitur paket Bisnis",
+      "Purchase Request & Quote",
+      "Sales Quote",
+      "Metode FIFO & Konversi / Produksi",
+      "Rekonsiliasi Bank Otomatis",
+      "Maksimal Cabang Unlimited (Berbayar)",
     ],
+    maxBranch: "Unlimited",
+    additionalBranchFee: "Berbayar",
     recommended: false,
+    whatsappMsg: "Halo Renggani, saya tertarik dengan paket BukuBatik Enterprise (Rp1.000.000/bln). Mohon informasi penawaran korporasi dan jadwal konsultasi teknis.",
   },
 ];
 
-const additionalInfo: {
-  branchCost: Record<string, string>;
-  customModule: Record<string, string>;
-  customModuleCost: Record<string, string>;
-} = {
-  branchCost: {
-    basic: "Rp300.000 / bln",
-    business: "Rp650.000 / bln",
-    enterprise: "Rp1.000.000 / bln",
-  },
-  customModule: {
-    basic: "Tidak didukung",
-    business: "Bisa diajukan (Request)",
-    enterprise: "Bisa diajukan (Request)",
-  },
-  customModuleCost: {
-    basic: "—",
-    business: "Sesuai kompleksitas",
-    enterprise: "Sesuai kompleksitas",
-  }
-};
+interface FeatureRow {
+  name: string;
+  starter: boolean | string;
+  bisnis: boolean | string;
+  enterprise: boolean | string;
+}
 
-const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Renggani%2C%20saya%20tertarik%20dengan%20produk%20BukuBatik.%20Mohon%20informasi%20penawaran%20dan%20demo%20sistemnya.";
+interface FeatureCategory {
+  title: string;
+  items: FeatureRow[];
+}
+
+const matrixCategories: FeatureCategory[] = [
+  {
+    title: "Pembelian",
+    items: [
+      { name: "Purchase Invoice", starter: true, bisnis: true, enterprise: true },
+      { name: "Purchase Payment", starter: true, bisnis: true, enterprise: true },
+      { name: "Purchase Return", starter: true, bisnis: true, enterprise: true },
+      { name: "Purchase Order", starter: false, bisnis: true, enterprise: true },
+      { name: "Purchase Request", starter: false, bisnis: false, enterprise: true },
+      { name: "Purchase Quote", starter: false, bisnis: false, enterprise: true },
+    ],
+  },
+  {
+    title: "Penjualan",
+    items: [
+      { name: "Sales Invoice", starter: true, bisnis: true, enterprise: true },
+      { name: "Sales Payment", starter: true, bisnis: true, enterprise: true },
+      { name: "Sales Return", starter: true, bisnis: true, enterprise: true },
+      { name: "Sales Order", starter: false, bisnis: true, enterprise: true },
+      { name: "Sales Quote", starter: false, bisnis: false, enterprise: true },
+    ],
+  },
+  {
+    title: "Persediaan",
+    items: [
+      { name: "Stock Opname", starter: false, bisnis: true, enterprise: true },
+      { name: "Average Cost", starter: true, bisnis: true, enterprise: true },
+      { name: "FIFO", starter: false, bisnis: false, enterprise: true },
+      { name: "Konversi / Produksi", starter: false, bisnis: false, enterprise: true },
+    ],
+  },
+  {
+    title: "Keuangan & Akuntansi",
+    items: [
+      { name: "Biaya / Expense", starter: true, bisnis: true, enterprise: true },
+      { name: "Jurnal Umum", starter: true, bisnis: true, enterprise: true },
+      { name: "Saldo Awal", starter: true, bisnis: true, enterprise: true },
+      { name: "Kunci Periode", starter: true, bisnis: true, enterprise: true },
+      { name: "Tutup Buku", starter: true, bisnis: true, enterprise: true },
+    ],
+  },
+  {
+    title: "Perbankan",
+    items: [
+      { name: "Bank Transfer", starter: true, bisnis: true, enterprise: true },
+      { name: "Bank Deposit", starter: true, bisnis: true, enterprise: true },
+      { name: "Bank Withdrawal", starter: true, bisnis: true, enterprise: true },
+      { name: "Rekonsiliasi Bank", starter: false, bisnis: false, enterprise: true },
+    ],
+  },
+  {
+    title: "Aset",
+    items: [
+      { name: "Asset Management", starter: true, bisnis: true, enterprise: true },
+      { name: "Penyusutan Aset", starter: true, bisnis: true, enterprise: true },
+      { name: "Disposal Aset", starter: true, bisnis: true, enterprise: true },
+    ],
+  },
+  {
+    title: "Multi-Cabang",
+    items: [
+      { name: "Multi-cabang", starter: false, bisnis: true, enterprise: true },
+      { name: "Maksimal Cabang", starter: "1", bisnis: "5", enterprise: "Unlimited" },
+      { name: "Biaya Cabang Tambahan", starter: "—", bisnis: "Berbayar", enterprise: "Berbayar" },
+    ],
+  },
+];
 ---
 
 <section class="py-24 px-5 lg:px-20 bg-slate-50 dark:bg-slate-950 font-roboto transition-colors duration-300">
@@ -166,8 +223,8 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
           }`}
         >
           {plan.recommended && (
-            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-md">
-              Paling Populer
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <PlanBadge text="Paling Populer" isPopular={true} variant="purple" />
             </div>
           )}
 
@@ -175,7 +232,7 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
             <!-- Header Card -->
             <div class="border-b border-slate-100 dark:border-slate-800/80 pb-6 mb-6">
               <h3 class="text-2xl font-black text-slate-900 dark:text-white">{plan.name}</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 min-h-[32px]">{plan.description}</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 min-h-[36px]">{plan.description}</p>
               
               <!-- Price Indicator -->
               <div class="mt-6 min-h-[80px] flex items-baseline">
@@ -198,29 +255,14 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
               </div>
             </div>
 
-            <!-- Features -->
-            <ul class="space-y-4 mb-8">
-              {plan.features.slice(0, 7).map((feat) => (
-                <li class="flex items-start gap-3">
-                  {feat.included === true ? (
-                    <div class="mt-0.5 rounded-full p-0.5 bg-emerald-100 dark:bg-emerald-950 shrink-0 border border-emerald-200 dark:border-emerald-900">
-                      <Icon name="mdi:check" class="text-emerald-600 dark:text-emerald-400 text-sm w-4 h-4" />
-                    </div>
-                  ) : feat.included === false ? (
-                    <div class="mt-0.5 rounded-full p-0.5 bg-slate-100 dark:bg-slate-900 shrink-0 border border-slate-200 dark:border-slate-800">
-                      <Icon name="mdi:close" class="text-slate-400 dark:text-slate-600 text-sm w-4 h-4" />
-                    </div>
-                  ) : (
-                    <div class="mt-0.5 rounded-full p-0.5 bg-blue-100 dark:bg-blue-950 shrink-0 border border-blue-200 dark:border-blue-900">
-                      <Icon name="mdi:information-variant" class="text-blue-600 dark:text-blue-400 text-sm w-4 h-4" />
-                    </div>
-                  )}
-                  <div class="flex-1 min-w-0">
-                    <span class="text-sm text-slate-700 dark:text-slate-300 font-medium">{feat.name}</span>
-                    {typeof feat.included === "string" && (
-                      <span class="block text-xs font-semibold text-purple-600 dark:text-purple-400 mt-0.5">{feat.included}</span>
-                    )}
+            <!-- Feature Highlights -->
+            <ul class="space-y-3.5 mb-8">
+              {plan.highlights.map((feat) => (
+                <li class="flex items-center gap-3">
+                  <div class="rounded-full p-0.5 bg-emerald-100 dark:bg-emerald-950 shrink-0 border border-emerald-200 dark:border-emerald-900">
+                    <Icon name="mdi:check" class="text-emerald-600 dark:text-emerald-400 text-sm w-4 h-4" />
                   </div>
+                  <span class="text-sm text-slate-700 dark:text-slate-300 font-medium">{feat}</span>
                 </li>
               ))}
             </ul>
@@ -230,21 +272,17 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
           <div>
             <div class="bg-slate-50 dark:bg-slate-950 rounded-2xl p-4 border border-slate-150 dark:border-slate-900 space-y-2 mb-8">
               <div class="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
-                <span>Warehouse Gudang</span>
-                <span class="text-slate-800 dark:text-slate-200">{plan.features.find(f => f.name.includes("Gudang"))?.included}</span>
-              </div>
-              <div class="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
-                <span>Cabang Aktif</span>
-                <span class="text-slate-800 dark:text-slate-200">{plan.features.find(f => f.name.includes("Cabang"))?.included}</span>
+                <span>Maksimal Cabang</span>
+                <span class="text-slate-800 dark:text-slate-200 font-bold">{plan.maxBranch}</span>
               </div>
               <div class="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-200/50 dark:border-slate-800/50">
-                <span>Biaya per Cabang Aktif</span>
-                <span class="text-purple-600 dark:text-purple-400 font-bold">{additionalInfo.branchCost[plan.slug]}</span>
+                <span>Biaya Cabang Tambahan</span>
+                <span class="text-purple-600 dark:text-purple-400 font-bold">{plan.additionalBranchFee}</span>
               </div>
             </div>
 
             <a
-              href={waLinkPenawaran}
+              href={`https://api.whatsapp.com/send?phone=6289512589756&text=${encodeURIComponent(plan.whatsappMsg)}`}
               target="_blank"
               rel="noopener noreferrer"
               class={`block w-full py-4 px-6 rounded-xl font-bold text-center text-sm tracking-wide uppercase transition-all duration-300 active:scale-[0.98] ${
@@ -253,7 +291,7 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
                   : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200'
               }`}
             >
-              Ajukan Penawaran
+              Ajukan Penawaran {plan.name}
             </a>
           </div>
         </div>
@@ -261,140 +299,234 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
     </div>
 
     <!-- Complete Features Matrix Section -->
-    <div class="pt-16 space-y-8">
+    <div class="pt-16 space-y-8" id="matriks-fitur-bukubatik">
       <div class="text-center max-w-2xl mx-auto space-y-2">
         <h3 class="text-2xl lg:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
           Perbandingan Fitur Detail
         </h3>
         <p class="text-sm text-slate-500 dark:text-slate-400">
-          Ulas secara mendalam modul dan limitasi spesifik di setiap paket sistem BukuBatik.
+          Ulas secara mendalam modul dan spesifikasi fungsional di setiap paket sistem BukuBatik ERP.
         </p>
       </div>
 
-      <!-- Comparison Matrix Table -->
-      <div class="border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-lg bg-white dark:bg-slate-900">
+      <!-- Mobile Tab Switcher for Matrix -->
+      <div class="block lg:hidden space-y-6" id="bukubatik-mobile-matrix">
+        <div class="grid grid-cols-3 gap-2 p-1.5 bg-slate-200/80 dark:bg-slate-800 rounded-2xl border border-slate-300 dark:border-slate-700" role="tablist">
+          {
+            pricingPlans.map((plan, idx) => (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={idx === 1 ? "true" : "false"}
+                aria-controls={`bb-panel-${plan.slug}`}
+                id={`bb-tab-${plan.slug}`}
+                class:list={[
+                  "bb-tab-btn py-2.5 px-2 rounded-xl text-xs font-bold transition-all text-center",
+                  idx === 1
+                    ? "bg-purple-600 text-white shadow-md shadow-purple-600/30"
+                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white",
+                ]}
+                data-bb-target={plan.slug}
+              >
+                {plan.name}
+              </button>
+            ))
+          }
+        </div>
+
+        {
+          pricingPlans.map((plan, idx) => (
+            <div
+              id={`bb-panel-${plan.slug}`}
+              role="tabpanel"
+              aria-labelledby={`bb-tab-${plan.slug}`}
+              class:list={[
+                "bb-panel p-6 rounded-3xl border bg-white dark:bg-slate-900 shadow-xl space-y-6",
+                plan.recommended ? "border-purple-500/50 ring-1 ring-purple-500/30" : "border-slate-200 dark:border-slate-800",
+                idx !== 1 && "hidden",
+              ]}
+            >
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-mono font-semibold uppercase text-slate-400">Paket ERP</span>
+                  <h4 class="text-2xl font-bold text-slate-900 dark:text-white">{plan.name}</h4>
+                </div>
+                {plan.recommended ? (
+                  <PlanBadge text="Paling Populer" isPopular={true} variant="purple" />
+                ) : (
+                  <PlanBadge text={plan.name} variant="slate" />
+                )}
+              </div>
+
+              <div class="space-y-6 pt-2">
+                {
+                  matrixCategories.map((cat) => (
+                    <div class="space-y-3">
+                      <h5 class="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 border-b border-purple-100 dark:border-purple-900/50 pb-1.5">
+                        {cat.title}
+                      </h5>
+                      <ul class="space-y-2.5 divide-y divide-slate-100 dark:divide-slate-800/80">
+                        {cat.items.map((item) => {
+                          const isAvailable =
+                            plan.slug === "starter"
+                              ? item.starter
+                              : plan.slug === "bisnis"
+                                ? item.bisnis
+                                : item.enterprise;
+                          const hasValue = typeof isAvailable === "string";
+
+                          return (
+                            <li class="flex items-center justify-between pt-2.5 text-sm">
+                              <span class="text-slate-700 dark:text-slate-300 font-medium">{item.name}</span>
+                              <div>
+                                {hasValue ? (
+                                  <span class="font-bold text-slate-900 dark:text-white bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg text-xs">
+                                    {isAvailable}
+                                  </span>
+                                ) : (
+                                  <FeatureCheckIcon checked={Boolean(isAvailable)} featureName={item.name} planName={plan.name} />
+                                )}
+                              </div>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ))
+                }
+              </div>
+
+              <div class="pt-4">
+                <a
+                  href={`https://api.whatsapp.com/send?phone=6289512589756&text=${encodeURIComponent(plan.whatsappMsg)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block w-full py-3.5 px-6 rounded-xl font-bold text-center text-sm tracking-wide uppercase bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/30"
+                >
+                  Pilih Paket {plan.name}
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Desktop Comparison Matrix Table -->
+      <div class="hidden lg:block border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-lg bg-white dark:bg-slate-900">
         <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse">
+          <table class="w-full text-left border-collapse" id="bukubatik-matrix-table">
             <thead>
               <tr class="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 text-xs font-black text-slate-700 dark:text-slate-300 uppercase tracking-widest">
-                <th class="p-6 min-w-[280px]">Fitur / Rincian Modul</th>
-                <th class="p-6 text-center w-[200px]">Basic</th>
-                <th class="p-6 text-center w-[200px]">Business</th>
-                <th class="p-6 text-center w-[200px] bg-purple-50/50 dark:bg-purple-950/20">Business (Best Value)</th>
-                <th class="p-6 text-center w-[200px]">Enterprise</th>
+                <th scope="col" class="p-6 w-2/5">Fitur / Rincian Modul</th>
+                <th scope="col" class="p-6 text-center w-1/5">Starter</th>
+                <th scope="col" class="p-6 text-center w-1/5 bg-purple-50/50 dark:bg-purple-950/20 border-x border-purple-200 dark:border-purple-800/60">
+                  <div class="space-y-1">
+                    <span class="inline-block bg-purple-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                      Paling Populer
+                    </span>
+                    <div class="text-sm font-bold text-slate-900 dark:text-white">Bisnis</div>
+                  </div>
+                </th>
+                <th scope="col" class="p-6 text-center w-1/5">Enterprise</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-150 dark:divide-slate-800/60 text-sm">
-              <!-- Group: Fungsionalitas Modul -->
-              <tr class="bg-slate-50/70 dark:bg-slate-950/30 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                <td colspan="5" class="p-4 pl-6 border-y border-slate-200 dark:border-slate-800/80">Modul Operasional & Akuntansi</td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Pencatatan Penjualan (Sales)</td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Pencatatan Pembelian (Purchase)</td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Product Bundling (Paket Produk)</td>
-                <td class="p-6 text-center text-slate-500 dark:text-slate-400 font-semibold text-xs">Hanya Baca</td>
-                <td class="p-6 text-center text-purple-600 dark:text-purple-400 font-extrabold text-xs">Penuh (Full)</td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 text-purple-600 dark:text-purple-400 font-extrabold text-xs">Penuh (Full)</td>
-                <td class="p-6 text-center text-purple-600 dark:text-purple-400 font-extrabold text-xs">Penuh (Full)</td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Multi Unit (Konversi Satuan Produk)</td>
-                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Batch Conversion Bahan Baku</td>
-                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Price Rules (Formula Diskon & Harga)</td>
-                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Rekonsiliasi Kas & Rekening Bank</td>
-                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center"><Icon name="mdi:check-circle" class="text-emerald-500 w-5 h-5 mx-auto" /></td>
-              </tr>
+              {
+                matrixCategories.map((group) => (
+                  <>
+                    <!-- Group Header Row -->
+                    <tr class="bg-slate-100/70 dark:bg-slate-950/80 text-xs font-bold uppercase tracking-wider">
+                      <td colspan="4" class="p-4 pl-6 border-y border-slate-200 dark:border-slate-800/80 text-purple-700 dark:text-purple-400 font-mono">
+                        {group.title}
+                      </td>
+                    </tr>
 
-              <!-- Group: Kapasitas & Limitasi -->
-              <tr class="bg-slate-50/70 dark:bg-slate-950/30 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                <td colspan="5" class="p-4 pl-6 border-y border-slate-200 dark:border-slate-800/80">Kapasitas & Alokasi Cabang</td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Limitasi Lokasi Gudang (Warehouse)</td>
-                <td class="p-6 text-center font-semibold text-slate-800 dark:text-slate-200">1 Gudang</td>
-                <td class="p-6 text-center font-semibold text-slate-800 dark:text-slate-200">2 Gudang</td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 font-black text-slate-900 dark:text-white">2 Gudang</td>
-                <td class="p-6 text-center font-semibold text-purple-600 dark:text-purple-400">Unlimited</td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Limitasi Kantor Cabang (Branch)</td>
-                <td class="p-6 text-center font-semibold text-slate-800 dark:text-slate-200">1 Cabang</td>
-                <td class="p-6 text-center font-semibold text-slate-800 dark:text-slate-200">2 Cabang</td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 font-black text-slate-900 dark:text-white">2 Cabang</td>
-                <td class="p-6 text-center font-semibold text-slate-800 dark:text-slate-200">5 Cabang</td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Biaya per Cabang Tambahan Aktif</td>
-                <td class="p-6 text-center font-bold text-purple-600 dark:text-purple-400">Rp300.000 / bln</td>
-                <td class="p-6 text-center font-bold text-purple-600 dark:text-purple-400">Rp650.000 / bln</td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 font-black text-purple-600 dark:text-purple-400">Rp650.000 / bln</td>
-                <td class="p-6 text-center font-bold text-purple-600 dark:text-purple-400">Rp1.000.000 / bln</td>
-              </tr>
+                    <!-- Group Items -->
+                    {group.items.map((item, index) => (
+                      <tr
+                        class:list={[
+                          "hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors",
+                          index % 2 === 0 ? "bg-white dark:bg-slate-900" : "bg-slate-50/20 dark:bg-slate-900/40",
+                        ]}
+                      >
+                        <th scope="row" class="p-5 pl-6 font-medium text-slate-900 dark:text-slate-100">
+                          {item.name}
+                        </th>
 
-              <!-- Group: Kustomisasi & Modul Ekstra -->
-              <tr class="bg-slate-50/70 dark:bg-slate-950/30 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                <td colspan="5" class="p-4 pl-6 border-y border-slate-200 dark:border-slate-800/80">Kustomisasi Modul Khusus</td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Ketersediaan Custom Module</td>
-                <td class="p-6 text-center"><Icon name="mdi:close-circle" class="text-slate-300 dark:text-slate-700 w-5 h-5 mx-auto" /></td>
-                <td class="p-6 text-center text-xs font-bold text-amber-600 dark:text-amber-400">Dapat Diajukan</td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 text-xs font-bold text-amber-600 dark:text-amber-400">Dapat Diajukan</td>
-                <td class="p-6 text-center text-xs font-bold text-amber-600 dark:text-amber-400">Dapat Diajukan</td>
-              </tr>
-              <tr class="hover:bg-slate-50/40 dark:hover:bg-slate-950/20 transition-colors">
-                <td class="p-6 font-medium text-slate-900 dark:text-slate-150">Biaya Kustomisasi Module</td>
-                <td class="p-6 text-center text-slate-400">—</td>
-                <td class="p-6 text-center text-xs font-semibold text-slate-700 dark:text-slate-300">Tergantung Kompleksitas</td>
-                <td class="p-6 text-center bg-purple-50/20 dark:bg-purple-950/10 text-xs font-semibold text-slate-700 dark:text-slate-300">Tergantung Kompleksitas</td>
-                <td class="p-6 text-center text-xs font-semibold text-slate-700 dark:text-slate-300">Tergantung Kompleksitas</td>
-              </tr>
+                        <!-- Starter -->
+                        <td class="p-5 text-center">
+                          {typeof item.starter === "string" ? (
+                            <span class="font-bold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-lg text-xs">
+                              {item.starter}
+                            </span>
+                          ) : (
+                            <FeatureCheckIcon checked={item.starter} featureName={item.name} planName="Starter" />
+                          )}
+                        </td>
+
+                        <!-- Bisnis (Popular column highlight) -->
+                        <td class="p-5 text-center bg-purple-50/30 dark:bg-purple-950/10 border-x border-purple-200/60 dark:border-purple-800/40">
+                          {typeof item.bisnis === "string" ? (
+                            <span class="font-bold text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-900/60 px-3 py-1 rounded-lg text-xs">
+                              {item.bisnis}
+                            </span>
+                          ) : (
+                            <FeatureCheckIcon checked={item.bisnis} featureName={item.name} planName="Bisnis" />
+                          )}
+                        </td>
+
+                        <!-- Enterprise -->
+                        <td class="p-5 text-center">
+                          {typeof item.enterprise === "string" ? (
+                            <span class="font-bold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-lg text-xs">
+                              {item.enterprise}
+                            </span>
+                          ) : (
+                            <FeatureCheckIcon checked={item.enterprise} featureName={item.name} planName="Enterprise" />
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </>
+                ))
+              }
             </tbody>
+            <tfoot>
+              <tr class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+                <td class="p-6 text-xs text-slate-500 dark:text-slate-400">
+                  Konsultasikan kebutuhan kustomisasi modul tambahan bersama tim sales kami.
+                </td>
+                {
+                  pricingPlans.map((plan) => (
+                    <td
+                      class:list={[
+                        "p-6 text-center",
+                        plan.recommended ? "bg-purple-50/30 dark:bg-purple-950/10 border-x border-purple-200/60 dark:border-purple-800/40" : "",
+                      ]}
+                    >
+                      <a
+                        href={`https://api.whatsapp.com/send?phone=6289512589756&text=${encodeURIComponent(plan.whatsappMsg)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class={`inline-block w-full py-2.5 px-4 rounded-xl text-xs font-bold uppercase transition-all ${
+                          plan.recommended
+                            ? "bg-purple-600 hover:bg-purple-500 text-white shadow-md shadow-purple-600/30"
+                            : "bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200"
+                        }`}
+                      >
+                        Pilih {plan.name}
+                      </a>
+                    </td>
+                  ))
+                }
+              </tr>
+            </tfoot>
           </table>
-        </div>
-        
-        <!-- Mobile scroll hint -->
-        <div class="block lg:hidden bg-slate-50 dark:bg-slate-950 text-center p-3 text-xs font-bold text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800">
-          ← Geser baris tabel ke samping untuk melihat detail paket lainnya →
         </div>
       </div>
     </div>
 
-    <!-- FAQ Section (Upgraded to a premium side-by-side grid list as per design systems best practice) -->
+    <!-- FAQ Section -->
     <div class="pt-16 space-y-12">
       <div class="text-center max-w-3xl mx-auto space-y-2">
         <h3 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
@@ -417,7 +549,7 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
         </div>
 
         <div class="space-y-2">
-          <h4 class="text-lg font-bold text-slate-955 dark:text-slate-100 flex items-center gap-2">
+          <h4 class="text-lg font-bold text-slate-950 dark:text-slate-100 flex items-center gap-2">
             <Icon name="mdi:help-circle-outline" class="text-purple-600 dark:text-purple-400 shrink-0 text-xl" />
             <span>Apakah saya bisa migrasi paket sewaktu-waktu?</span>
           </h4>
@@ -432,7 +564,7 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
             <span>Bagaimana penambahan cabang dihitung?</span>
           </h4>
           <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed pl-7">
-            Penambahan cabang aktif melebihi limitasi bawaan paket akan dikenai biaya berlangganan tambahan sesuai tarif per cabang aktif di paket yang Anda gunakan (contoh: paket Business Rp650.000/cabang/bulan).
+            Paket Starter mencakup 1 cabang. Paket Bisnis mendukung hingga 5 cabang bawaan, dan paket Enterprise mendukung cabang Unlimited. Penambahan cabang di atas alokasi dapat diajukan dengan tarif fleksibel.
           </p>
         </div>
 
@@ -442,7 +574,7 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
             <span>Dapatkah kami memesan fitur khusus (custom)?</span>
           </h4>
           <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed pl-7">
-            Ya. Renggani menyediakan layanan pengerjaan Custom Module eksklusif untuk bisnis Anda (khusus paket Business dan Enterprise) guna memfasilitasi kebutuhan integrasi atau alur bisnis yang sangat spesifik.
+            Ya. Renggani menyediakan layanan pengerjaan Custom Module eksklusif untuk bisnis Anda guna memfasilitasi kebutuhan integrasi atau alur bisnis yang sangat spesifik.
           </p>
         </div>
       </div>
@@ -451,46 +583,73 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
   </div>
 </section>
 
+<!-- Client Script for Billing Toggle & Mobile Tabs -->
 <script>
-  // Astro View Transitions page-load hook
-  function initBillingToggle() {
-    const toggle = document.getElementById('billing-toggle');
-    const thumb = document.getElementById('billing-toggle-thumb');
-    const monthlyBlocks = document.querySelectorAll('.monthly-price-block');
-    const yearlyBlocks = document.querySelectorAll('.yearly-price-block');
+  function setupPricingInteractions() {
+    // 1. Billing Toggle (Monthly / Yearly)
+    const toggle = document.getElementById("billing-toggle");
+    const thumb = document.getElementById("billing-toggle-thumb");
+    const monthlyBlocks = document.querySelectorAll(".monthly-price-block");
+    const yearlyBlocks = document.querySelectorAll(".yearly-price-block");
 
     if (toggle && thumb) {
-      if (toggle.dataset.billingInitialized === 'true') return;
-      toggle.dataset.billingInitialized = 'true';
+      let isYearly = false;
 
-      toggle.addEventListener('click', () => {
-        const isYearly = toggle.getAttribute('aria-checked') === 'true';
-        toggle.setAttribute('aria-checked', (!isYearly).toString());
-        
+      toggle.addEventListener("click", () => {
+        isYearly = !isYearly;
+        toggle.setAttribute("aria-checked", isYearly ? "true" : "false");
+
         if (isYearly) {
-          // Switch to monthly (Default State)
-          toggle.classList.remove('bg-purple-600');
-          toggle.classList.add('bg-slate-200', 'dark:bg-slate-800');
-          thumb.classList.remove('translate-x-8');
-          thumb.classList.add('translate-x-0');
-          
-          monthlyBlocks.forEach(block => block.classList.remove('hidden'));
-          yearlyBlocks.forEach(block => block.classList.add('hidden'));
+          thumb.classList.remove("translate-x-0");
+          thumb.classList.add("translate-x-8");
+          toggle.classList.remove("bg-slate-200", "dark:bg-slate-800");
+          toggle.classList.add("bg-purple-600");
+
+          monthlyBlocks.forEach((el) => el.classList.add("hidden"));
+          yearlyBlocks.forEach((el) => el.classList.remove("hidden"));
         } else {
-          // Switch to yearly
-          toggle.classList.remove('bg-slate-200', 'dark:bg-slate-800');
-          toggle.classList.add('bg-purple-600');
-          thumb.classList.remove('translate-x-0');
-          thumb.classList.add('translate-x-8');
-          
-          monthlyBlocks.forEach(block => block.classList.add('hidden'));
-          yearlyBlocks.forEach(block => block.classList.remove('hidden'));
+          thumb.classList.remove("translate-x-8");
+          thumb.classList.add("translate-x-0");
+          toggle.classList.remove("bg-purple-600");
+          toggle.classList.add("bg-slate-200", "dark:bg-slate-800");
+
+          monthlyBlocks.forEach((el) => el.classList.remove("hidden"));
+          yearlyBlocks.forEach((el) => el.classList.add("hidden"));
         }
       });
     }
+
+    // 2. Mobile Matrix Tabs
+    const bbTabButtons = document.querySelectorAll<HTMLButtonElement>(".bb-tab-btn");
+    const bbPanels = document.querySelectorAll<HTMLElement>(".bb-panel");
+
+    bbTabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetSlug = button.dataset.bbTarget;
+
+        bbTabButtons.forEach((btn) => {
+          btn.classList.remove("bg-purple-600", "text-white", "shadow-md", "shadow-purple-600/30");
+          btn.classList.add("text-slate-600", "dark:text-slate-300");
+          btn.setAttribute("aria-selected", "false");
+        });
+
+        button.classList.add("bg-purple-600", "text-white", "shadow-md", "shadow-purple-600/30");
+        button.classList.remove("text-slate-600", "dark:text-slate-300");
+        button.setAttribute("aria-selected", "true");
+
+        bbPanels.forEach((panel) => {
+          if (panel.id === `bb-panel-${targetSlug}`) {
+            panel.classList.remove("hidden");
+          } else {
+            panel.classList.add("hidden");
+          }
+        });
+      });
+    });
   }
 
-  // Run on initial load and navigation
-  initBillingToggle();
-  document.addEventListener('astro:page-load', initBillingToggle);
+  document.addEventListener("astro:page-load", setupPricingInteractions);
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    setupPricingInteractions();
+  }
 </script>
