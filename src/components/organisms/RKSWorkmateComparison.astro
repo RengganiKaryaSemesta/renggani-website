@@ -1,7 +1,7 @@
 ---
 import PlanBadge from "@components/atoms/PlanBadge.astro";
 import FeatureCheckIcon from "@components/atoms/FeatureCheckIcon.astro";
-import CtaButton from "@components/atoms/CtaButton.astro";
+import { Icon } from "astro-icon/components";
 
 interface FeatureItem {
   name: string;
@@ -22,19 +22,31 @@ const plans = [
     id: "starter",
     name: "Starter",
     capacity: "≤ 50",
-    description: "Cocok untuk UMKM dan bisnis berkembang yang ingin presensi selfie GPS bebas repot.",
+    description: "Sangat cocok untuk UMKM dan bisnis berkembang yang ingin presensi selfie GPS bebas repot.",
     isPopular: false,
-    ctaText: "Pilih Starter",
+    highlights: [
+      "Kapasitas s/d 50 Karyawan",
+      "Absen Selfie & Validasi GPS Anti-Fake",
+      "Notifikasi Keterlambatan Otomatis",
+      "Riwayat Kehadiran Real-time",
+      "1 Lokasi / Kantor Cabang",
+    ],
     whatsappMsg:
-      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Starter (Kapasitas s/d 50 Karyawan). Mohon informasi penawaran dan cara aktivasinya.",
+      "Halo Renggani, saya tertarik dengan paket RKSWorkmate Starter (Kapasitas s/d 50 Karyawan). Mohon informasi penawaran dan jadwal demonya.",
   },
   {
     id: "bisnis",
     name: "Bisnis",
     capacity: "≤ 125",
-    description: "Pilihan terfavorit! Lengkap dengan Liveness Face Recognition, multi-cabang & manajemen shift.",
+    description: "Paling populer! Dilengkapi Liveness Face Recognition AI, multi-cabang & manajemen shift.",
     isPopular: true,
-    ctaText: "Pilih Bisnis",
+    highlights: [
+      "Seluruh fitur paket Starter",
+      "Kapasitas s/d 125 Karyawan",
+      "Liveness Face Recognition AI",
+      "Pengajuan Izin, Sakit & Cuti Online",
+      "Multi-Cabang & Shift Fleksibel",
+    ],
     whatsappMsg:
       "Halo Renggani, saya tertarik dengan paket RKSWorkmate Bisnis (Kapasitas s/d 125 Karyawan dengan Face Recognition). Mohon penawaran dan jadwal demonya.",
   },
@@ -44,7 +56,13 @@ const plans = [
     capacity: "≤ 250",
     description: "Solusi end-to-end presensi + full automated payroll, BPJS, PPh 21 & auto-disbursement rekening.",
     isPopular: false,
-    ctaText: "Pilih Enterprise",
+    highlights: [
+      "Seluruh fitur paket Bisnis",
+      "Kapasitas s/d 250 Karyawan",
+      "Perhitungan Gaji, Lembur & THR Otomatis",
+      "Kalkulasi Pajak PPh 21 & Iuran BPJS",
+      "Slip Gaji Digital & Auto-Disbursement Bank",
+    ],
     whatsappMsg:
       "Halo Renggani, saya tertarik dengan paket RKSWorkmate Enterprise (Kapasitas s/d 250 Karyawan dengan Full Payroll & Disbursement). Mohon informasi penawaran korporasi dan konsultasi teknis.",
   },
@@ -89,214 +107,146 @@ const featureGroups: FeatureGroup[] = [
 ];
 ---
 
-<section id="komparasi-paket" class="py-20 lg:py-28 px-5 lg:px-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-  <div class="max-w-7xl mx-auto space-y-12 lg:space-y-16">
-    <!-- Header -->
+<section id="komparasi-paket" class="py-24 px-5 lg:px-20 bg-slate-50 dark:bg-slate-950 font-roboto border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto space-y-20">
+    
+    <!-- Section Header -->
     <div class="text-center max-w-3xl mx-auto space-y-4">
-      <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold tracking-wide uppercase">
-        Matriks Komparasi Paket
+      <span class="text-xs font-mono font-bold uppercase tracking-[0.2em] text-rose-900 dark:text-rose-400 bg-rose-900/10 dark:bg-rose-950/80 px-4 py-1.5 rounded-full border border-rose-900/20 dark:border-rose-900/40">
+        SKEMA PAKET TRANSPARAN
       </span>
-      <h2 class="text-3xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-        Bandingkan Fitur Sesuai Skala Bisnis
+      <h2 class="text-4xl lg:text-5xl font-black dark:text-white text-slate-900 tracking-tight leading-none">
+        Pilihan Tepat Sesuai Skala Tim Anda
       </h2>
-      <p class="text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-        Pilih paket yang paling tepat untuk mengoptimalkan presensi karyawan dan operasional penggajian perusahaan Anda.
+      <p class="text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+        Pilih paket yang sesuai dengan jumlah karyawan dan kebutuhan otomasi HR Anda saat ini. Skalabilitas mudah tanpa kendala migrasi.
       </p>
     </div>
 
-    <!-- Mobile Plan Switcher (Cards view for mobile) -->
-    <div class="block lg:hidden space-y-8" id="mobile-plans-container">
-      <div class="grid sm:grid-cols-3 gap-3 p-1.5 bg-slate-100 dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-700" role="tablist">
-        {
-          plans.map((plan, idx) => (
-            <button
-              type="button"
-              role="tab"
-              aria-selected={idx === 1 ? "true" : "false"}
-              aria-controls={`mobile-panel-${plan.id}`}
-              id={`mobile-tab-${plan.id}`}
-              class:list={[
-                "tab-btn py-2.5 px-4 rounded-xl text-xs font-bold transition-all duration-200 text-center",
-                idx === 1
-                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/30"
-                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white",
-              ]}
-              data-plan-target={plan.id}
-            >
-              {plan.name} ({plan.capacity})
-            </button>
-          ))
-        }
-      </div>
+    <!-- 3 Pricing Cards Grid (Identical Structure to BukuBatik) -->
+    <div class="grid lg:grid-cols-3 gap-8 items-stretch pt-4">
+      {plans.map((plan) => (
+        <div 
+          class={`relative flex flex-col justify-between p-8 lg:p-10 rounded-3xl border-2 transition-all duration-300 hover:shadow-2xl ${
+            plan.isPopular 
+              ? 'bg-white dark:bg-slate-900 border-rose-900 shadow-xl shadow-rose-900/10 dark:shadow-rose-900/5 lg:scale-105 z-10' 
+              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-rose-300 dark:hover:border-rose-900/60'
+          }`}
+        >
+          {plan.isPopular && (
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <PlanBadge text="Paling Populer" isPopular={true} variant="rose" />
+            </div>
+          )}
 
-      <!-- Mobile Tab Panels -->
-      {
-        plans.map((plan, idx) => (
-          <div
-            id={`mobile-panel-${plan.id}`}
-            role="tabpanel"
-            aria-labelledby={`mobile-tab-${plan.id}`}
-            class:list={[
-              "plan-panel p-6 rounded-3xl border bg-white dark:bg-slate-900 shadow-xl space-y-6 transition-all",
-              plan.isPopular
-                ? "border-emerald-500/50 shadow-emerald-500/10 ring-1 ring-emerald-500/40"
-                : "border-slate-200 dark:border-slate-800",
-              idx !== 1 && "hidden",
-            ]}
-          >
-            <div class="flex items-center justify-between">
-              <div>
-                <span class="text-xs font-mono font-semibold uppercase text-slate-400">Paket Solusi</span>
-                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">{plan.name}</h3>
-              </div>
-              {plan.isPopular ? (
-                <PlanBadge text="Paling Populer" isPopular={true} />
-              ) : (
-                <PlanBadge text={plan.capacity} variant="slate" />
-              )}
+          <div>
+            <!-- Header Card -->
+            <div class="border-b border-slate-100 dark:border-slate-800/80 pb-6 mb-6">
+              <h3 class="text-2xl font-black text-slate-900 dark:text-white">{plan.name}</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 min-h-[36px]">{plan.description}</p>
             </div>
 
-            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60">
-              <span class="text-xs text-slate-500 dark:text-slate-400">Kapasitas Maksimal</span>
-              <div class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-0.5">
-                {plan.capacity} <span class="text-base font-normal text-slate-500 dark:text-slate-400">Karyawan</span>
+            <!-- Capacity Display -->
+            <div class="mb-6">
+              <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Kapasitas Karyawan</span>
+              <div class="flex items-baseline gap-1.5 mt-1">
+                <span class="text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white font-mono tracking-tight">
+                  {plan.capacity}
+                </span>
+                <span class="text-sm font-semibold text-slate-500 dark:text-slate-400">Karyawan</span>
               </div>
-              <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
-                {plan.description}
-              </p>
             </div>
 
-            <div class="space-y-4 pt-2">
-              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Daftar Fitur Paket {plan.name}:</h4>
-              <ul class="space-y-3 divide-y divide-slate-100 dark:divide-slate-800/80">
-                {
-                  featureGroups.flatMap((group) =>
-                    group.items.map((item) => {
-                      const isAvailable =
-                        plan.id === "starter"
-                          ? item.starter
-                          : plan.id === "bisnis"
-                            ? item.bisnis
-                            : item.enterprise;
-                      const hasValue = typeof isAvailable === "string";
-
-                      return (
-                        <li class="flex items-center justify-between pt-3 text-sm">
-                          <span class:list={["text-slate-700 dark:text-slate-300", item.isSpecial && "font-bold text-emerald-600 dark:text-emerald-400"]}>
-                            {item.name}
-                          </span>
-                          <div>
-                            {hasValue ? (
-                              <span class="font-bold text-slate-900 dark:text-white bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg text-xs">
-                                {isAvailable}
-                              </span>
-                            ) : (
-                              <FeatureCheckIcon
-                                checked={Boolean(isAvailable)}
-                                featureName={item.name}
-                                planName={plan.name}
-                              />
-                            )}
-                          </div>
-                        </li>
-                      );
-                    })
-                  )
-                }
+            <!-- Bullet Highlights -->
+            <div class="space-y-3 pt-2 pb-6 border-t border-slate-100 dark:border-slate-800/60">
+              <span class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider block">Fitur Utama:</span>
+              <ul class="space-y-2.5">
+                {plan.highlights.map((highlight) => (
+                  <li class="flex items-start gap-2.5 text-xs lg:text-sm text-slate-600 dark:text-slate-300">
+                    <Icon name="mdi:check-circle" class="text-rose-900 dark:text-rose-400 text-base shrink-0 mt-0.5" />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
               </ul>
             </div>
-
-            <div class="pt-4">
-              <CtaButton
-                href={`https://api.whatsapp.com/send?phone=6289512589756&text=${encodeURIComponent(plan.whatsappMsg)}`}
-                variant={plan.isPopular ? "primary" : "whatsapp"}
-                size="lg"
-                class="w-full"
-              >
-                <span>Pilih Paket {plan.name}</span>
-                <svg class="w-4 h-4 ml-1 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                </svg>
-              </CtaButton>
-            </div>
           </div>
-        ))
-      }
+
+          <!-- Card WhatsApp Action Button -->
+          <div class="pt-6 border-t border-slate-100 dark:border-slate-800/80">
+            <a
+              href={`https://api.whatsapp.com/send?phone=6289512589756&text=${encodeURIComponent(plan.whatsappMsg)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`w-full py-3.5 px-4 rounded-xl text-center text-xs lg:text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
+                plan.isPopular
+                  ? 'bg-rose-900 hover:bg-rose-850 text-white shadow-lg shadow-rose-900/20 hover:shadow-rose-900/35 hover:-translate-y-0.5'
+                  : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 hover:-translate-y-0.5'
+              }`}
+            >
+              <Icon name="mdi:whatsapp" class="text-lg" />
+              <span>Pilih {plan.name}</span>
+            </a>
+          </div>
+        </div>
+      ))}
     </div>
 
-    <!-- Desktop Comparison Table -->
-    <div class="hidden lg:block overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl">
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border-collapse" id="desktop-matrix-table">
-          <!-- Table Header -->
-          <thead>
-            <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/80">
-              <th scope="col" class="p-6 w-2/5 align-bottom">
-                <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                  Fitur & Fungsionalitas
-                </span>
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">
-                  Daftar Fitur Lengkap
-                </h3>
-              </th>
-              {
-                plans.map((plan) => (
-                  <th
-                    scope="col"
-                    class:list={[
-                      "p-6 w-1/5 text-center align-top relative transition-colors",
-                      plan.isPopular
-                        ? "bg-emerald-500/5 dark:bg-emerald-950/30 border-x border-emerald-500/30"
-                        : "",
-                    ]}
+    <!-- Comparison Matrix Table -->
+    <div class="space-y-8 pt-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <h3 class="text-2xl lg:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Matriks Perbandingan 17 Fitur Lengkap
+        </h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400">
+          Tinjau seluruh kapabilitas teknis dan operasional secara detail antar paket RKSWorkmate.
+        </p>
+      </div>
+
+      <!-- Desktop Matrix Table -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table id="desktop-matrix-table" class="w-full text-left border-collapse min-w-[700px]">
+            <!-- Table Head -->
+            <thead>
+              <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80">
+                <th scope="col" class="p-6 w-2/5 text-slate-900 dark:text-white font-bold text-base">
+                  Fitur & Spesifikasi
+                </th>
+                {plans.map((plan) => (
+                  <th 
+                    scope="col" 
+                    class={`p-6 w-1/5 text-center align-top relative transition-colors ${
+                      plan.isPopular ? 'bg-rose-900/5 dark:bg-rose-950/20 border-x border-rose-900/20' : ''
+                    }`}
                   >
-                    {plan.isPopular && (
-                      <div class="absolute -top-0.5 left-1/2 -translate-x-1/2">
-                        <PlanBadge text="Paling Populer" isPopular={true} />
-                      </div>
-                    )}
-                    <div class="pt-3 space-y-1">
-                      <div class="text-lg font-bold text-slate-900 dark:text-white">
-                        {plan.name}
-                      </div>
-                      <div class="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">
-                        {plan.capacity}
-                      </div>
+                    <div class="space-y-1">
+                      <div class="text-base font-bold text-slate-900 dark:text-white">{plan.name}</div>
+                      <div class="text-xl font-extrabold text-rose-900 dark:text-rose-400 font-mono">{plan.capacity}</div>
                       <span class="text-xs text-slate-500 dark:text-slate-400 block">Karyawan</span>
                     </div>
                   </th>
-                ))
-              }
-            </tr>
-          </thead>
+                ))}
+              </tr>
+            </thead>
 
-          <!-- Table Body with Categorized Sections -->
-          <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-sm">
-            {
-              featureGroups.map((group) => (
+            <!-- Table Body with Categorized Sections -->
+            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-sm">
+              {featureGroups.map((group) => (
                 <>
                   <!-- Category Header Row -->
                   <tr class="bg-slate-100/70 dark:bg-slate-950/90 font-semibold text-slate-700 dark:text-slate-300">
-                    <td colspan="4" class="py-3.5 px-6 text-xs uppercase tracking-wider font-mono text-emerald-700 dark:text-emerald-400">
+                    <td colspan="4" class="py-3.5 px-6 text-xs uppercase tracking-wider font-mono text-rose-900 dark:text-rose-400 font-bold">
                       {group.title}
                     </td>
                   </tr>
 
                   <!-- Category Items -->
                   {group.items.map((item, index) => (
-                    <tr
-                      class:list={[
-                        "hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors",
-                        index % 2 === 0 ? "bg-white dark:bg-slate-900" : "bg-slate-50/30 dark:bg-slate-900/40",
-                      ]}
-                    >
+                    <tr class={`hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition-colors ${
+                      index % 2 === 0 ? 'bg-white dark:bg-slate-900' : 'bg-slate-50/30 dark:bg-slate-900/40'
+                    }`}>
                       <th scope="row" class="py-4 px-6 font-medium text-slate-800 dark:text-slate-200">
-                        <span class:list={[item.isSpecial && "font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5"]}>
-                          {item.isSpecial && (
-                            <svg class="w-4 h-4 text-emerald-500 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
-                              <path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z" />
-                            </svg>
-                          )}
+                        <span class={item.isSpecial ? "font-bold text-rose-900 dark:text-rose-400 flex items-center gap-1.5" : ""}>
                           {item.name}
                         </span>
                       </th>
@@ -312,10 +262,10 @@ const featureGroups: FeatureGroup[] = [
                         )}
                       </td>
 
-                      <!-- Bisnis (Popular column highlight) -->
-                      <td class="py-4 px-6 text-center bg-emerald-500/5 dark:bg-emerald-950/20 border-x border-emerald-500/20">
+                      <!-- Bisnis (Popular column) -->
+                      <td class="py-4 px-6 text-center bg-rose-900/5 dark:bg-rose-950/20 border-x border-rose-900/20">
                         {typeof item.bisnis === "string" ? (
-                          <span class="font-extrabold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/60 px-3 py-1 rounded-lg text-xs">
+                          <span class="font-extrabold text-rose-900 dark:text-rose-300 bg-rose-100 dark:bg-rose-950/60 px-3 py-1 rounded-lg text-xs">
                             {item.bisnis}
                           </span>
                         ) : (
@@ -336,75 +286,12 @@ const featureGroups: FeatureGroup[] = [
                     </tr>
                   ))}
                 </>
-              ))
-            }
-          </tbody>
-
-          <!-- Table Footer with CTAs -->
-          <tfoot>
-            <tr class="bg-slate-50/80 dark:bg-slate-950/80 border-t border-slate-200 dark:border-slate-800">
-              <td class="p-6 text-xs text-slate-500 dark:text-slate-400">
-                Pilih paket yang paling sesuai, Anda dapat melakukan upgrade skala kapasitas kapan saja.
-              </td>
-              {
-                plans.map((plan) => (
-                  <td
-                    class:list={[
-                      "p-6 text-center",
-                      plan.isPopular ? "bg-emerald-500/5 dark:bg-emerald-950/30 border-x border-emerald-500/30" : "",
-                    ]}
-                  >
-                    <CtaButton
-                      href={`https://api.whatsapp.com/send?phone=6289512589756&text=${encodeURIComponent(plan.whatsappMsg)}`}
-                      variant={plan.isPopular ? "primary" : "outline"}
-                      size="sm"
-                      class="w-full"
-                    >
-                      <span>{plan.ctaText}</span>
-                    </CtaButton>
-                  </td>
-                ))
-              }
-            </tr>
-          </tfoot>
-        </table>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
-
-<script>
-  function setupMobilePlanTabs() {
-    const tabButtons = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
-    const panels = document.querySelectorAll<HTMLElement>(".plan-panel");
-
-    tabButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const targetId = button.dataset.planTarget;
-
-        tabButtons.forEach((btn) => {
-          btn.classList.remove("bg-emerald-600", "text-white", "shadow-md", "shadow-emerald-600/30");
-          btn.classList.add("text-slate-600", "dark:text-slate-300");
-          btn.setAttribute("aria-selected", "false");
-        });
-
-        button.classList.add("bg-emerald-600", "text-white", "shadow-md", "shadow-emerald-600/30");
-        button.classList.remove("text-slate-600", "dark:text-slate-300");
-        button.setAttribute("aria-selected", "true");
-
-        panels.forEach((panel) => {
-          if (panel.id === `mobile-panel-${targetId}`) {
-            panel.classList.remove("hidden");
-          } else {
-            panel.classList.add("hidden");
-          }
-        });
-      });
-    });
-  }
-
-  document.addEventListener("astro:page-load", setupMobilePlanTabs);
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    setupMobilePlanTabs();
-  }
-</script>

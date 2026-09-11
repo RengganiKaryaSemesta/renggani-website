@@ -1,7 +1,7 @@
 ---
 interface Props {
   text: string;
-  variant?: "emerald" | "blue" | "purple" | "slate";
+  variant?: "emerald" | "blue" | "purple" | "slate" | "rose";
   isPopular?: boolean;
   class?: string;
 }
@@ -13,13 +13,16 @@ const variantStyles = {
   blue: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
   purple: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20",
   slate: "bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20",
+  rose: "bg-rose-900/10 text-rose-900 dark:text-rose-300 border-rose-900/20",
 };
 ---
 
 <span
   class:list={[
     "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border uppercase",
-    isPopular ? "bg-emerald-500 text-white dark:bg-emerald-500 dark:text-white border-emerald-400 shadow-sm shadow-emerald-500/30" : variantStyles[variant],
+    isPopular 
+      ? (variant === "purple" ? "bg-purple-600 text-white border-purple-500 shadow-purple-600/30" : variant === "rose" ? "bg-rose-900 text-white border-rose-800 shadow-rose-900/30" : "bg-emerald-600 text-white border-emerald-500 shadow-emerald-500/30") 
+      : variantStyles[variant],
     customClass,
   ]}
 >

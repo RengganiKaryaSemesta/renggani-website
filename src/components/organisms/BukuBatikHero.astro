@@ -7,55 +7,39 @@ const waLinkPenawaran = "https://api.whatsapp.com/send?phone=6289512589756&text=
 const waLinkKonsultasi = "https://api.whatsapp.com/send?phone=6285234104446&text=Halo%20Renggani%2C%20saya%20ingin%20konsultasi%20mengenai%20implementasi%20sistem%20akuntansi%20BukuBatik%20untuk%20usaha%20saya.";
 ---
 
-<header class="relative overflow-hidden bg-slate-950 text-white pt-24 pb-16 lg:pt-32 lg:pb-24 font-roboto border-b border-slate-900">
-  <!-- Subtle Single-Hue Ambient Backlight (Restrained & Calm) -->
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-slate-800/20 rounded-full blur-[140px] pointer-events-none"></div>
+<header class="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24 border-b border-slate-200 dark:border-slate-800/80 bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 font-roboto">
+  <!-- Subtle Background Grid Pattern -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#64748b0a_1px,transparent_1px),linear-gradient(to_bottom,#64748b0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
 
-  <div class="max-w-7xl mx-auto px-5 lg:px-20 relative z-10 space-y-12">
+  <div class="relative max-w-7xl mx-auto px-5 lg:px-20 space-y-12">
     <!-- Intro Pitch -->
-    <div class="text-center max-w-4xl mx-auto space-y-6">
-      <!-- Monochromatic Clean Badge -->
-      <div class="inline-flex items-center gap-2 bg-slate-900 text-slate-300 px-4 py-1.5 rounded-full text-xs lg:text-sm font-medium border border-slate-800 shadow-sm">
-        <Icon name="mdi:book-open-page-variant" class="text-slate-400 text-base" />
+    <div class="text-center max-w-3xl mx-auto space-y-6">
+      <!-- Trust Eyebrow Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-700 dark:text-purple-300 text-xs font-semibold tracking-wide shadow-sm">
+        <Icon name="mdi:book-open-page-variant" class="text-purple-600 dark:text-purple-400 text-base" />
         <span>Sistem Akuntansi & Pembukuan Bisnis</span>
       </div>
 
-      <!-- Pure Typographic Headline (No Multi-Color AI Gradient) -->
-      <h1 id="bukubatik-hero-heading" class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.15] text-white">
+      <!-- Headline -->
+      <h1 id="bukubatik-hero-heading" class="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.12]">
         Presisi Akuntansi Klasik. <br />
-        <span class="text-slate-400 font-bold">
+        <span class="text-purple-700 dark:text-purple-400">
           Kecepatan Otomatisasi Cloud.
         </span>
       </h1>
 
       <!-- Body Copy -->
-      <p class="text-base md:text-lg text-slate-400 leading-relaxed max-w-3xl mx-auto font-normal">
-        <strong class="text-slate-200 font-semibold">BukuBatik</strong> mentransformasi ketelitian legendaris buku kas sampul batik klasik menjadi sistem akuntansi modern yang terstruktur. Mencakup siklus penjualan, pembelian, kartu piutang, kalkulasi HPP, hingga laporan keuangan standar akuntansi yang siap diaudit.
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
+        <strong class="text-slate-900 dark:text-white font-semibold">BukuBatik</strong> mentransformasi ketelitian legendaris buku kas sampul batik klasik menjadi sistem akuntansi modern yang terstruktur. Mencakup siklus penjualan, pembelian, kartu piutang, kalkulasi HPP, hingga laporan keuangan standar akuntansi.
       </p>
 
-      <!-- Clean Single-Tone Stats / Trust Badges -->
-      <div class="flex flex-wrap items-center justify-center gap-8 pt-2 text-xs md:text-sm text-slate-400">
-        <div class="flex items-center gap-2">
-          <Icon name="mdi:check-circle" class="text-slate-400 text-base" />
-          <span>29 Modul Akuntansi Standar SAK</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <Icon name="mdi:check-circle" class="text-slate-400 text-base" />
-          <span>Hak Akses Multi-Role & Audit Log</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <Icon name="mdi:check-circle" class="text-slate-400 text-base" />
-          <span>Rekonsiliasi Kas & Bank Otomatis</span>
-        </div>
-      </div>
-
-      <!-- High-End Solid CTAs (Neutral & High Contrast) -->
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
         <a
           href={waLinkPenawaran}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-3 bg-white hover:bg-slate-200 text-slate-950 font-bold px-8 py-3.5 rounded-full shadow-lg shadow-white/5 transition-all duration-300 transform hover:-translate-y-0.5 text-sm md:text-base"
+          class="inline-flex items-center gap-3 bg-purple-700 hover:bg-purple-800 text-white font-bold px-8 py-3.5 rounded-full shadow-lg shadow-purple-700/20 hover:shadow-purple-700/30 transition-all duration-300 transform hover:-translate-y-0.5 text-sm md:text-base"
         >
           <Icon name="mdi:whatsapp" class="text-xl" />
           <span>Ajukan Penawaran & Demo</span>
@@ -64,37 +48,57 @@ const waLinkKonsultasi = "https://api.whatsapp.com/send?phone=6285234104446&text
           href={waLinkKonsultasi}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-850 text-slate-200 hover:text-white font-medium px-6 py-3.5 rounded-full border border-slate-800 hover:border-slate-700 transition-all duration-300 text-sm md:text-base"
+          class="inline-flex items-center gap-2 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-medium px-6 py-3.5 rounded-full border border-slate-300 dark:border-slate-700 transition-all duration-300 text-sm md:text-base shadow-sm"
         >
-          <Icon name="mdi:chat-processing-outline" class="text-base text-slate-400" />
+          <Icon name="mdi:chat-processing-outline" class="text-base text-purple-600 dark:text-purple-400" />
           <span>Konsultasi Akuntansi</span>
         </a>
         <a
           href="#paket-harga"
-          class="inline-flex items-center gap-2 text-slate-400 hover:text-slate-200 px-4 py-3.5 text-sm font-semibold transition-colors duration-200"
+          class="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white px-4 py-3.5 text-sm font-semibold transition-colors duration-200"
         >
           <span>Bandingkan Paket</span>
           <Icon name="mdi:arrow-down" class="text-base" />
         </a>
       </div>
+
+      <!-- Trust Badges -->
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs font-medium text-slate-600 dark:text-slate-400">
+        <span class="inline-flex items-center gap-1.5">
+          <Icon name="mdi:check-circle" class="text-purple-600 dark:text-purple-400 text-base" />
+          29 Modul Standar SAK
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <Icon name="mdi:check-circle" class="text-purple-600 dark:text-purple-400 text-base" />
+          Multi-Role & Audit Log
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <Icon name="mdi:check-circle" class="text-purple-600 dark:text-purple-400 text-base" />
+          Rekonsiliasi Bank Otomatis
+        </span>
+      </div>
     </div>
 
-    <!-- UI Screenshot Preview Showcase (Clean Minimal Dark Frame) -->
-    <div class="relative max-w-5xl mx-auto pt-4">
-      <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800/80 bg-slate-900">
+    <!-- UI Screenshot Preview Showcase (Clean Light Frame) -->
+    <div class="relative mt-8 lg:mt-12 max-w-5xl mx-auto">
+      <!-- Glow ambient backdrop -->
+      <div class="absolute -inset-4 bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-purple-600/10 rounded-3xl blur-2xl opacity-70 dark:opacity-30 -z-10"></div>
+
+      <!-- Main Web Dashboard Mockup -->
+      <div class="relative rounded-2xl lg:rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden">
         <!-- Clean Browser Window Bar -->
-        <div class="flex items-center justify-between px-4 py-3 bg-slate-900/90 border-b border-slate-800 text-xs text-slate-400 font-mono">
+        <div class="flex items-center justify-between px-4 py-3 bg-slate-100/90 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-xs text-slate-500 font-mono">
           <div class="flex items-center gap-2">
             <div class="flex gap-1.5">
-              <span class="w-3 h-3 rounded-full bg-slate-700 inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-slate-700 inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-slate-700 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700 inline-block"></span>
             </div>
-            <span class="text-slate-500 ml-3">app.bukubatik.com/dasbor</span>
+            <span class="text-slate-600 dark:text-slate-400 ml-3">app.bukubatik.com/dasbor</span>
           </div>
           <div class="flex items-center gap-2 text-slate-500">
-            <Icon name="mdi:lock" class="text-slate-400 text-sm" />
-            <span>Terenkripsi SSL</span>
+            <Icon name="mdi:lock" class="text-purple-600 dark:text-purple-400 text-sm" />
+            <span>Terenkripsi 256-bit SSL</span>
           </div>
         </div>
 
@@ -108,9 +112,9 @@ const waLinkKonsultasi = "https://api.whatsapp.com/send?phone=6285234104446&text
       </div>
 
       <!-- Minimal Floating Capsule -->
-      <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-slate-900 border border-slate-800 px-5 py-2 rounded-full text-xs text-slate-300 shadow-xl flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
-        <span class="font-medium">Dasbor Real-Time</span> — Ringkasan Laba Rugi, Saldo Kas & Posisi Piutang
+      <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-5 py-2 rounded-full text-xs text-slate-700 dark:text-slate-300 shadow-xl flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-purple-600 animate-pulse"></span>
+        <span class="font-bold text-slate-900 dark:text-white">Dasbor Real-Time</span> — Ringkasan Laba Rugi, Saldo Kas & Posisi Piutang
       </div>
     </div>
   </div>
