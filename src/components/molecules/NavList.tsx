@@ -16,6 +16,7 @@ const NavList: React.FC<NavListProps> = ({ isMobile = false, currentPathName = '
   const isServicesActive = cleanPath === '/services' || cleanPath.startsWith('/services/');
   const isBlogsActive = cleanPath === '/blogs' || cleanPath.startsWith('/blogs/');
   const isBukuBatikActive = cleanPath === '/bukubatik' || cleanPath.startsWith('/bukubatik/');
+  const isRKSWorkmateActive = cleanPath === '/rksworkmate' || cleanPath.startsWith('/rksworkmate/');
 
   return (
     <ul className={`${isMobile ? 'flex flex-col justify-start gap-10' : 'lg:flex items-center hidden'} xl:gap-7 lg:gap-5 font-roboto`}>
@@ -23,6 +24,7 @@ const NavList: React.FC<NavListProps> = ({ isMobile = false, currentPathName = '
       <NavLink scrolledDefault={isMobile || isSolid} href="/services" isActive={isServicesActive}>Layanan</NavLink>
       <NavLink scrolledDefault={isMobile || isSolid} href="/blogs" isActive={isBlogsActive}>Blog</NavLink>
       <NavLink scrolledDefault={isMobile || isSolid} href="/bukubatik" isActive={isBukuBatikActive} isHighlight={true}>BukuBatik</NavLink>
+      <NavLink scrolledDefault={isMobile || isSolid} href="/rksworkmate" isActive={isRKSWorkmateActive} isHighlight={true}>RKSWorkmate</NavLink>
     </ul>
   );
 };

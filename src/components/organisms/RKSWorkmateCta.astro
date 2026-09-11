@@ -1,0 +1,41 @@
+---
+import CtaButton from "@components/atoms/CtaButton.astro";
+
+const whatsappUrl =
+  "https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Renggani%2C%20saya%20tertarik%20dengan%20sistem%20RKSWorkmate.%20Mohon%20jadwalkan%20sesi%20konsultasi%20dan%20demo%20sistem%20untuk%20perusahaan%20kami.";
+---
+
+<section class="py-20 lg:py-28 px-5 lg:px-20 bg-slate-900 text-white relative overflow-hidden">
+  <!-- Subtle gradient and grid elements -->
+  <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/60 via-slate-900 to-teal-950/60 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#05966915_1px,transparent_1px),linear-gradient(to_bottom,#05966915_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"></div>
+
+  <div class="relative max-w-4xl mx-auto text-center space-y-8">
+    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold tracking-wide uppercase">
+      Modernisasi Presensi & HR Perusahaan
+    </span>
+
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+      Siap Beralih ke Sistem Absensi & Payroll yang Akurat?
+    </h2>
+
+    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+      Konsultasikan kebutuhan manajemen kehadiran karyawan dan skema payroll perusahaan Anda bersama tim ahli CV. Renggani Karya Semesta.
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+      <CtaButton href={whatsappUrl} variant="primary" size="lg">
+        <span>Hubungi Kami via WhatsApp</span>
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z" />
+        </svg>
+      </CtaButton>
+    </div>
+
+    <div class="pt-6 border-t border-slate-800 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-slate-400">
+      <span>✓ Uji Coba Demo Gratis</span>
+      <span>✓ Setup Cepat & Pendampingan</span>
+      <span>✓ Dukungan Teknis Responsif</span>
+    </div>
+  </div>
+</section>

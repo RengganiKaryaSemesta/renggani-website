@@ -1,0 +1,101 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import RKSWorkmateBanner from "@components/organisms/RKSWorkmateBanner.astro";
+import RKSWorkmateFeatures from "@components/organisms/RKSWorkmateFeatures.astro";
+import RKSWorkmateComparison from "@components/organisms/RKSWorkmateComparison.astro";
+import RKSWorkmateCta from "@components/organisms/RKSWorkmateCta.astro";
+
+const pageTitle = "RKSWorkmate — Aplikasi Presensi Online GPS, Face Recognition & HR Payroll | Renggani";
+const pageDescription =
+  "RKSWorkmate adalah aplikasi presensi online cerdas berbasis selfie, face recognition, liveness detection, validasi radius GPS anti-fake, shift kerja, dan penggajian payroll otomatis terpadu.";
+const pageKeywords =
+  "rksworkmate, aplikasi presensi online, absensi face recognition, aplikasi absensi selfie, presensi gps anti fake, aplikasi payroll perusahaan, software hr payroll, cv renggani karya semesta";
+const ogImageUrl = "https://www.rengganikaryasemesta.com/rksworkmate.png";
+
+// JSON-LD Structured Data Schema.org for Google Search Rich Snippets
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "RKSWorkmate",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Android, iOS, Web, Cloud",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "IDR",
+        "offerCount": "3",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Starter",
+            "description": "Kapasitas hingga 50 karyawan dengan absen selfie dan validasi GPS",
+          },
+          {
+            "@type": "Offer",
+            "name": "Bisnis",
+            "description": "Kapasitas hingga 125 karyawan dengan Face Recognition, Liveness Detection, dan Multi-Cabang",
+          },
+          {
+            "@type": "Offer",
+            "name": "Enterprise",
+            "description": "Kapasitas hingga 250 karyawan dengan Full Automated Payroll, PPh 21, BPJS, dan Auto-Disbursement",
+          },
+        ],
+      },
+      "description": pageDescription,
+      "publisher": {
+        "@type": "Organization",
+        "name": "CV. Renggani Karya Semesta",
+        "url": "https://www.rengganikaryasemesta.com",
+      },
+      "featureList": [
+        "Absen Selfie & Face Recognition Liveness Detection",
+        "Validasi Lokasi GPS & Proteksi Anti-Fake GPS",
+        "Pengajuan Cuti, Izin, dan Sakit Online",
+        "Dukungan Multi-Cabang & Manajemen Shift Fleksibel",
+        "Perhitungan Otomatis Gaji Pokok, Lembur & THR",
+        "Kalkulasi Pajak PPh 21 & Iuran BPJS Ketenagakerjaan",
+        "Penerbitan Slip Gaji Digital & Disbursement ke Rekening Karyawan",
+      ],
+    },
+    {
+      "@type": "Product",
+      "name": "RKSWorkmate Attendance & HR Payroll System",
+      "image": ogImageUrl,
+      "description": pageDescription,
+      "brand": {
+        "@type": "Brand",
+        "name": "RKSWorkmate",
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": "CV. Renggani Karya Semesta",
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  image={ogImageUrl}
+  type="product"
+>
+  <!-- JSON-LD Structured Data -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} slot="head" />
+
+  <!-- Hero Section -->
+  <RKSWorkmateBanner />
+
+  <!-- Core Modules Showcase Section -->
+  <RKSWorkmateFeatures />
+
+  <!-- Full Feature Comparison Matrix Section (Starter, Bisnis, Enterprise) -->
+  <RKSWorkmateComparison />
+
+  <!-- Final Call-to-Action Section -->
+  <RKSWorkmateCta />
+</Layout>

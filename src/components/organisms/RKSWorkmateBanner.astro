@@ -1,0 +1,134 @@
+---
+import { Image } from "astro:assets";
+import CtaButton from "@components/atoms/CtaButton.astro";
+import dashboardImg from "@assets/rksworkmate/homepage.png";
+import mobileAttendanceImg from "@assets/rksworkmate/mobile-absensi-facerecognition.png";
+import mobileHomeImg from "@assets/rksworkmate/mobile-home.png";
+
+const whatsappDemoUrl =
+  "https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Renggani%2C%20saya%20tertarik%20dengan%20aplikasi%20RKSWorkmate.%20Mohon%20informasi%20penawaran%20dan%20jadwal%20demo%20sistemnya.";
+---
+
+<header class="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24 border-b border-slate-200 dark:border-slate-800/80 bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+  <!-- Subtle Background Grid Pattern -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#0596690a_1px,transparent_1px),linear-gradient(to_bottom,#0596690a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 lg:px-20">
+    <div class="text-center max-w-3xl mx-auto space-y-6">
+      <!-- Trust Eyebrow -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold tracking-wide shadow-sm">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        Presensi Online AI & HR Payroll Terintegrasi
+      </div>
+
+      <!-- Headline: Max 2 lines on desktop -->
+      <h1 class="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.12]">
+        Absensi Biometrik Presisi & Payroll Otomatis Perusahaan
+      </h1>
+
+      <!-- Subtext: Concise and impactful (<20 words) -->
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+        Kombinasi face recognition liveness, radius GPS anti-fake, manajemen shift fleksibel, dan kalkulasi gaji instan untuk efisiensi bisnis Anda.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+        <CtaButton href={whatsappDemoUrl} variant="primary" size="lg" id="rks-hero-cta-demo">
+          <span>Jadwalkan Demo Gratis</span>
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </CtaButton>
+        <CtaButton href="#komparasi-paket" variant="outline" size="lg" target="_self">
+          <span>Lihat Matriks Paket</span>
+        </CtaButton>
+      </div>
+
+      <!-- Capability Trust Badges -->
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs font-medium text-slate-600 dark:text-slate-400">
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          Anti-Fake GPS Teruji
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          Liveness Face Recognition AI
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          Disbursement Bank Otomatis
+        </span>
+      </div>
+    </div>
+
+    <!-- Product Showcase Multi-Device Composition -->
+    <div class="relative mt-12 lg:mt-16 max-w-5xl mx-auto">
+      <!-- Glow ambient backdrop -->
+      <div class="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-emerald-600/10 rounded-3xl blur-2xl opacity-50 dark:opacity-40 -z-10"></div>
+
+      <!-- Main Web Dashboard Mockup -->
+      <div class="relative rounded-2xl lg:rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden">
+        <!-- Window Bar -->
+        <div class="flex items-center justify-between px-4 py-3 bg-slate-100 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+          </div>
+          <div class="text-xs font-mono text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 px-3 py-1 rounded-md border border-slate-200 dark:border-slate-800">
+            rksworkmate.rengganikaryasemesta.com/dashboard
+          </div>
+          <div class="w-10"></div>
+        </div>
+
+        <!-- Dashboard Image -->
+        <Image
+          src={dashboardImg}
+          alt="Dashboard RKSWorkmate Web Admin HR & Presensi"
+          width={1200}
+          height={680}
+          quality={95}
+          format="webp"
+          priority={true}
+          class="w-full h-auto object-cover"
+        />
+      </div>
+
+      <!-- Floating Mobile Overlays -->
+      <div class="hidden sm:block absolute -bottom-8 -left-6 lg:-left-10 w-44 lg:w-56 rounded-3xl border-4 border-slate-900 dark:border-slate-800 shadow-2xl overflow-hidden bg-slate-950 transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+        <Image
+          src={mobileAttendanceImg}
+          alt="Aplikasi Mobile RKSWorkmate Face Recognition Presensi"
+          width={400}
+          height={750}
+          quality={95}
+          format="webp"
+          loading="lazy"
+          class="w-full h-auto object-cover"
+        />
+      </div>
+
+      <div class="hidden md:block absolute -bottom-8 -right-6 lg:-right-10 w-44 lg:w-56 rounded-3xl border-4 border-slate-900 dark:border-slate-800 shadow-2xl overflow-hidden bg-slate-950 transform rotate-3 hover:rotate-0 transition-transform duration-300">
+        <Image
+          src={mobileHomeImg}
+          alt="Aplikasi Mobile RKSWorkmate Beranda Karyawan"
+          width={400}
+          height={750}
+          quality={95}
+          format="webp"
+          loading="lazy"
+          class="w-full h-auto object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</header>

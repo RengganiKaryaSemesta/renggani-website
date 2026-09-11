@@ -1,0 +1,82 @@
+---
+import PlanBadge from "@components/atoms/PlanBadge.astro";
+import CtaButton from "@components/atoms/CtaButton.astro";
+
+interface Props {
+  planId: "starter" | "bisnis" | "enterprise";
+  title: string;
+  capacity: string;
+  description: string;
+  isPopular?: boolean;
+  whatsappMessage: string;
+  class?: string;
+}
+
+const {
+  title,
+  capacity,
+  description,
+  isPopular = false,
+  whatsappMessage,
+  class: customClass = "",
+} = Astro.props;
+
+const whatsappUrl = `https://api.whatsapp.com/send?phone=6289512589756&text=${encodeURIComponent(whatsappMessage)}`;
+---
+
+<div
+  class:list={[
+    "relative flex flex-col p-6 rounded-2xl border transition-all duration-300",
+    isPopular
+      ? "bg-gradient-to-b from-emerald-500/10 via-emerald-500/5 to-transparent border-emerald-500/40 shadow-xl shadow-emerald-500/10 dark:from-emerald-950/40 dark:via-emerald-950/20 dark:border-emerald-500/50"
+      : "bg-white/80 dark:bg-slate-900/80 border-slate-200 dark:border-slate-800",
+    customClass,
+  ]}
+>
+  <div class="flex items-center justify-between gap-2 mb-3">
+    <span class="text-xs font-mono font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
+      Paket Solusi
+    </span>
+    {isPopular ? (
+      <PlanBadge text="Paling Populer" isPopular={true} />
+    ) : (
+      <PlanBadge text={title} variant="slate" />
+    )}
+  </div>
+
+  <h3 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+    {title}
+  </h3>
+
+  <div class="mt-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+    <div class="flex items-baseline gap-1.5">
+      <span class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">
+        {capacity}
+      </span>
+      <span class="text-sm font-medium text-slate-600 dark:text-slate-400">
+        Karyawan
+      </span>
+    </div>
+    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+      Kapasitas tim fleksibel untuk bisnis Anda
+    </p>
+  </div>
+
+  <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-4 flex-grow">
+    {description}
+  </p>
+
+  <div class="mt-6 pt-2">
+    <CtaButton
+      href={whatsappUrl}
+      variant={isPopular ? "primary" : "outline"}
+      size="md"
+      class="w-full"
+    >
+      <span>Pilih {title}</span>
+      <svg class="w-4 h-4 ml-1 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </CtaButton>
+  </div>
+</div>

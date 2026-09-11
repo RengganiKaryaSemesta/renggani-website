@@ -1,0 +1,100 @@
+---
+import RKSFeatureCard from "@components/molecules/RKSFeatureCard.astro";
+import mobileAttendanceImg from "@assets/rksworkmate/mobile-absensi-facerecognition.png";
+import presensiImg from "@assets/rksworkmate/presensi.png";
+import mobileProfileImg from "@assets/rksworkmate/mobile-profile.png";
+import reportImg from "@assets/rksworkmate/report.png";
+
+const features = [
+  {
+    title: "Presensi Biometrik Liveness AI & Anti-Kecurangan",
+    badge: "Keamanan Biometrik",
+    description:
+      "Tinggalkan mesin fingerprint fisik yang rentan rusak dan antre. RKSWorkmate menggunakan teknologi Face Recognition cerdas dengan Liveness Detection untuk memvalidasi kehadiran nyata tanpa celah manipulasi foto.",
+    imageSrc: mobileAttendanceImg,
+    imageAlt: "Verifikasi Face Recognition dan Liveness Detection RKSWorkmate",
+    reversed: false,
+    highlights: [
+      "Verifikasi wajah real-time dalam hitungan detik",
+      "Liveness detection aktif menangkal pemalsuan foto & topeng",
+      "Notifikasi otomatis seketika bila terjadi keterlambatan",
+    ],
+  },
+  {
+    title: "Validasi Radius GPS Geofencing & Multi-Cabang",
+    badge: "Akurasi Lokasi",
+    description:
+      "Kendali penuh lokasi presensi untuk seluruh cabang, gerai, maupun tim lapangan. Dilengkapi algoritma deteksi Fake GPS & Mock Location untuk menjamin karyawan benar-benar berada di tempat tugas.",
+    imageSrc: presensiImg,
+    imageAlt: "Pantauan Presensi dan Radius Lokasi Geofencing Multi-Cabang",
+    reversed: true,
+    highlights: [
+      "Pengaturan titik koordinat radius kantor tanpa batas cabang",
+      "Proteksi ketat terhadap aplikasi manipulasi GPS (Fake GPS blocker)",
+      "Rekap log kehadiran harian dan riwayat terintegrasi langsung",
+    ],
+  },
+  {
+    title: "Manajemen Shift Fleksibel & Pengajuan Cuti Digital",
+    badge: "Efisiensi SDM",
+    description:
+      "Atur jadwal kerja tim rolling shift, hybrid, maupun jam kerja fleksibel dengan mudah. Karyawan dapat mengajukan izin, sakit, dan cuti secara mandiri dengan alur persetujuan berjenjang yang rapi.",
+    imageSrc: mobileProfileImg,
+    imageAlt: "Profil Karyawan dan Manajemen Cuti Digital RKSWorkmate",
+    reversed: false,
+    highlights: [
+      "Pengajuan cuti, sakit, dan izin via smartphone tanpa kertas",
+      "Alur approval berjenjang otomatis ke atasan langsung",
+      "Monitoring kuota dan sisa saldo cuti tahunan transparan",
+    ],
+  },
+  {
+    title: "Kalkulasi Payroll Terpadu & Auto-Disbursement Bank",
+    badge: "Gaji & Kepatuhan Pajak",
+    description:
+      "Hubungkan data kehadiran dengan penggajian tanpa proses manual yang melelahkan. Hitung lembur, potongan keterlambatan, BPJS Ketenagakerjaan/Kesehatan, PPh 21, dan transfer gaji langsung ke rekening karyawan.",
+    imageSrc: reportImg,
+    imageAlt: "Laporan Penggajian Payroll Otomatis dan Pajak RKSWorkmate",
+    reversed: true,
+    highlights: [
+      "Kalkulasi lembur, potongan absen, dan THR otomatis 100% akurat",
+      "Perhitungan tarif efektif PPh 21 dan potongan iuran BPJS resmi",
+      "Penerbitan slip gaji digital & auto-disbursement langsung ke bank karyawan",
+    ],
+  },
+];
+---
+
+<section id="fitur-unggulan" class="py-20 lg:py-28 px-5 lg:px-20 bg-slate-50 dark:bg-slate-950/60 border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto space-y-16 lg:space-y-20">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold tracking-wide uppercase">
+        Solusi Operasional HR Modern
+      </span>
+      <h2 class="text-3xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Satu Sistem untuk Presensi, SDM, hingga Penggajian
+      </h2>
+      <p class="text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        RKSWorkmate dirancang untuk memangkas birokrasi absensi manual dan risiko kesalahan hitung payroll di perusahaan Anda.
+      </p>
+    </div>
+
+    <!-- Feature Cards List -->
+    <div class="space-y-10 lg:space-y-12">
+      {
+        features.map((feature) => (
+          <RKSFeatureCard
+            title={feature.title}
+            badge={feature.badge}
+            description={feature.description}
+            imageSrc={feature.imageSrc}
+            imageAlt={feature.imageAlt}
+            reversed={feature.reversed}
+            highlights={feature.highlights}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
