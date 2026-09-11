@@ -1,14 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import BukuBatikBanner from "@components/organisms/BukuBatikBanner.astro";
-import BukuBatikFeatures from "@components/organisms/BukuBatikFeatures.astro";
-import BukuBatikSearchFilter from "@components/organisms/BukuBatikSearchFilter";
+import BukuBatikHero from "@components/organisms/BukuBatikHero.astro";
+import BukuBatikShowcase from "@components/organisms/BukuBatikShowcase.astro";
+import PricingList from "@components/organisms/PricingList.astro";
 import CallToAction from "@components/organisms/CallToAction.astro";
-import { Icon } from "astro-icon/components";
 
-const pageTitle = "BukuBatik — Sistem Akuntansi & ERP Cerdas Perusahaan | Renggani";
-const pageDescription = "BukuBatik adalah sistem akuntansi & ERP terpadu untuk perusahaan dan UMKM. Terinspirasi dari ketelitian buku akuntansi sampul batik klasik, kini hadir lengkap dengan kalkulasi HPP, Purchase Order (PO), Kartu Piutang, Laporan Keuangan, dan Rekonsiliasi Bank.";
-const pageKeywords = "buku batik, bukubatik, sistem akuntansi perusahaan, erp umkm, aplikasi keuangan usaha, kalkulasi hpp produk, kartu piutang pelanggan, purchase order, rekonsiliasi bank otomatis, software house banyuwangi, cv renggani karya semesta";
+const pageTitle = "BukuBatik — Sistem Akuntansi Modern & Terpadu Perusahaan | Renggani";
+const pageDescription = "BukuBatik adalah sistem akuntansi terpadu untuk perusahaan dan UMKM. Terinspirasi dari ketelitian buku akuntansi sampul batik klasik, kini hadir lengkap dengan kalkulasi HPP, Purchase Order (PO), Kartu Piutang, Laporan Keuangan, dan Rekonsiliasi Bank.";
+const pageKeywords = "buku batik, bukubatik, sistem akuntansi perusahaan, aplikasi akuntansi, aplikasi pembukuan usaha, kalkulasi hpp produk, kartu piutang pelanggan, purchase order, rekonsiliasi bank otomatis, software house banyuwangi, cv renggani karya semesta";
 const ogImageUrl = "https://www.rengganikaryasemesta.com/buku-batik.png";
 
 // JSON-LD Structured Data Schema.org for Google Search Rich Snippets
@@ -21,10 +20,11 @@ const structuredData = {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web, Cloud",
       "offers": {
-        "@type": "Offer",
-        "price": "0",
+        "@type": "AggregateOffer",
+        "lowPrice": "300000",
+        "highPrice": "1000000",
         "priceCurrency": "IDR",
-        "availability": "https://schema.org/InStock"
+        "offerCount": "3"
       },
       "description": pageDescription,
       "publisher": {
@@ -33,18 +33,19 @@ const structuredData = {
         "url": "https://www.rengganikaryasemesta.com"
       },
       "featureList": [
-        "Kalkulasi HPP Konversi Produk Bahan Baku",
-        "Alur Purchase Request (PR) & Purchase Order (PO)",
+        "Siklus Pembelian (Invoice, Payment, Return, PO, PR, Quote)",
+        "Siklus Penjualan (Invoice, Payment, Return, SO, Quote)",
+        "Persediaan & Valuasi HPP (Average Cost & FIFO)",
         "Kartu Piutang & Customer Ledger",
-        "Credit Memo & Debit Memo",
-        "Laporan Keuangan & General Ledger",
-        "Rekonsiliasi Bank Otomatis",
-        "Radar Performa & Kesehatan Pelanggan"
+        "Laporan Keuangan & General Ledger (Buku Besar, Neraca, Laba Rugi)",
+        "Rekonsiliasi Bank & Pencocokan Otomatis",
+        "Manajemen Aset Tetap & Penyusutan",
+        "Multi-Cabang & Hak Akses Berjenjang"
       ]
     },
     {
       "@type": "Product",
-      "name": "BukuBatik ERP & Accounting System",
+      "name": "BukuBatik Accounting System",
       "image": ogImageUrl,
       "description": pageDescription,
       "brand": {
@@ -70,180 +71,17 @@ const structuredData = {
     <!-- JSON-LD Structured Data for Rich Search Snippets -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} slot="head" />
 
-    <BukuBatikBanner />
-    
-    <!-- Interactive Module Search & Filter -->
-    <section class="py-16 px-5 lg:px-20 bg-gray-100 dark:bg-gray-950 font-roboto border-y border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto space-y-10">
-            <div class="text-center max-w-2xl mx-auto space-y-3">
-                <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-950 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800">
-                    Pencarian Modul Interaktif
-                </span>
-                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-white">
-                    Temukan Fitur Sesuai Kebutuhan Usaha Anda
-                </h2>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                    Gunakan filter kategori atau kata kunci untuk melihat spesifikasi detail dari tiap modul BukuBatik ERP.
-                </p>
-            </div>
-            
-            <BukuBatikSearchFilter client:visible />
-        </div>
-    </section>
+    <!-- 1. Hero: Apa itu BukuBatik & Dasbor Preview -->
+    <BukuBatikHero />
 
-    <!-- Pricing Section -->
-    <section class="py-24 px-5 lg:px-20 bg-slate-50 dark:bg-slate-950 border-y border-slate-200 dark:border-slate-900 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto space-y-12">
-            
-            <div class="text-center max-w-3xl mx-auto space-y-4">
-                <span class="text-xs font-mono font-bold uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-950/80 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800">
-                    Investasi Transparan
-                </span>
-                <h2 class="text-3xl lg:text-5xl font-black dark:text-white text-slate-900 tracking-tight leading-none">
-                    Pilih Rencana Sesuai Skala Bisnis Anda
-                </h2>
-                <p class="text-base text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
-                    Mulai dari pencatatan dasar hingga pengelolaan multi-cabang terpadu. Upgrade paket kapan saja.
-                </p>
-            </div>
-            
-            <div class="grid lg:grid-cols-3 gap-8 items-stretch pt-4">
-                <!-- Basic Plan Preview -->
-                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <div class="space-y-6">
-                        <div class="border-b border-slate-100 dark:border-slate-800/80 pb-4">
-                            <h3 class="text-xl font-bold dark:text-white text-slate-900">Basic</h3>
-                            <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Untuk digitalisasi pembukuan awal.</p>
-                        </div>
-                        <div class="flex items-baseline">
-                            <span class="text-4xl font-extrabold text-slate-900 dark:text-white font-mono">Rp300.000</span>
-                            <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 ml-1">/bulan</span>
-                        </div>
-                        <ul class="space-y-3.5 text-sm text-slate-600 dark:text-slate-400">
-                            <li class="flex items-center gap-2">
-                                <Icon name="mdi:check-bold" class="text-purple-500 text-base shrink-0" />
-                                <span>Sales & Purchase</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <Icon name="mdi:check-bold" class="text-purple-500 text-base shrink-0" />
-                                <span>Product Bundling (Read-only)</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <Icon name="mdi:check-bold" class="text-purple-500 text-base shrink-0" />
-                                <span>1 Warehouse & 1 Cabang</span>
-                            </li>
-                            <li class="flex items-center gap-2 text-slate-350 dark:text-slate-650">
-                                <Icon name="mdi:close" class="text-slate-300 dark:text-slate-700 text-base shrink-0" />
-                                <span>Multi Unit & Rekonsiliasi Bank</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="pt-8">
-                        <a
-                            href="/bukubatik/pricing"
-                            class="block w-full py-3 px-4 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-center text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
-                        >
-                            Detail Rencana
-                        </a>
-                    </div>
-                </div>
+    <!-- 2. Showcase: Modul Inti & Arsitektur Akuntansi Terpadu (Asymmetric Bento) -->
+    <BukuBatikShowcase />
 
-                <!-- Business Plan Preview (Slightly emphasized, dark mode/purple card) -->
-                <div class="bg-slate-950 dark:bg-slate-900 text-white p-8 rounded-3xl border-2 border-purple-500 shadow-xl shadow-purple-500/10 flex flex-col justify-between relative transform lg:-translate-y-2">
-                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-md">
-                        Paling Laris
-                    </div>
-                    <div class="space-y-6">
-                        <div class="border-b border-slate-800 pb-4">
-                            <h3 class="text-xl font-bold text-white pt-2">Business</h3>
-                            <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Multi-cabang & rekonsiliasi bank.</p>
-                        </div>
-                        <div class="flex items-baseline">
-                            <span class="text-4xl font-extrabold text-white font-mono font-medium">Rp650.000</span>
-                            <span class="text-xs font-semibold text-slate-450 ml-1">/bulan</span>
-                        </div>
-                        <ul class="space-y-3.5 text-sm text-slate-300">
-                            <li class="flex items-center gap-2">
-                                <Icon name="mdi:check-bold" class="text-purple-400 text-base shrink-0" />
-                                <span>Sales, Purchase & Full Bundling</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <Icon name="mdi:check-bold" class="text-purple-400 text-base shrink-0" />
-                                <span>Multi Unit & Rekonsiliasi Bank</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <Icon name="mdi:check-bold" class="text-purple-400 text-base shrink-0" />
-                                <span>2 Warehouse & 2 Cabang</span>
-                            </li>
-                            <li class="flex items-center gap-2 text-slate-600">
-                                <Icon name="mdi:close" class="text-slate-850 text-base shrink-0" />
-                                <span>Batch Conversion & Price Rules</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="pt-8">
-                        <a
-                            href="/bukubatik/pricing"
-                            class="block w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-center text-xs font-bold uppercase tracking-wider rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all"
-                        >
-                            Detail Rencana
-                        </a>
-                    </div>
-                </div>
+    <!-- 3. Paket & Harga Lengkap (Starter, Bisnis, Enterprise + Matriks 29 Fitur) -->
+    <div id="paket-harga" class="scroll-mt-16">
+        <PricingList />
+    </div>
 
-                <!-- Enterprise Plan Preview -->
-                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <div class="space-y-6">
-                        <div class="border-b border-slate-100 dark:border-slate-800/80 pb-4">
-                            <h3 class="text-xl font-bold dark:text-white text-slate-900">Enterprise</h3>
-                            <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Skala besar & kustomisasi penuh.</p>
-                        </div>
-                        <div class="flex items-baseline">
-                            <span class="text-4xl font-extrabold text-slate-900 dark:text-white font-mono">Rp1.000.000</span>
-                            <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 ml-1">/bulan</span>
-                        </div>
-                        <ul class="space-y-3.5 text-sm text-slate-600 dark:text-slate-400">
-                            <li class="flex items-center gap-2">
-                                <Icon name="mdi:check-bold" class="text-purple-500 text-base shrink-0" />
-                                <span>Seluruh Fitur Business Aktif</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <Icon name="mdi:check-bold" class="text-purple-500 text-base shrink-0" />
-                                <span>Batch Conversion & Price Rules</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <Icon name="mdi:check-bold" class="text-purple-500 text-base shrink-0" />
-                                <span>Tanpa Batas Gudang & 5 Cabang</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <Icon name="mdi:check-bold" class="text-purple-500 text-base shrink-0" />
-                                <span>Custom Module (Dapat Diajukan)</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="pt-8">
-                        <a
-                            href="/bukubatik/pricing"
-                            class="block w-full py-3 px-4 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-center text-xs font-bold uppercase tracking-wider rounded-xl transition-colors"
-                        >
-                            Detail Rencana
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center pt-6">
-                <a
-                    href="/bukubatik/pricing"
-                    class="inline-flex items-center gap-2 text-sm font-bold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors uppercase tracking-wider"
-                >
-                    <span>Bandingkan Detail Rinci Fitur & FAQ</span>
-                    <Icon name="mdi:arrow-right" class="text-base shrink-0" />
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <BukuBatikFeatures />
+    <!-- 4. Penutup CTA -->
     <CallToAction />
 </Layout>

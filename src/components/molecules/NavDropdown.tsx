@@ -30,9 +30,9 @@ const servicesItems: DropdownItem[] = [
   },
   {
     title: 'BukuBatik',
-    subtitle: 'Sistem Akuntansi, ERP, PO, Piutang & HPP Usaha',
+    subtitle: 'Sistem Akuntansi, Pembukuan, PO, Piutang & HPP Usaha',
     href: '/bukubatik',
-    badge: 'ERP & Keuangan',
+    badge: 'Sistem Akuntansi',
     badgeColor: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20',
     iconBg: 'bg-purple-500/10 dark:bg-purple-500/20',
     iconColor: 'text-purple-600 dark:text-purple-400',

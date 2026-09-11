@@ -1,0 +1,232 @@
+---
+import { Image } from "astro:assets";
+import penjualanImg from "@assets/buku-batik/penjualan-screen.png";
+import kartuPiutangImg from "@assets/buku-batik/kartu-piutang-screen.png";
+import laporanProductImg from "@assets/buku-batik/laporan-product-screen.png";
+import laporanGeneralImg from "@assets/buku-batik/laporan-general-screen.png";
+import rekonsiliasiBankImg from "@assets/buku-batik/rekonsiliasi-bank-screen.png";
+import { Icon } from "astro-icon/components";
+---
+
+<section class="py-24 px-5 lg:px-20 bg-slate-50 dark:bg-slate-900/60 text-slate-900 dark:text-slate-100 font-roboto border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto space-y-24">
+    
+    <!-- Section Introduction Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <span class="text-xs font-mono font-bold uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-950/80 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800">
+        Arsitektur Akuntansi Terpadu
+      </span>
+      <h2 class="text-3xl lg:text-5xl font-extrabold tracking-tight dark:text-white text-slate-900 leading-tight">
+        Segala yang Dibutuhkan Akuntan & Pemilik Usaha
+      </h2>
+      <p class="text-base lg:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
+        Tinggalkan pencatatan terpisah di berbagai lembar spreadsheet. BukuBatik menghubungkan arus transaksi harian langsung ke laporan keuangan tanpa rekonsiliasi ganda.
+      </p>
+    </div>
+
+    <!-- Feature 1: Penjualan, Pembelian & Kartu Piutang Pelanggan (Split Showcase) -->
+    <div class="grid lg:grid-cols-12 gap-10 items-center bg-white dark:bg-slate-900 p-8 lg:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div class="lg:col-span-5 space-y-6">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center shadow-md shadow-purple-600/20">
+          <Icon name="mdi:cart-outline" class="text-2xl" />
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">Pilar 01 — Arus Dagang</span>
+          <h3 class="text-2xl lg:text-3xl font-bold dark:text-white text-slate-900 leading-snug">
+            Siklus Penjualan, Pembelian & Kartu Piutang
+          </h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm lg:text-base">
+          Kelola seluruh alur transaksi mulai dari penawaran (<em class="not-italic text-purple-500 font-medium">Quote</em>), pesanan (<em class="not-italic text-purple-500 font-medium">Order</em>), faktur (<em class="not-italic text-purple-500 font-medium">Invoice</em>), hingga pencatatan pelunasan dan retur barang. 
+        </p>
+        <div class="space-y-3 pt-2">
+          <div class="flex items-start gap-3">
+            <Icon name="mdi:check-circle" class="text-purple-500 text-xl shrink-0 mt-0.5" />
+            <div>
+              <h4 class="font-semibold text-sm dark:text-white text-slate-900">Kartu Piutang Pelanggan (Customer Ledger)</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Otomatis mencatat mutasi debit faktur baru, kredit pembayaran, serta penerbitan Credit Memo.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <Icon name="mdi:check-circle" class="text-purple-500 text-xl shrink-0 mt-0.5" />
+            <div>
+              <h4 class="font-semibold text-sm dark:text-white text-slate-900">Kontrol Purchase Request & Order Supplier</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Validasi penerimaan tagihan vendor sebelum pelunasan kas atau transfer bank dilakukan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 space-y-4">
+        <!-- Main Screenshot: Penjualan -->
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 bg-slate-950">
+          <div class="flex items-center gap-2 px-4 py-2 bg-slate-900 border-b border-slate-800 text-xs text-slate-400 font-mono">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+            <span class="ml-2">Modul Faktur Penjualan & Tagihan Pelanggan</span>
+          </div>
+          <Image
+            src={penjualanImg}
+            alt="Modul Transaksi Penjualan Sistem Akuntansi BukuBatik"
+            class="w-full h-auto object-cover"
+            quality={95}
+          />
+        </div>
+
+        <!-- Secondary Peek: Kartu Piutang -->
+        <div class="rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-800 bg-slate-950">
+          <div class="flex items-center gap-2 px-4 py-1.5 bg-slate-900 border-b border-slate-800 text-[11px] text-slate-400 font-mono">
+            <Icon name="mdi:card-account-details-outline" class="text-blue-400" />
+            <span>Kartu Piutang Terpadu</span>
+          </div>
+          <Image
+            src={kartuPiutangImg}
+            alt="Kartu Piutang Pelanggan BukuBatik"
+            class="w-full h-auto object-cover max-h-48 object-top"
+            quality={90}
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2 & 3: Asymmetric Bento Row (HPP / Stok & Laporan Keuangan) -->
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+      
+      <!-- Bento Card 1: Valuasi Persediaan & Konversi HPP (7 Cols) -->
+      <div class="lg:col-span-7 bg-white dark:bg-slate-900 p-8 lg:p-10 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-6">
+        <div class="space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+            <Icon name="mdi:calculator-variant" class="text-2xl" />
+          </div>
+          <div class="space-y-2">
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">Pilar 02 — Persediaan</span>
+            <h3 class="text-2xl font-bold dark:text-white text-slate-900">
+              Kalkulasi HPP & Konversi Bahan Baku
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+              Dukung bisnis manufaktur, kuliner, dan konveksi dalam mencatat konversi bahan mentah menjadi barang jadi. Menghitung HPP akurat dengan metode <strong>Average Cost</strong> atau <strong>FIFO</strong> secara otomatis.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800 bg-slate-950">
+          <div class="px-4 py-2 bg-slate-900 border-b border-slate-800 text-xs text-slate-400 font-mono flex items-center justify-between">
+            <span>Laporan Konversi & Mutasi Stok</span>
+            <span class="text-amber-400 text-[11px]">Stock Opname Aktif</span>
+          </div>
+          <Image
+            src={laporanProductImg}
+            alt="Laporan Konversi HPP Produk BukuBatik"
+            class="w-full h-auto object-cover"
+            quality={95}
+          />
+        </div>
+      </div>
+
+      <!-- Bento Card 2: Laporan Keuangan Standar Akuntansi (5 Cols) -->
+      <div class="lg:col-span-5 bg-gradient-to-b from-purple-900/20 to-slate-900/60 dark:from-purple-950/40 dark:to-slate-900 p-8 lg:p-10 rounded-3xl border border-purple-200/60 dark:border-purple-900/40 shadow-sm flex flex-col justify-between space-y-6">
+        <div class="space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-md shadow-purple-600/30">
+            <Icon name="mdi:file-chart-outline" class="text-2xl" />
+          </div>
+          <div class="space-y-2">
+            <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">Pilar 03 — Pelaporan</span>
+            <h3 class="text-2xl font-bold dark:text-white text-slate-900">
+              Laporan Keuangan Komprehensif
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+              Jurnal Umum, Buku Besar, Neraca Saldo, Laba Rugi, dan Arus Kas terbentuk seketika tanpa perlu entri manual ganda. Siap diaudit kapan saja.
+            </p>
+          </div>
+
+          <!-- Feature tags list -->
+          <div class="grid grid-cols-2 gap-2.5 pt-2">
+            <div class="p-2.5 bg-white/80 dark:bg-slate-800/80 rounded-xl border border-slate-200/70 dark:border-slate-700/60 text-xs font-semibold flex items-center gap-2">
+              <Icon name="mdi:check" class="text-purple-500" />
+              <span>Jurnal Umum</span>
+            </div>
+            <div class="p-2.5 bg-white/80 dark:bg-slate-800/80 rounded-xl border border-slate-200/70 dark:border-slate-700/60 text-xs font-semibold flex items-center gap-2">
+              <Icon name="mdi:check" class="text-purple-500" />
+              <span>Buku Besar</span>
+            </div>
+            <div class="p-2.5 bg-white/80 dark:bg-slate-800/80 rounded-xl border border-slate-200/70 dark:border-slate-700/60 text-xs font-semibold flex items-center gap-2">
+              <Icon name="mdi:check" class="text-purple-500" />
+              <span>Neraca Saldo</span>
+            </div>
+            <div class="p-2.5 bg-white/80 dark:bg-slate-800/80 rounded-xl border border-slate-200/70 dark:border-slate-700/60 text-xs font-semibold flex items-center gap-2">
+              <Icon name="mdi:check" class="text-purple-500" />
+              <span>Laba Rugi</span>
+            </div>
+            <div class="p-2.5 bg-white/80 dark:bg-slate-800/80 rounded-xl border border-slate-200/70 dark:border-slate-700/60 text-xs font-semibold flex items-center gap-2">
+              <Icon name="mdi:check" class="text-purple-500" />
+              <span>Kunci Periode</span>
+            </div>
+            <div class="p-2.5 bg-white/80 dark:bg-slate-800/80 rounded-xl border border-slate-200/70 dark:border-slate-700/60 text-xs font-semibold flex items-center gap-2">
+              <Icon name="mdi:check" class="text-purple-500" />
+              <span>Tutup Buku</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800 bg-slate-950">
+          <Image
+            src={laporanGeneralImg}
+            alt="Laporan Keuangan Standar Akuntansi BukuBatik"
+            class="w-full h-auto object-cover"
+            quality={95}
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4 & 5: Rekonsiliasi Bank & Manajemen Aset Multi-Cabang -->
+    <div class="grid lg:grid-cols-12 gap-10 items-center bg-white dark:bg-slate-900 p-8 lg:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div class="lg:col-span-7 order-2 lg:order-1">
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 bg-slate-950">
+          <div class="flex items-center gap-2 px-4 py-2 bg-slate-900 border-b border-slate-800 text-xs text-slate-400 font-mono">
+            <Icon name="mdi:bank-check" class="text-cyan-400" />
+            <span>Pencocokan Rekening Koran & Kas Jurnal</span>
+          </div>
+          <Image
+            src={rekonsiliasiBankImg}
+            alt="Rekonsiliasi Bank Otomatis BukuBatik"
+            class="w-full h-auto object-cover"
+            quality={95}
+          />
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 order-1 lg:order-2 space-y-6">
+        <div class="w-12 h-12 rounded-2xl bg-cyan-600 text-white flex items-center justify-center shadow-md shadow-cyan-600/20">
+          <Icon name="mdi:bank" class="text-2xl" />
+        </div>
+        <div class="space-y-2">
+          <span class="text-xs font-semibold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">Pilar 04 & 05 — Kas, Bank & Aset</span>
+          <h3 class="text-2xl lg:text-3xl font-bold dark:text-white text-slate-900 leading-snug">
+            Rekonsiliasi Bank Otomatis & Manajemen Aset
+          </h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm lg:text-base">
+          Cek saldo kas riil vs mutasi mutakhir rekening koran dalam hitungan detik. BukuBatik otomatis mendeteksi selisih transaksi dan saldo menggantung.
+        </p>
+
+        <ul class="space-y-3.5 text-sm text-slate-700 dark:text-slate-300">
+          <li class="flex items-center gap-3">
+            <Icon name="mdi:check-circle" class="text-cyan-500 text-lg shrink-0" />
+            <span><strong>Perbankan:</strong> Bank Transfer, Deposit & Withdrawal otomatis</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <Icon name="mdi:check-circle" class="text-cyan-500 text-lg shrink-0" />
+            <span><strong>Aset Tetap:</strong> Pencatatan nilai buku, penyusutan berkala & disposal</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <Icon name="mdi:check-circle" class="text-cyan-500 text-lg shrink-0" />
+            <span><strong>Multi-Cabang:</strong> Konsolidasi pembukuan hingga multi-lokasi / unlimited</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>

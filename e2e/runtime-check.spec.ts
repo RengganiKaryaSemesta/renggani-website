@@ -125,4 +125,51 @@ test.describe('Runtime Site Verification', () => {
     expect(failedRequests).toHaveLength(0);
     expect(consoleErrors).toHaveLength(0);
   });
+
+  test('BukuBatik redesigned landing page renders as pure accounting system without ERP branding', async ({ page }) => {
+    const failedRequests: string[] = [];
+    const consoleErrors: string[] = [];
+
+    page.on('requestfailed', (request) => {
+      const url = request.url();
+      if (!url.includes('/_vercel/')) {
+        failedRequests.push(`${url} - ${request.failure()?.errorText}`);
+      }
+    });
+
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        const text = msg.text();
+        const location = msg.location().url;
+        if (!text.includes('404') && !location.includes('/_vercel/')) {
+          consoleErrors.push(`${text} (${location})`);
+        }
+      }
+    });
+
+    await page.goto('/bukubatik');
+    await expect(page).toHaveTitle(/Sistem Akuntansi Modern/);
+
+    // Verify main headline and pure accounting positioning
+    const heading = page.locator('#bukubatik-hero-heading');
+    await expect(heading).toContainText('Presisi Akuntansi Klasik');
+    await expect(heading).not.toContainText('ERP');
+
+    // Verify Pricing section anchor and cards are embedded in the single page
+    const pricingSection = page.locator('#paket-harga');
+    await expect(pricingSection).toBeVisible();
+    await expect(pricingSection.getByText('Starter', { exact: true }).first()).toBeVisible();
+    await expect(pricingSection.getByText('Bisnis', { exact: true }).first()).toBeVisible();
+    await expect(pricingSection.getByText('Enterprise', { exact: true }).first()).toBeVisible();
+
+    // Verify matrix table features inside the single page
+    const matrixTable = page.locator('#bukubatik-matrix-table');
+    await expect(matrixTable).toBeVisible();
+    await expect(matrixTable.getByText('Purchase Invoice').first()).toBeVisible();
+    await expect(matrixTable.getByText('Average Cost').first()).toBeVisible();
+    await expect(matrixTable.getByText('Rekonsiliasi Bank', { exact: true })).toBeVisible();
+
+    expect(failedRequests).toHaveLength(0);
+    expect(consoleErrors).toHaveLength(0);
+  });
 });
