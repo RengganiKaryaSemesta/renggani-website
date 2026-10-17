@@ -1,0 +1,64 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: customClass = '' } = Astro.props;
+---
+
+<div class:list={['w-full max-w-4xl mx-auto select-none', customClass]} aria-hidden="true">
+  <svg viewBox="0 0 800 140" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+    <!-- Connecting dashed baseline -->
+    <path d="M120 70 L680 70" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="6 6" />
+
+    <!-- Step 1 Node -->
+    <g transform="translate(80, 30)">
+      <circle cx="40" cy="40" r="32" fill="#EFF6FF" stroke="#2563EB" stroke-width="2" />
+      <circle cx="40" cy="40" r="24" fill="#DBEAFE" />
+      <!-- Clipboard / ID icon -->
+      <path d="M34 35 H46 V47 H34 Z M37 32 H43 V35 H37 Z" stroke="#1D4ED8" stroke-width="1.8" fill="none" stroke-linejoin="round" />
+      <rect x="15" y="82" width="50" height="20" rx="10" fill="#2563EB" />
+      <text x="40" y="96" fill="#FFFFFF" font-family="system-ui" font-size="11" font-weight="700" text-anchor="middle">01</text>
+    </g>
+
+    <!-- Arrow 1 to 2 -->
+    <polygon points="260,70 250,65 250,75" fill="#2563EB" />
+
+    <!-- Step 2 Node -->
+    <g transform="translate(280, 30)">
+      <circle cx="40" cy="40" r="32" fill="#F0F9FF" stroke="#0284C7" stroke-width="2" />
+      <circle cx="40" cy="40" r="24" fill="#E0F2FE" />
+      <!-- Share / Link icon -->
+      <path d="M35 44 L45 36 M35 36 L45 44 M33 40 A3 3 0 1 0 33 34 A3 3 0 0 0 33 40 M47 34 A3 3 0 1 0 47 28 A3 3 0 0 0 47 34 M47 46 A3 3 0 1 0 47 52 A3 3 0 0 0 47 46" stroke="#0284C7" stroke-width="1.8" fill="none" />
+      <rect x="15" y="82" width="50" height="20" rx="10" fill="#0284C7" />
+      <text x="40" y="96" fill="#FFFFFF" font-family="system-ui" font-size="11" font-weight="700" text-anchor="middle">02</text>
+    </g>
+
+    <!-- Arrow 2 to 3 -->
+    <polygon points="460,70 450,65 450,75" fill="#0284C7" />
+
+    <!-- Step 3 Node -->
+    <g transform="translate(480, 30)">
+      <circle cx="40" cy="40" r="32" fill="#ECFDF5" stroke="#059669" stroke-width="2" />
+      <circle cx="40" cy="40" r="24" fill="#D1FAE5" />
+      <!-- Check in circle / Cloud activated -->
+      <path d="M33 40 L38 45 L48 35" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+      <rect x="15" y="82" width="50" height="20" rx="10" fill="#059669" />
+      <text x="40" y="96" fill="#FFFFFF" font-family="system-ui" font-size="11" font-weight="700" text-anchor="middle">03</text>
+    </g>
+
+    <!-- Arrow 3 to 4 -->
+    <polygon points="660,70 650,65 650,75" fill="#059669" />
+
+    <!-- Step 4 Node -->
+    <g transform="translate(680, 30)">
+      <circle cx="40" cy="40" r="32" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+      <circle cx="40" cy="40" r="24" fill="#FDE68A" />
+      <!-- Coin / Bank payout -->
+      <circle cx="40" cy="40" r="9" stroke="#B45309" stroke-width="1.8" />
+      <path d="M40 35 V45 M37 38 H43" stroke="#B45309" stroke-width="1.8" stroke-linecap="round" />
+      <rect x="15" y="82" width="50" height="20" rx="10" fill="#D97706" />
+      <text x="40" y="96" fill="#FFFFFF" font-family="system-ui" font-size="11" font-weight="700" text-anchor="middle">04</text>
+    </g>
+  </svg>
+</div>

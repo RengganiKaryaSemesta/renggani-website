@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  badge: string;
+  iconType: 'recurring' | 'transparency' | 'support' | 'payout';
+}
+
+const { title, description, badge, iconType } = Astro.props;
+---
+
+<div class="flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-6 md:p-7 shadow-xs hover:shadow-md transition-shadow">
+  <div>
+    <div class="flex items-center justify-between mb-5">
+      <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/60 flex items-center justify-center text-blue-700 dark:text-blue-400 border border-blue-100 dark:border-blue-900">
+        {iconType === 'recurring' && (
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+          </svg>
+        )}
+        {iconType === 'transparency' && (
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+        )}
+        {iconType === 'support' && (
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        )}
+        {iconType === 'payout' && (
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <line x1="2" y1="10" x2="22" y2="10"/>
+          </svg>
+        )}
+      </div>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-300 border border-blue-200/50 dark:border-blue-800/50">
+        {badge}
+      </span>
+    </div>
+
+    <h3 class="font-sans text-lg font-bold text-slate-900 dark:text-white mb-2">
+      {title}
+    </h3>
+
+    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+      {description}
+    </p>
+  </div>
+</div>

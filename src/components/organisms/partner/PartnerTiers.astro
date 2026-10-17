@@ -1,0 +1,28 @@
+---
+import { PARTNER_TIERS } from 'src/data/partnerTiers';
+import PartnerTierCard from '@components/molecules/partner/PartnerTierCard.astro';
+---
+
+<section id="skema-komisi" class="py-16 lg:py-24 bg-slate-50 dark:bg-slate-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Heading -->
+    <div class="max-w-3xl mx-auto text-center mb-12 lg:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200/80 dark:border-blue-800 text-xs font-semibold uppercase tracking-wider mb-3">
+        Tingkatan Kemitraan
+      </div>
+      <h2 class="font-sans text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Skema Komisi Bertingkat & Berkelanjutan
+      </h2>
+      <p class="font-roboto text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-3 max-w-2xl mx-auto leading-relaxed">
+        Tingkatkan persentase komisi seiring bertambahnya jumlah klien aktif di portofolio Anda. Nikmati bagi hasil recurring setiap kali klien memperpanjang langganan.
+      </p>
+    </div>
+
+    <!-- Tiers Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+      {PARTNER_TIERS.map((tier) => (
+        <PartnerTierCard tier={tier} />
+      ))}
+    </div>
+  </div>
+</section>

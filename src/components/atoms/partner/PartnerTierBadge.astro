@@ -1,0 +1,45 @@
+---
+interface Props {
+  rate: number;
+  label?: string;
+  color?: 'sky' | 'emerald' | 'amber';
+  isPopular?: boolean;
+  class?: string;
+}
+
+const {
+  rate,
+  label,
+  color = 'sky',
+  isPopular = false,
+  class: customClass = '',
+} = Astro.props;
+
+const colorStyles = {
+  sky: 'bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/40 dark:text-sky-300 dark:border-sky-800/60',
+  emerald: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/60',
+  amber: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800/60',
+};
+
+const displayLabel = label || `${rate}% Komisi Recurring`;
+---
+
+<span
+  class:list={[
+    'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border whitespace-nowrap shrink-0',
+    colorStyles[color],
+    isPopular ? 'ring-2 ring-emerald-500/20' : '',
+    customClass,
+  ]}
+>
+  <span
+    class:list={[
+      'w-2 h-2 rounded-full',
+      color === 'sky' && 'bg-sky-500',
+      color === 'emerald' && 'bg-emerald-500',
+      color === 'amber' && 'bg-amber-500',
+    ]}
+    aria-hidden="true"
+  ></span>
+  <span>{displayLabel}</span>
+</span>

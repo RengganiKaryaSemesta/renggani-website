@@ -1,0 +1,35 @@
+---
+import type { PartnerStep } from 'src/data/partnerSteps';
+import PartnerStepBadge from '@components/atoms/partner/PartnerStepBadge.astro';
+
+interface Props {
+  step: PartnerStep;
+}
+
+const { step } = Astro.props;
+---
+
+<div class="relative flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-6 md:p-7 shadow-xs hover:shadow-md transition-shadow">
+  <div>
+    <div class="flex items-center justify-between mb-5">
+      <PartnerStepBadge step={step.step} />
+      <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+        Tahap {step.step}
+      </span>
+    </div>
+
+    <h3 class="font-sans text-lg font-bold text-slate-900 dark:text-white mb-2">
+      {step.title}
+    </h3>
+
+    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+      {step.description}
+    </p>
+  </div>
+
+  <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+    <p class="text-xs text-slate-500 dark:text-slate-400 italic">
+      {step.detail}
+    </p>
+  </div>
+</div>

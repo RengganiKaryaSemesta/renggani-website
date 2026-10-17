@@ -30,12 +30,13 @@ const NavList: React.FC<NavListProps> = ({ isMobile = false, currentPathName = '
   const isHomeActive = cleanPath === '' || cleanPath === '/';
   const isBlogsActive = cleanPath === '/blogs' || cleanPath.startsWith('/blogs/');
   const isAboutActive = cleanPath === '/about-us' || cleanPath.startsWith('/about-us/');
-
+  const isPartnerActive = cleanPath === '/partner' || cleanPath.startsWith('/partner/');
   return (
     <ul className={`${isMobile ? 'flex flex-col justify-start gap-6' : 'lg:flex items-center hidden'} xl:gap-5 lg:gap-3 font-roboto`}>
       <NavLink scrolledDefault={isMobile || isSolid} href="/" isActive={isHomeActive}>Beranda</NavLink>
       <NavDropdown isMobile={isMobile} currentPathName={currentPathName} scrolled={isMobile || scrolled} />
       <NavLink scrolledDefault={isMobile || isSolid} href="/blogs" isActive={isBlogsActive}>Blog</NavLink>
+      <NavLink scrolledDefault={isMobile || isSolid} href="/partner" isActive={isPartnerActive}>Partner</NavLink>
       <NavLink scrolledDefault={isMobile || isSolid} href="/about-us" isActive={isAboutActive}>Tentang</NavLink>
     </ul>
   );

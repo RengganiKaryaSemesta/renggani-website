@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PartnerHero from "@components/organisms/partner/PartnerHero.astro";
+import PartnerTiers from "@components/organisms/partner/PartnerTiers.astro";
+import PartnerCalculatorSection from "@components/organisms/partner/PartnerCalculatorSection.astro";
+import PartnerProductsSection from "@components/organisms/partner/PartnerProductsSection.astro";
+import PartnerHowItWorks from "@components/organisms/partner/PartnerHowItWorks.astro";
+import PartnerBenefits from "@components/organisms/partner/PartnerBenefits.astro";
+import PartnerFaqSection from "@components/organisms/partner/PartnerFaqSection.astro";
+import PartnerCtaBanner from "@components/organisms/partner/PartnerCtaBanner.astro";
+import { PARTNER_FAQS } from "src/data/partnerFaq";
+
+const pageTitle = "Program Kemitraan & Afiliasi SaaS CV. Renggani Karya Semesta | Komisi hingga 25% Berkelanjutan";
+const pageDescription = "Bergabung menjadi mitra resmi CV. Renggani Karya Semesta. Dapatkan komisi berkelanjutan 5%, 15%, hingga 25% setiap kali klien referal Anda melakukan pembayaran BukuBatik dan software SaaS Renggani.";
+const pageKeywords = "program partner, afiliasi saas, referral software, komisi recurring, program kemitraan software, cv renggani karya semesta, bukubatik partner, rksworkmate affiliate, passive income b2b, software house banyuwangi";
+const ogImageUrl = "https://www.rengganikaryasemesta.com/rks_logo.webp";
+
+// JSON-LD Structured Data Schema.org
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.rengganikaryasemesta.com/partner#webpage",
+      "url": "https://www.rengganikaryasemesta.com/partner",
+      "name": pageTitle,
+      "description": pageDescription,
+      "publisher": {
+        "@type": "Organization",
+        "name": "CV. Renggani Karya Semesta",
+        "url": "https://www.rengganikaryasemesta.com",
+        "logo": "https://www.rengganikaryasemesta.com/rks_logo.webp"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.rengganikaryasemesta.com/partner#faq",
+      "mainEntity": PARTNER_FAQS.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }
+  ]
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  image={ogImageUrl}
+  type="website"
+  isSolid={true}
+>
+  <!-- JSON-LD Structured Data for Rich Search Snippets -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} slot="head" />
+
+  <main>
+    <!-- 1. Hero Section -->
+    <PartnerHero />
+
+    <!-- 2. Skema Komisi Bertingkat (5%, 15%, 25%) -->
+    <PartnerTiers />
+
+    <!-- 3. Kalkulator Komisi Interaktif -->
+    <PartnerCalculatorSection />
+
+    <!-- 4. Katalog Produk SaaS (BukuBatik, RKSWorkmate, Custom Dev) -->
+    <PartnerProductsSection />
+
+    <!-- 5. Alur Kemitraan 4 Langkah -->
+    <PartnerHowItWorks />
+
+    <!-- 6. Keunggulan & Benefit Mitra -->
+    <PartnerBenefits />
+
+    <!-- 7. Tanya Jawab (FAQ) -->
+    <PartnerFaqSection />
+
+    <!-- 8. Banner Penutup & Kontak WhatsApp Kemitraan -->
+    <PartnerCtaBanner />
+  </main>
+</Layout>

@@ -1,0 +1,113 @@
+---
+import type { PartnerTier } from 'src/data/partnerTiers';
+import PartnerTierBadge from '@components/atoms/partner/PartnerTierBadge.astro';
+import PartnerCtaButton from '@components/atoms/partner/PartnerCtaButton.astro';
+import PartnerTierStarterIllustration from '@components/atoms/illustrations/PartnerTierStarterIllustration.astro';
+import PartnerTierProIllustration from '@components/atoms/illustrations/PartnerTierProIllustration.astro';
+import PartnerTierEliteIllustration from '@components/atoms/illustrations/PartnerTierEliteIllustration.astro';
+
+interface Props {
+  tier: PartnerTier;
+}
+
+const { tier } = Astro.props;
+
+const encodedMessage = encodeURIComponent(tier.whatsappMessage);
+const whatsappUrl = `https://api.whatsapp.com/send?phone=6289512589756&text=${encodedMessage}`;
+
+const borderAccent = tier.popular
+  ? 'border-emerald-500 shadow-xl shadow-emerald-950/5 ring-2 ring-emerald-500/20'
+  : 'border-slate-200 dark:border-slate-800 shadow-sm';
+---
+
+<div
+  class:list={[
+    'relative flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900 border p-6 md:p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1',
+    borderAccent,
+  ]}
+>
+  {tier.popular && (
+    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-600 text-white shadow-md shadow-emerald-600/30">
+        Paling Diminati Mitra
+      </span>
+    </div>
+  )}
+
+  <div>
+    <!-- Illustration Slot -->
+    <div class="mb-6 overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-800/40 p-2">
+      {tier.id === 'starter' && <PartnerTierStarterIllustration />}
+      {tier.id === 'pro' && <PartnerTierProIllustration />}
+      {tier.id === 'elite' && <PartnerTierEliteIllustration />}
+    </div>
+
+    <!-- Header & Badge -->
+    <div class="flex items-start justify-between gap-4 mb-3">
+      <div>
+        <h3 class="font-sans text-xl font-bold text-slate-900 dark:text-white">
+          {tier.name}
+        </h3>
+        <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">
+          {tier.tagline}
+        </p>
+      </div>
+      <PartnerTierBadge rate={tier.rate} color={tier.color} isPopular={tier.popular} />
+    </div>
+
+    <!-- Client Requirement -->
+    <div class="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-3 mb-5 border border-slate-100 dark:border-slate-700/60">
+      <div class="flex items-center justify-between text-xs">
+        <span class="text-slate-500 dark:text-slate-400">Kriteria Klien Aktif:</span>
+        <span class="font-semibold text-slate-900 dark:text-slate-200">{tier.clientRange}</span>
+      </div>
+    </div>
+
+    <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+      {tier.description}
+    </p>
+
+    <!-- Features List -->
+    <div class="space-y-3 mb-8">
+      <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+        Benefit & Fasilitas:
+      </p>
+      <ul class="space-y-2.5">
+        {tier.features.map((feature) => (
+          <li class="flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-200">
+            <svg
+              class:list={[
+                'w-4 h-4 mt-0.5 shrink-0',
+                tier.color === 'sky' && 'text-sky-600 dark:text-sky-400',
+                tier.color === 'emerald' && 'text-emerald-600 dark:text-emerald-400',
+                tier.color === 'amber' && 'text-amber-600 dark:text-amber-400',
+              ]}
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Action CTA -->
+  <div>
+    <PartnerCtaButton
+      href={whatsappUrl}
+      variant={tier.popular ? 'emerald' : 'outline'}
+      size="md"
+      class="w-full"
+    >
+      {tier.ctaText}
+    </PartnerCtaButton>
+  </div>
+</div>

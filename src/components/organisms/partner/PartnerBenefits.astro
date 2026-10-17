@@ -1,0 +1,61 @@
+---
+import PartnerBenefitCard from '@components/molecules/partner/PartnerBenefitCard.astro';
+
+const benefits = [
+  {
+    title: 'Komisi Recurring Tanpa Batas',
+    description:
+      'Selama klien referal Anda aktif memperpanjang langganan SaaS, Anda akan terus menerima komisi bulanan atau tahunan tanpa batas waktu.',
+    badge: 'Recurring Seumur Hidup',
+    iconType: 'recurring' as const,
+  },
+  {
+    title: 'Transparansi Data & Rekapitulasi',
+    description:
+      'Setiap pembayaran dari klien referal tercatat jelas. Anda menerima laporan mutasi komisi terperinci tanpa potongan tersembunyi.',
+    badge: '100% Transparan',
+    iconType: 'transparency' as const,
+  },
+  {
+    title: 'Dukungan Demo dari Tim Ahli RKS',
+    description:
+      'Anda tidak perlu menguasai seluruh aspek teknis. Tim engineer dan sales RKS siap mendampingi Anda presentasi produk kepada prospek.',
+    badge: 'Pendampingan Penuh',
+    iconType: 'support' as const,
+  },
+  {
+    title: 'Payout Tepat Waktu Setiap Bulan',
+    description:
+      'Komisi ditransfer otomatis setiap tanggal 10 tiap bulannya ke seluruh rekening bank nasional tanpa proses birokrasi yang rumit.',
+    badge: 'Pencairan Otomatis',
+    iconType: 'payout' as const,
+  },
+];
+---
+
+<section id="keuntungan" class="py-16 lg:py-24 bg-slate-50 dark:bg-slate-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-12 lg:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200/80 dark:border-blue-800 text-xs font-semibold uppercase tracking-wider mb-3">
+        Keunggulan Program
+      </div>
+      <h2 class="font-sans text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Mengapa Bermitra dengan CV. Renggani Karya Semesta?
+      </h2>
+      <p class="font-roboto text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-3 max-w-2xl mx-auto leading-relaxed">
+        Kami membangun hubungan kemitraan jangka panjang berbasis kepercayaan, integritas teknis, dan pertumbuhan bisnis bersama.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {benefits.map((benefit) => (
+        <PartnerBenefitCard
+          title={benefit.title}
+          description={benefit.description}
+          badge={benefit.badge}
+          iconType={benefit.iconType}
+        />
+      ))}
+    </div>
+  </div>
+</section>

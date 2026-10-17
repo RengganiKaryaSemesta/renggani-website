@@ -21,7 +21,8 @@ const isSolid = isSolidProp
     || currentPathName.startsWith('/portfolios') 
     || currentPathName.startsWith('/contact-us') 
     || currentPathName.startsWith('/kebijakan-privasi') 
-    || currentPathName.startsWith('/privacy-policy');
+    || currentPathName.startsWith('/privacy-policy')
+    || currentPathName.startsWith('/partner');
 ---
 
 <div class="relative">
@@ -72,7 +73,8 @@ const isSolid = isSolidProp
             || path.startsWith('/portfolios')
             || path.startsWith('/contact-us')
             || path.startsWith('/kebijakan-privasi')
-            || path.startsWith('/privacy-policy');
+            || path.startsWith('/privacy-policy')
+            || path.startsWith('/partner');
         
         function updateNavbar() {
             if (window.scrollY > 50 || isSolid) {

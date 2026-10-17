@@ -1,0 +1,33 @@
+---
+import { PARTNER_STEPS } from 'src/data/partnerSteps';
+import PartnerStepCard from '@components/molecules/partner/PartnerStepCard.astro';
+import PartnerWorkflowIllustration from '@components/atoms/illustrations/PartnerWorkflowIllustration.astro';
+---
+
+<section id="cara-kerja" class="py-16 lg:py-24 bg-white dark:bg-slate-900 border-t border-slate-200/80 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-12 lg:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200/80 dark:border-blue-800 text-xs font-semibold uppercase tracking-wider mb-3">
+        Langkah Kemitraan
+      </div>
+      <h2 class="font-sans text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Alur Kemitraan 4 Langkah Sederhana
+      </h2>
+      <p class="font-roboto text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-3 max-w-2xl mx-auto leading-relaxed">
+        Proses mudah dan transparan dari awal pendaftaran hingga transfer komisi recurring rutin ke rekening bank Anda.
+      </p>
+    </div>
+
+    <!-- Workflow Diagram Banner -->
+    <div class="mb-12 hidden md:block">
+      <PartnerWorkflowIllustration />
+    </div>
+
+    <!-- 4 Steps Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {PARTNER_STEPS.map((step) => (
+        <PartnerStepCard step={step} />
+      ))}
+    </div>
+  </div>
+</section>

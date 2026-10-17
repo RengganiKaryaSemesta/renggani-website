@@ -1,0 +1,18 @@
+---
+interface Props {
+  step: string;
+  class?: string;
+}
+
+const { step, class: customClass = '' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-50 text-blue-800 font-mono text-sm font-bold border border-blue-200/80 shadow-xs dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800/60',
+    customClass,
+  ]}
+  aria-label={`Langkah ${step}`}
+>
+  {step}
+</div>
