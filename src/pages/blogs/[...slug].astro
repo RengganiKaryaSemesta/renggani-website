@@ -17,11 +17,73 @@ const { slug } = Astro.params;
 const post = await getPost(slug!);
 
 if (!post) {
-    return Astro.redirect("/404");
+    return Astro.redirect("/404", 302);
 }
+
+const canonicalPostUrl = `https://rengganikaryasemesta.com/blogs/${post.slug.current}/`;
+const postImageUrl = post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : "https://rengganikaryasemesta.com/og-image.jpg";
+
+const articleSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Beranda",
+                    "item": "https://rengganikaryasemesta.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Blog",
+                    "item": "https://rengganikaryasemesta.com/blogs/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": post.title,
+                    "item": canonicalPostUrl
+                }
+            ]
+        },
+        {
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": canonicalPostUrl
+            },
+            "headline": post.title,
+            "description": post.excerpt || post.title,
+            "image": postImageUrl,
+            "datePublished": post.publishedAt || new Date().toISOString(),
+            "dateModified": post.publishedAt || new Date().toISOString(),
+            "author": {
+                "@type": "Person",
+                "name": post.author?.name || "Tim CV. Renggani Karya Semesta"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "CV. Renggani Karya Semesta",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://rengganikaryasemesta.com/logo_color.webp"
+                }
+            }
+        }
+    ]
+};
 ---
 
-<Layout title={`${post.title} | Blog Renggani`} description={post.excerpt || ""} type="article">
+<Layout 
+    title={`${post.title} | Blog Renggani`} 
+    description={post.excerpt || post.title} 
+    type="article"
+    image={postImageUrl}
+>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head" />
     <main class="bg-white dark:bg-gray-900 pt-32 pb-20 font-roboto">
         <div class="max-w-7xl mx-auto px-5 lg:px-20">
             <!-- Breadcrumb -->

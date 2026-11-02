@@ -18,6 +18,7 @@ const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
 // https://docs.astro.build/en/guides/integrations-guide/vercel/
 export default defineConfig({
   site: 'https://rengganikaryasemesta.com',
+  trailingSlash: 'always',
   prefetch: {
     prefetchAll: false,
     defaultStrategy: 'tap',
@@ -47,11 +48,39 @@ export default defineConfig({
     react(),
     tailwind(),
     icon(),
-    sitemap(),
+    sitemap({
+      filter: (page) =>
+        !page.includes('/404') &&
+        !page.includes('/privacy-policy'),
+      serialize(item) {
+        const url = item.url;
+        if (url === 'https://rengganikaryasemesta.com/' || url === 'https://rengganikaryasemesta.com') {
+          item.priority = 1.0;
+          item.changefreq = 'weekly';
+        } else if (
+          url.includes('/services') ||
+          url.includes('/bukubatik') ||
+          url.includes('/rksworkmate')
+        ) {
+          item.priority = 0.9;
+          item.changefreq = 'weekly';
+        } else if (url.includes('/blogs')) {
+          item.priority = 0.8;
+          item.changefreq = 'weekly';
+        } else if (url.includes('/about-us')) {
+          item.priority = 0.7;
+          item.changefreq = 'monthly';
+        } else {
+          item.priority = 0.5;
+          item.changefreq = 'monthly';
+        }
+        return item;
+      },
+    }),
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID || '4dg8jgb1',
       dataset: PUBLIC_SANITY_DATASET || 'production',
-      useCdn: false,
+      useCdn: true,
     }),
   ],
 });

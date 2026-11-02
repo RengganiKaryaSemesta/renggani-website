@@ -3,12 +3,77 @@ import Layout from "../../layouts/Layout.astro";
 import CallToAction from "@components/organisms/CallToAction.astro";
 import ServiceBanner from "@components/organisms/ServiceBanner.astro";
 import ServiceList from "@components/organisms/ServiceList.astro";
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://rengganikaryasemesta.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Layanan",
+          "item": "https://rengganikaryasemesta.com/services/"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Jasa Pembuatan Website & Pengembangan Software Custom",
+      "serviceType": "Software Development & IT Solutions",
+      "provider": {
+        "@type": "Organization",
+        "name": "CV. Renggani Karya Semesta",
+        "url": "https://rengganikaryasemesta.com/"
+      },
+      "areaServed": "Indonesia",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Layanan IT & Pengembangan Software",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Website Development",
+              "description": "Pengembangan website perusahaan, landing page, dan portal web responsif dengan teknologi modern."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Mobile Application Development",
+              "description": "Pembuatan aplikasi mobile Android dan iOS performa tinggi dan user friendly."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "ERP & Custom Software Solutions",
+              "description": "Perancangan sistem ERP terintegrasi, manajemen persediaan, dan otomasi operasional bisnis."
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
 ---
 
 <Layout
-    title="Layanan - Renggani Karya Semesta"
-    description="Renggani Karya Semesta menyediakan solusi teknologi yang handal dan inovatif, termasuk pengembangan website, aplikasi mobile, ERP, dan e-commerce. Kami berkomitmen untuk membantu bisnis Anda tumbuh dan berkembang melalui layanan yang disesuaikan dengan kebutuhan Anda."
+    title="Layanan Jasa Pembuatan Website, Mobile Apps & ERP | CV. Renggani Karya Semesta"
+    description="Solusi IT profesional: Jasa pembuatan website kilat, aplikasi Android & iOS, software ERP terintegrasi, dan e-commerce oleh CV. Renggani Karya Semesta."
+    keywords="jasa pembuatan website, jasa buat aplikasi android, jasa aplikasi ios, vendor software erp, jasa custom web development, software house profesional indonesia"
 >
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(servicesSchema)} slot="head" />
     <ServiceBanner />
     <ServiceList />
 

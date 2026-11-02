@@ -21,9 +21,47 @@ const mappedOtherBlogs = otherBlogs.map((blog: any) => ({
 
 const rawCategories: string[] = blogs.flatMap((blog: any) => blog.categories ? blog.categories.map((c: any) => String(c.title || '')) : []);
 const categories: string[] = Array.from(new Set(rawCategories)).filter((c): c is string => Boolean(c));
+const blogsSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://rengganikaryasemesta.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog & Wawasan Teknologi",
+          "item": "https://rengganikaryasemesta.com/blogs/"
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://rengganikaryasemesta.com/blogs/#collection",
+      "url": "https://rengganikaryasemesta.com/blogs/",
+      "name": "Blog & Wawasan Teknologi IT | CV. Renggani Karya Semesta",
+      "description": "Kumpulan artikel, tren teknologi web, panduan arsitektur software, ERP, dan tutorial bisnis terpercaya.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://rengganikaryasemesta.com/#website"
+      }
+    }
+  ]
+};
 ---
 
-<Layout title="Blog & Wawasan Teknologi | CV Renggani Karya Semesta" description="Tips, panduan bisnis, dan artikel teknologi terbaru dari tim ahli CV Renggani Karya Semesta.">
+<Layout
+    title="Blog & Wawasan Teknologi IT | CV. Renggani Karya Semesta"
+    description="Tips, strategi digital, arsitektur software, dan artikel tren teknologi terbaru dari tim ahli CV. Renggani Karya Semesta."
+    keywords="blog teknologi indonesia, artikel web development, panduan erp, tren teknologi 2026, software engineering blog"
+>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(blogsSchema)} slot="head" />
     <main class="bg-white dark:bg-gray-900 pt-32 pb-20 font-roboto">
         <div class="max-w-7xl mx-auto px-5 lg:px-20 space-y-16">
             

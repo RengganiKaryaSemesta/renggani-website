@@ -6,12 +6,67 @@ import HomePortfolio from "@components/organisms/HomePortfolio.astro";
 import HomeService from "@components/organisms/HomeService.astro";
 import HomeStacks from "@components/organisms/HomeStacks.astro";
 import CallToAction from "@components/organisms/CallToAction.astro";
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://rengganikaryasemesta.com/#website",
+      "url": "https://rengganikaryasemesta.com/",
+      "name": "CV. Renggani Karya Semesta",
+      "description": "Software house terpercaya untuk jasa pembuatan website profesional, aplikasi Android/iOS, sistem ERP bisnis, BukuBatik, dan RKSWorkmate.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://rengganikaryasemesta.com/blogs/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://rengganikaryasemesta.com/#localservice",
+      "name": "CV. Renggani Karya Semesta",
+      "image": "https://rengganikaryasemesta.com/logo_color.webp",
+      "url": "https://rengganikaryasemesta.com/",
+      "telephone": "+6289512589756",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jl. Kemiren, Kemiren, Kec. Glagah",
+        "addressLocality": "Kabupaten Banyuwangi",
+        "addressRegion": "Jawa Timur",
+        "postalCode": "68432",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -8.2045,
+        "longitude": 114.3312
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
+    }
+  ]
+};
 ---
 
 <Layout
-    title="Renggani Karya Semesta - Software House dengan Banyak Produk Unggulan"
-    description="Renggani Karya Semesta adalah software house yang memiliki banyak produk software unggulan. Kami menawarkan solusi IT inovatif untuk kebutuhan bisnis Anda."
+    title="Jasa Pembuatan Website, Aplikasi Mobile & Software House | CV. Renggani Karya Semesta"
+    description="CV. Renggani Karya Semesta adalah software house terpercaya penyedia jasa pembuatan website kilat & profesional, aplikasi mobile iOS/Android, ERP perusahaan, BukuBatik, dan RKSWorkmate."
+    keywords="software house indonesia, jasa pembuatan website, pembuatan aplikasi mobile, software house banyuwangi, web development indonesia, aplikasi erp perusahaan, bukubatik, rksworkmate, konsultan IT"
 >
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(homeSchema)} slot="head" />
     <HomeBanner />
     <HomeOurExcellences />
     <HomeService/>

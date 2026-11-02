@@ -5,7 +5,7 @@ import PricingList from "@components/organisms/PricingList.astro";
 const pageTitle = "BukuBatik Pricing — Paket Harga Sistem Akuntansi Bisnis | Renggani";
 const pageDescription = "Lihat paket harga BukuBatik dengan opsi Starter, Bisnis, dan Enterprise. Pilih solusi sistem akuntansi yang tepat untuk bisnis Anda.";
 const pageKeywords = "buku batik, bukubatik, harga sistem akuntansi, software akuntansi umkm, paket software akuntansi, pricing buku batik";
-const ogImageUrl = "https://www.rengganikaryasemesta.com/buku-batik-pricing.png";
+const ogImageUrl = "https://rengganikaryasemesta.com/buku-batik.png";
 
 // JSON-LD Structured Data
 const structuredData = {
@@ -27,8 +27,31 @@ const structuredData = {
       "publisher": {
         "@type": "Organization",
         "name": "CV. Renggani Karya Semesta",
-        "url": "https://www.rengganikaryasemesta.com"
+        "url": "https://rengganikaryasemesta.com/"
       }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://rengganikaryasemesta.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "BukuBatik",
+          "item": "https://rengganikaryasemesta.com/bukubatik/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Harga",
+          "item": "https://rengganikaryasemesta.com/bukubatik/pricing/"
+        }
+      ]
     }
   ]
 };

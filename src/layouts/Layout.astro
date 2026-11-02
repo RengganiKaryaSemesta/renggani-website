@@ -24,9 +24,13 @@ const {
     keywords = "CV Renggani Karya Semesta, pengembangan web, pengembangan perangkat lunak, software house, e-commerce, website gratis, jasa pembuatan website, pembuatan aplikasi, IT solutions, solusi teknologi, teknologi informasi, web development, software development, mobile app development, jasa IT, digital marketing, desain web, website profesional, hosting web, manajemen konten, integrasi sistem, layanan IT, Banyuwangi, Bali"
 } = Astro.props;
 
-const currentOrigin = Astro.url.origin;
-const canonicalURL = new URL(Astro.url.pathname, currentOrigin).href;
-const imageURL = image.startsWith("http") ? image : new URL(image, currentOrigin).href;
+const siteURL = Astro.site ? Astro.site.origin : "https://rengganikaryasemesta.com";
+let pathname = Astro.url.pathname;
+if (!pathname.endsWith("/")) {
+    pathname = `${pathname}/`;
+}
+const canonicalURL = new URL(pathname, siteURL).href;
+const imageURL = image.startsWith("http") ? image : new URL(image, siteURL).href;
 ---
 
 <!doctype html>
@@ -73,6 +77,53 @@ const imageURL = image.startsWith("http") ? image : new URL(image, currentOrigin
             name="google-site-verification"
             content="7dviPrN0hKnhLyHuHhuvoUEt7caxYqUziESI7ZsUJDQ"
         />
+
+        <!-- Global JSON-LD Schema (Organization & WebSite) -->
+        <script is:inline type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "@id": "https://rengganikaryasemesta.com/#organization",
+                    "name": "CV. Renggani Karya Semesta",
+                    "url": "https://rengganikaryasemesta.com/",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://rengganikaryasemesta.com/logo_color.webp",
+                        "caption": "CV. Renggani Karya Semesta"
+                    },
+                    "description": "Software house terkemuka di Indonesia yang menyediakan solusi pengembangan web, aplikasi mobile, ERP, dan produk software unggulan seperti BukuBatik dan RKSWorkmate.",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "Jl. Kemiren, Kemiren, Kec. Glagah",
+                        "addressLocality": "Kabupaten Banyuwangi",
+                        "addressRegion": "Jawa Timur",
+                        "postalCode": "68432",
+                        "addressCountry": "ID"
+                    },
+                    "contactPoint": {
+                        "@type": "ContactPoint",
+                        "telephone": "+6289512589756",
+                        "contactType": "customer service",
+                        "availableLanguage": ["Indonesian", "English"]
+                    },
+                    "sameAs": [
+                        "https://www.instagram.com/rengganiks/",
+                        "https://www.youtube.com/@rengganikaryasemesta"
+                    ]
+                },
+                {
+                    "@type": "WebSite",
+                    "@id": "https://rengganikaryasemesta.com/#website",
+                    "url": "https://rengganikaryasemesta.com/",
+                    "name": "CV. Renggani Karya Semesta",
+                    "publisher": {
+                        "@id": "https://rengganikaryasemesta.com/#organization"
+                    },
+                    "inLanguage": "id-ID"
+                }
+            ]
+        })} />
 
         <slot name="head" />
     </head>

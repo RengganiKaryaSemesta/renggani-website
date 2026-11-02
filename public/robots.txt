@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /404/
+Disallow: /privacy-policy/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /404/
+Disallow: /privacy-policy/
 
 Sitemap: https://rengganikaryasemesta.com/sitemap-index.xml

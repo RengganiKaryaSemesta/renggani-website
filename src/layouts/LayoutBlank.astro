@@ -8,17 +8,23 @@ interface Props {
     title: string;
     description?: string;
     image?: string;
+    robots?: string;
 }
 
 const { 
     title,
     description = "Renggani Karya Semesta adalah software house yang memiliki banyak produk software unggulan. Kami menawarkan solusi IT inovatif untuk kebutuhan bisnis Anda.",
-    image = "/og-image.jpg"
+    image = "/og-image.jpg",
+    robots = "index, follow, max-image-preview:large"
 } = Astro.props;
 
-const currentOrigin = Astro.url.origin;
-const canonicalURL = new URL(Astro.url.pathname, currentOrigin).href;
-const imageURL = image.startsWith("http") ? image : new URL(image, currentOrigin).href;
+const siteURL = Astro.site ? Astro.site.origin : "https://rengganikaryasemesta.com";
+let pathname = Astro.url.pathname;
+if (!pathname.endsWith("/")) {
+    pathname = `${pathname}/`;
+}
+const canonicalURL = new URL(pathname, siteURL).href;
+const imageURL = image.startsWith("http") ? image : new URL(image, siteURL).href;
 ---
 
 <!doctype html>
@@ -35,7 +41,7 @@ const imageURL = image.startsWith("http") ? image : new URL(image, currentOrigin
         <title>{title}</title>
         <meta name="title" content={title} />
         <meta name="description" content={description} />
-        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="robots" content={robots} />
         <meta
             name="keywords"
             content="Renggani Karya Semesta, software house, produk software, pengembangan perangkat lunak, solusi IT, pengembangan aplikasi, software development"

@@ -3,12 +3,47 @@ import Layout from "../../layouts/Layout.astro";
 import CallToAction from "@components/organisms/CallToAction.astro";
 import AboutBanner from "@components/organisms/AboutBanner.astro";
 import AboutVisionMission from "@components/organisms/AboutVisionMission.astro";
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://rengganikaryasemesta.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tentang Kami",
+          "item": "https://rengganikaryasemesta.com/about-us/"
+        }
+      ]
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://rengganikaryasemesta.com/about-us/#about",
+      "url": "https://rengganikaryasemesta.com/about-us/",
+      "name": "Tentang CV. Renggani Karya Semesta",
+      "description": "Profil, visi, misi, dan tim profesional di balik CV. Renggani Karya Semesta, software house dan mitra transformasi digital terpercaya.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://rengganikaryasemesta.com/#website"
+      }
+    }
+  ]
+};
 ---
 
 <Layout
-    title="Tentang Kami - Renggani Karya Semesta"
-    description="Visi, misi, dan nilai-nilai kami membimbing langkah kami untuk memberikan solusi yang unggul dalam industri kami."
+    title="Tentang Kami — Profil Software House Terpercaya | CV. Renggani Karya Semesta"
+    description="Kenali CV. Renggani Karya Semesta: visi, misi, nilai budaya, dan keahlian tim kami dalam menghadirkan solusi teknologi informasi & software terdepan di Indonesia."
+    keywords="tentang renggani karya semesta, profil software house, tim developer web indonesia, visi misi renggani, software house banyuwangi"
 >
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(aboutSchema)} slot="head" />
     <AboutBanner />
     <AboutVisionMission />
     
