@@ -1,7 +1,7 @@
 ---
 interface Props {
   href: string;
-  variant?: "primary" | "secondary" | "whatsapp" | "outline" | "crimson";
+  variant?: "primary" | "secondary" | "whatsapp" | "outline" | "crimson" | "orange" | "blue" | "white" | "ghost";
   size?: "sm" | "md" | "lg";
   target?: string;
   rel?: string;
@@ -27,7 +27,7 @@ const sizeStyles = {
 
 const variantStyles = {
   primary:
-    "bg-rose-900 hover:bg-rose-850 text-white shadow-lg shadow-rose-900/20 hover:shadow-rose-900/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
+    "bg-rose-900 hover:bg-rose-800 text-white shadow-lg shadow-rose-900/20 hover:shadow-rose-900/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
   crimson:
     "bg-rose-900 hover:bg-rose-800 text-white shadow-lg shadow-rose-900/20 hover:shadow-rose-900/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
   whatsapp:
@@ -36,6 +36,14 @@ const variantStyles = {
     "bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 shadow-sm hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
   outline:
     "border border-slate-300 dark:border-slate-700 hover:border-rose-900 dark:hover:border-rose-700 text-slate-700 dark:text-slate-200 hover:text-rose-900 dark:hover:text-rose-400 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm",
+  orange:
+    "bg-orange-600 hover:bg-orange-700 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
+  blue:
+    "bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
+  white:
+    "bg-white text-slate-800 border border-slate-300 hover:bg-slate-50 shadow-sm",
+  ghost:
+    "bg-white/10 text-white border border-white/40 hover:bg-white/20",
 };
 ---
 

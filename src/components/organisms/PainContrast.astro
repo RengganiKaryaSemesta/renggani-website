@@ -1,0 +1,44 @@
+---
+import { Icon } from "astro-icon/components";
+import SectionHeader from "@components/molecules/SectionHeader.astro";
+
+interface Props {
+  title: string;
+  beforeLabel: string;
+  afterLabel: string;
+  items: { before: string; after: string }[];
+  class?: string;
+}
+
+const { title, beforeLabel, afterLabel, items, class: customClass = "" } = Astro.props;
+---
+
+<section class:list={["py-16 md:py-24", customClass]}>
+  <div class="max-w-6xl mx-auto px-5 lg:px-8">
+    <SectionHeader title={title} />
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <div class="rounded-3xl border border-slate-200/80 bg-slate-50 p-7">
+        <h3 class="text-sm font-bold text-slate-500">{beforeLabel}</h3>
+        <ul class="mt-5 space-y-4">
+          {items.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-600">
+              <Icon name="mdi:close-circle-outline" class="mt-0.5 shrink-0 text-lg text-slate-400" />
+              <span>{item.before}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="rounded-3xl border border-blue-200 bg-blue-50/50 p-7">
+        <h3 class="text-sm font-bold text-blue-700">{afterLabel}</h3>
+        <ul class="mt-5 space-y-4">
+          {items.map((item) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700">
+              <Icon name="mdi:check-circle" class="mt-0.5 shrink-0 text-lg text-blue-600" />
+              <span>{item.after}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

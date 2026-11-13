@@ -14,7 +14,6 @@ interface DropdownItem {
 interface NavDropdownProps {
   isMobile?: boolean;
   currentPathName: string;
-  scrolled?: boolean;
 }
 
 const servicesItems: DropdownItem[] = [
@@ -54,7 +53,7 @@ const servicesItems: DropdownItem[] = [
   },
 ];
 
-const NavDropdown: React.FC<NavDropdownProps> = ({ isMobile = false, currentPathName = '', scrolled = false }) => {
+const NavDropdown: React.FC<NavDropdownProps> = ({ isMobile = false, currentPathName = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -171,19 +170,13 @@ const NavDropdown: React.FC<NavDropdownProps> = ({ isMobile = false, currentPath
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        className={`group font-medium border-2 px-6 py-2.5 rounded-full flex items-center gap-1.5 transition-all duration-300 focus:outline-none ${
-          scrolled
-            ? isLayananActive
-              ? 'text-white dark:bg-gray-900 dark:text-white border-blue-800 bg-blue-800'
-              : 'border-transparent dark:text-gray-300 text-gray-800 hover:text-white hover:border-blue-800 hover:bg-blue-800 dark:hover:bg-gray-900 dark:hover:border-gray-800'
-            : isLayananActive
-              ? 'border-white backdrop-blur-sm bg-white/10 text-white'
-              : 'border-transparent text-white hover:border-white hover:backdrop-blur-sm hover:bg-white/10'
+        className={`group flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${
+          isLayananActive ? 'text-blue-700' : 'text-slate-600 hover:text-blue-700'
         }`}
       >
         <span>Layanan</span>
         <svg
-          className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'group-hover:translate-y-0.5'}`}
+          className={`h-3.5 w-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'group-hover:translate-y-0.5'}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

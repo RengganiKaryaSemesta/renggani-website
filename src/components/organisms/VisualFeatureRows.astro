@@ -1,0 +1,56 @@
+---
+import { Icon } from "astro-icon/components";
+import ScreenshotFrame from "@components/molecules/ScreenshotFrame.astro";
+import MobileFrame from "@components/molecules/MobileFrame.astro";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  items: {
+    title: string;
+    body: string;
+    bullets: string[];
+    media: { kind: "screenshot"; image: ImageMetadata; alt: string; caption: string } | { kind: "mobile"; images: { image: ImageMetadata; alt: string }[] };
+    href: string;
+    hrefLabel: string;
+  }[];
+  accent?: "orange" | "blue";
+  class?: string;
+}
+
+const { items, accent = "orange", class: customClass = "" } = Astro.props;
+const accentText = accent === "orange" ? "text-orange-600" : "text-blue-600";
+---
+
+<div class:list={["space-y-16 md:space-y-24", customClass]}>
+  {items.slice(0, 2).map((item, index) => (
+    <div class="grid lg:grid-cols-12 gap-8 items-center">
+      <div class:list={["lg:col-span-5", index === 1 && "lg:order-1"]}>
+        <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">{item.title}</h3>
+        <p class="mt-3 text-slate-600 text-sm md:text-base">{item.body}</p>
+        <ul class="mt-5 space-y-3">
+          {item.bullets.slice(0, 3).map((bullet) => (
+            <li class="flex items-start gap-2 text-sm text-slate-700">
+              <Icon name="mdi:check-circle" class:list={["mt-0.5 shrink-0 text-lg", accentText]} />
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
+        <a href={item.href} class:list={["mt-6 inline-flex items-center gap-1.5 text-sm font-bold", accentText]}>
+          {item.hrefLabel}
+          <Icon name="mdi:arrow-right" />
+        </a>
+      </div>
+      <div class:list={["lg:col-span-7", index === 1 && "lg:order-2"]}>
+        {item.media.kind === "screenshot" ? (
+          <ScreenshotFrame image={item.media.image} alt={item.media.alt} caption={item.media.caption} />
+        ) : (
+          <div class="flex justify-center gap-4">
+            {item.media.images.slice(0, 2).map((mobile, mobileIndex) => (
+              <MobileFrame image={mobile.image} alt={mobile.alt} tilt={mobileIndex === 0 ? "left" : "right"} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  ))}
+</div>

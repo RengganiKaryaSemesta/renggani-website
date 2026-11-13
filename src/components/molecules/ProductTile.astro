@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  line: string;
+  href: string;
+  linkLabel: string;
+  image: ImageMetadata;
+  alt: string;
+  span?: "wide" | "normal";
+  accent?: "orange" | "blue";
+  class?: string;
+}
+
+const {
+  title,
+  line,
+  href,
+  linkLabel,
+  image,
+  alt,
+  span = "normal",
+  accent = "orange",
+  class: customClass = "",
+} = Astro.props;
+
+const isWide = span === "wide";
+const accentStyles = {
+  orange: "text-orange-600 group-hover:text-orange-700",
+  blue: "text-blue-600 group-hover:text-blue-700",
+};
+---
+
+<article
+  class:list={[
+    "group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-slate-50 transition-colors hover:bg-white",
+    isWide && "lg:col-span-2 lg:row-span-2",
+    customClass,
+  ]}
+>
+  <div
+    class:list={[
+      "shrink-0 overflow-hidden bg-white",
+      isWide ? "h-72 md:h-[22rem] lg:h-auto lg:min-h-0 lg:flex-1" : "h-48",
+    ]}
+  >
+    <Image
+      src={image}
+      alt={alt}
+      width={isWide ? 1200 : 800}
+      height={isWide ? 700 : 500}
+      format="webp"
+      quality={82}
+      class="w-full h-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="p-6">
+    <h3 class="text-lg font-bold text-slate-900">{title}</h3>
+    <p class="text-sm text-slate-600 mt-1">{line}</p>
+    <a
+      href={href}
+      class:list={[
+        "mt-4 inline-flex items-center gap-1.5 text-sm font-bold transition-colors",
+        accentStyles[accent],
+      ]}
+    >
+      <span>{linkLabel}</span>
+      <Icon name="mdi:arrow-right" class="text-base transition-transform group-hover:translate-x-0.5" />
+    </a>
+  </div>
+</article>

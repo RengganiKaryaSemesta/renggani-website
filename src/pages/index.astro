@@ -1,335 +1,112 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Icon } from "astro-icon/components";
-import FlipInteractiveHero from "@components/organisms/FlipInteractiveHero";
-import CaseStudyTabs from "@components/organisms/CaseStudyTabs";
+import HomeHero from "@components/organisms/HomeHero.astro";
+import HomeProducts from "@components/organisms/HomeProducts.astro";
+import CaseStudyTabs from "@components/organisms/CaseStudyTabs.astro";
+import VisualFeatureRows from "@components/organisms/VisualFeatureRows.astro";
+import CtaBand from "@components/organisms/CtaBand.astro";
+import StatTile from "@components/atoms/StatTile.astro";
+import SectionHeader from "@components/molecules/SectionHeader.astro";
+import ScreenshotFrame from "@components/molecules/ScreenshotFrame.astro";
+import MobileFrame from "@components/molecules/MobileFrame.astro";
+import FaqAccordion from "@components/molecules/FaqAccordion.astro";
+import TechLogoStrip from "@components/molecules/TechLogoStrip.astro";
 
+import dashboardScreen from "@assets/buku-batik/dashboard-screen.png";
+import penjualanScreen from "@assets/buku-batik/penjualan-screen.png";
+import mobileAbsensi from "@assets/rksworkmate/mobile-absensi-facerecognition.png";
+import mobileHome from "@assets/rksworkmate/mobile-home.png";
+import reportAbsensi from "@assets/rksworkmate/report-absensi.png";
+import laravel from "@assets/stacks/laravel.svg";
+import next from "@assets/stacks/next.svg";
+import react from "@assets/stacks/react.svg";
+import vue from "@assets/stacks/vue.svg";
+import flutter from "@assets/stacks/flutter.svg";
+import docker from "@assets/stacks/docker.svg";
+import nodejs from "@assets/stacks/nodejs.svg";
+import python from "@assets/stacks/python.svg";
+import tailwind from "@assets/stacks/tailwind.svg";
+import aws from "@assets/stacks/aws.svg";
+
+const whatsappHref = "https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Renggani%2C%20saya%20mau%20konsultasi%20kebutuhan%20software.";
 const homeSchema = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://rengganikaryasemesta.com/#website",
-      "url": "https://rengganikaryasemesta.com/",
-      "name": "CV. Renggani Karya Semesta",
-      "description": "Software house & digital engineering partner terpercaya di Indonesia. Membangun produk SaaS BukuBatik, RKSWorkmate, dan sistem custom skala enterprise.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://rengganikaryasemesta.com/blogs/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://rengganikaryasemesta.com/#localservice",
-      "name": "CV. Renggani Karya Semesta",
-      "image": "https://rengganikaryasemesta.com/logo_color.webp",
-      "url": "https://rengganikaryasemesta.com/",
-      "telephone": "+6289512589756",
-      "priceRange": "11951",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Jl. Kemiren, Kemiren, Kec. Glagah",
-        "addressLocality": "Kabupaten Banyuwangi",
-        "addressRegion": "Jawa Timur",
-        "postalCode": "68432",
-        "addressCountry": "ID"
-      }
-    }
+    { "@type": "WebSite", "@id": "https://rengganikaryasemesta.com/#website", "url": "https://rengganikaryasemesta.com/", "name": "CV. Renggani Karya Semesta", "description": "Software house & digital engineering partner terpercaya di Indonesia. Membangun produk SaaS BukuBatik dan RKSWorkmate untuk operasional bisnis.", "potentialAction": { "@type": "SearchAction", "target": "https://rengganikaryasemesta.com/blogs/?q={search_term_string}", "query-input": "required name=search_term_string" } },
+    { "@type": "ProfessionalService", "@id": "https://rengganikaryasemesta.com/#localservice", "name": "CV. Renggani Karya Semesta", "image": "https://rengganikaryasemesta.com/logo_color.webp", "url": "https://rengganikaryasemesta.com/", "telephone": "+6289512589756", "priceRange": "11951", "address": { "@type": "PostalAddress", "streetAddress": "Jl. Kemiren, Kemiren, Kec. Glagah", "addressLocality": "Kabupaten Banyuwangi", "addressRegion": "Jawa Timur", "postalCode": "68432", "addressCountry": "ID" } }
   ]
 };
 
-const solutions = [
-  {
-    tag: "Produk SaaS Siap Pakai",
-    title: "BukuBatik & RKSWorkmate",
-    desc: "Aplikasi kasir akuntansi terintegrasi dan sistem presensi GPS payroll yang langsung bisa dipakai operasional harian bisnis Anda tanpa pusing sewa programmer.",
-    link: "/bukubatik",
-    linkText: "Jelajahi Produk",
-    icon: "mdi:cube-outline",
-    color: "text-orange-600 bg-orange-50 border-orange-100"
-  },
-  {
-    tag: "Custom Enterprise & ERP",
-    title: "Sistem Gudang & Logistik",
-    desc: "Butuh sistem yang 100% pas dengan SOP pabrik, gudang barcode (WIS), atau logistik bandara? Kami bangun arsitektur custom dengan database cepat & aman.",
-    link: "/services",
-    linkText: "Pelajari Layanan",
-    icon: "mdi:domain",
-    color: "text-blue-600 bg-blue-50 border-blue-100"
-  },
-  {
-    tag: "White-Label Dev Partner",
-    title: "Kapasitas Tim untuk Agensi",
-    desc: "Agensi digital atau software house yang kehabisan programmer senior? Kami jadi tangan kanan teknik Anda di balik layar (Laravel, Go, Next.js, Flutter).",
-    link: "/en/",
-    linkText: "Partnership Agensi",
-    icon: "mdi:account-group-outline",
-    color: "text-emerald-600 bg-emerald-50 border-emerald-100"
-  }
+const products = [
+  { title: "BukuBatik", line: "Kasir, stok, dan laporan keuangan dalam satu aplikasi.", href: "/bukubatik", linkLabel: "Lihat BukuBatik", image: dashboardScreen, alt: "Dashboard akuntansi BukuBatik" },
+  { title: "RKSWorkmate", line: "Presensi GPS dan payroll otomatis.", href: "/rksworkmate", linkLabel: "Lihat RKSWorkmate", image: mobileHome, alt: "Aplikasi mobile RKSWorkmate" },
+];
+
+const caseStudies = [
+  { id: "bukubatik", tabTitle: "BukuBatik", tabSubtitle: "Multi-tenant SaaS", badge: "Akuntansi & kasir", badgeState: "Live production", headline: "Akuntansi dan kasir untuk transaksi bervolume tinggi", body: "Data terisolasi per tenant dengan antrean worker asinkron.", image: dashboardScreen, alt: "Dashboard BukuBatik", caption: "BukuBatik - modul dashboard", stats: [{ value: "100.000+", label: "Nota per bulan" }, { value: "Zero leak", label: "Isolasi data tenant" }], stack: ["Go", "Laravel", "PostgreSQL", "Redis"] },
+  { id: "payroll", tabTitle: "HRIS & Payroll", tabSubtitle: "Multi-cabang", badge: "SDM", badgeState: "Live production", headline: "Payroll otomatis dan ekspor batch bank", body: "Lembur berlapis, potongan pajak, dan presensi face recognition.", image: reportAbsensi, alt: "Laporan absensi RKSWorkmate", caption: "RKSWorkmate - laporan absensi", stats: [{ value: "1 klik", label: "Batch transfer" }, { value: "Compliance", label: "Potongan pajak" }], stack: ["Laravel", "Vue.js", "PostgreSQL"] },
+];
+
+const logos = [
+  { src: laravel, alt: "Laravel", name: "Laravel" }, { src: next, alt: "Next.js", name: "Next.js" }, { src: react, alt: "React", name: "React" }, { src: vue, alt: "Vue", name: "Vue" }, { src: flutter, alt: "Flutter", name: "Flutter" }, { src: docker, alt: "Docker", name: "Docker" }, { src: nodejs, alt: "Node.js", name: "Node.js" }, { src: python, alt: "Python", name: "Python" }, { src: tailwind, alt: "Tailwind CSS", name: "Tailwind CSS" }, { src: aws, alt: "AWS", name: "AWS" },
 ];
 
 const faqs = [
-  {
-    q: "Apakah source code aplikasi yang dibuat akan menjadi hak milik klien?",
-    a: "Ya, 100%. Untuk seluruh proyek pembuatan aplikasi atau sistem custom, seluruh source code, database, dan dokumentasi arsitektur sepenuhnya menjadi aset milik perusahaan Anda setelah penyelesaian proyek."
-  },
-  {
-    q: "Apa perbedaan produk siap pakai (BukuBatik/RKSWorkmate) dengan sistem custom?",
-    a: "Produk siap pakai langsung aktif hari ini dengan sistem langganan cloud yang ekonomis. Sementara sistem custom kami rancang khusus dari nol untuk mengakomodasi alur kerja, barcode, atau integrasi mesin unik yang tidak bisa diakomodasi software umum."
-  },
-  {
-    q: "Bisa bayar bertahap atau sistem milestone?",
-    a: "Bisa. Untuk proyek custom, skema pembayaran dibagi per milestone hasil kerja nyata (misal: 30% DP, 40% demo staging, 30% setelah live & serah terima). Jadi risiko Anda sangat aman."
-  },
-  {
-    q: "Apakah ada garansi setelah aplikasi selesai dibuat?",
-    a: "Ada. Setiap sistem yang kami rilis mendapatkan garansi perbaikan bug gratis selama minimal 30 hingga 90 hari setelah go-live untuk memastikan operasional tim Anda berjalan tanpa hambatan."
-  }
+  { q: "Apakah source code jadi milik klien?", a: "Ya, seluruh source code, database, dan dokumentasi menjadi aset perusahaan Anda setelah proyek selesai." },
+  { q: "Bisa bayar bertahap?", a: "Bisa, pembayaran dibagi per milestone hasil kerja nyata." },
+  { q: "Ada garansi setelah rilis?", a: "Ada, garansi perbaikan bug 30 sampai 90 hari setelah go-live." },
 ];
 ---
 
-<Layout
-  title="Renggani Karya Semesta — Software House & Produk Digital Terpercaya"
-  description="Solusi software bisnis andalan: BukuBatik SaaS kasir & akuntansi, RKSWorkmate HRIS payroll, serta jasa pembuatan web app & sistem ERP kustom teruji."
-  keywords="software house banyuwangi, bukubatik, rksworkmate, jasa pembuatan website, aplikasi kasir, sistem erp pergudangan, cv renggani karya semesta"
-  isSolid={true}
->
+<Layout title="Renggani Karya Semesta - Software House & Produk Digital Terpercaya" description="Solusi software bisnis andalan: BukuBatik SaaS kasir & akuntansi, RKSWorkmate HRIS payroll, serta jasa pembuatan web app & sistem ERP kustom teruji." keywords="software house banyuwangi, bukubatik, rksworkmate, jasa pembuatan website, aplikasi kasir, sistem erp pergudangan, cv renggani karya semesta" isSolid={true}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(homeSchema)} slot="head" />
 
-  <!-- HERO SECTION: GAYA FLIP.ID (Bersih, Hangat, Manusiawi, Kartu Produk Nyata) -->
-  <section class="pt-28 pb-16 md:pt-36 md:pb-24 bg-gradient-to-b from-orange-50/40 via-white to-slate-50 border-b border-slate-200/80">
+  <HomeHero eyebrow="Software house & mitra rekayasa sistem bisnis" title={{ lead: "Software bisnis yang", accent: "langsung jalan" }} subtitle="Dua produk SaaS untuk operasional harian: akuntansi BukuBatik dan HR serta payroll RKSWorkmate." primary={{ label: "Konsultasi via WhatsApp", href: whatsappHref }} secondary={{ label: "Lihat produk", href: "#produk" }} accent="blue">
+    <div slot="visual" class="relative px-2 sm:px-6">
+      <ScreenshotFrame image={dashboardScreen} alt="Dashboard produksi BukuBatik" caption="BukuBatik - dashboard produksi" priority />
+    </div>
+    <div slot="mobile-left"><MobileFrame image={mobileHome} alt="Beranda mobile RKSWorkmate" tilt="left" /></div>
+    <div slot="mobile-right"><MobileFrame image={mobileAbsensi} alt="Presensi mobile RKSWorkmate" tilt="right" /></div>
+  </HomeHero>
+
+  <section id="produk" class="py-6 md:py-8">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 gap-3 px-5 sm:grid-cols-3 lg:px-8">
+      <StatTile value="100.000+" label="Nota per bulan" icon="mdi:receipt-text-outline" tone="blue" class="p-3" />
+      <StatTile value="100%" label="Source code milik Anda" icon="mdi:shield-check-outline" tone="blue" class="p-3" />
+      <StatTile value="2" label="Produk SaaS aktif" icon="mdi:server-outline" tone="blue" class="p-3" />
+    </div>
+  </section>
+
+  <HomeProducts title="Pilih titik mulai Anda" items={products} accent="blue" />
+
+  <section id="case-studies" class="bg-slate-50 border-y border-slate-200/80 py-16 md:py-24">
     <div class="max-w-6xl mx-auto px-5 lg:px-8">
-      <div class="grid lg:grid-cols-12 gap-10 items-center">
-        <!-- Teks Hero Kiri -->
-        <div class="lg:col-span-7 space-y-6 text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 text-orange-800 text-xs md:text-sm font-semibold border border-orange-200">
-            <span>✨</span>
-            <span>Software House & Mitra Rekayasa Sistem Bisnis</span>
-          </div>
-
-          <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-slate-900 tracking-tight leading-[1.18]">
-            Software handal untuk bisnis Anda, <span class="text-orange-600">tanpa ribet dan transparan</span>.
-          </h1>
-
-          <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-            Dari produk siap pakai seperti <strong>BukuBatik</strong> dan <strong>RKSWorkmate</strong>, hingga pembuatan sistem ERP gudang dan aplikasi kustom. Dibangun oleh software engineer berpengalaman dengan performa kencang.
-          </p>
-
-          <!-- Nilai Kunci Gaya Flip -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-            <div class="p-3 bg-white rounded-2xl border border-slate-200/90 shadow-sm flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center shrink-0 text-base font-bold">
-                ✓
-              </div>
-              <div class="text-xs">
-                <div class="font-bold text-slate-900">Langsung Pakai</div>
-                <div class="text-slate-500">SaaS BukuBatik & HR</div>
-              </div>
-            </div>
-
-            <div class="p-3 bg-white rounded-2xl border border-slate-200/90 shadow-sm flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-base font-bold">
-                ✓
-              </div>
-              <div class="text-xs">
-                <div class="font-bold text-slate-900">Kode Milik Anda</div>
-                <div class="text-slate-500">Source code 100% aman</div>
-              </div>
-            </div>
-
-            <div class="p-3 bg-white rounded-2xl border border-slate-200/90 shadow-sm flex items-center gap-2.5 col-span-2 sm:col-span-1">
-              <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 text-base font-bold">
-                ✓
-              </div>
-              <div class="text-xs">
-                <div class="font-bold text-slate-900">Garansi Bug</div>
-                <div class="text-slate-500">Pendampingan penuh</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tombol Aksi Ramah -->
-          <div class="pt-3 flex flex-wrap items-center gap-4">
-            <a
-              href="https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Pak%20Rizal,%20saya%20tertarik%20untuk%20konsultasi%20software/aplikasi%20Renggani."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200"
-            >
-              <Icon name="mdi:whatsapp" class="text-xl" />
-              <span>Konsultasi Kebutuhan Anda</span>
-            </a>
-
-            <a
-              href="#produk"
-              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-700 font-bold text-sm sm:text-base border border-slate-300 shadow-sm transition-all duration-200"
-            >
-              <span>Lihat Produk & Portofolio</span>
-              <Icon name="mdi:arrow-down" class="text-sm" />
-            </a>
-          </div>
-        </div>
-
-        <!-- Hero Visual Kanan: Widget Interaktif Flip Style -->
-        <div class="lg:col-span-5">
-          <FlipInteractiveHero client:load />
-        </div>
-      </div>
+      <SectionHeader title="Dua produk SaaS yang sudah berjalan" description="BukuBatik untuk operasional akuntansi dan RKSWorkmate untuk HR serta payroll." />
+      <CaseStudyTabs items={caseStudies} accent="blue" class="mt-10" />
     </div>
   </section>
 
-  <!-- HIGHLIGHT SOLUSI / THREE DOORS (Gaya Flip Feature Cards) -->
-  <section id="produk" class="py-16 md:py-24 bg-white px-5 lg:px-8">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <h2 class="text-xs md:text-sm font-bold uppercase tracking-wider text-orange-600">Pilihan Solusi</h2>
-        <p class="mt-2 text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Pilih cara kerja yang paling cocok untuk bisnis Anda
-        </p>
-        <p class="mt-3 text-slate-600 text-sm md:text-base">
-          Apakah Anda butuh aplikasi siap pakai hari ini, software khusus yang disesuaikan SOP perusahaan, atau tim programmer tambahan.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        {solutions.map((item) => (
-          <div class="bg-slate-50/70 hover:bg-white rounded-3xl p-7 border border-slate-200/80 hover:border-orange-300 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-            <div>
-              <div class={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl border mb-5 ${item.color}`}>
-                <Icon name={item.icon} />
-              </div>
-              <div class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">{item.tag}</div>
-              <h3 class="text-xl font-bold text-slate-900">{item.title}</h3>
-              <p class="text-slate-600 text-sm mt-3 leading-relaxed">
-                {item.desc}
-              </p>
-            </div>
-
-            <div class="mt-6 pt-5 border-t border-slate-200/60">
-              <a href={item.link} class="inline-flex items-center gap-1.5 text-sm font-bold text-orange-600 hover:text-orange-700">
-                <span>{item.linkText}</span>
-                <Icon name="mdi:arrow-right" class="text-base" />
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+  <section class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-5 lg:px-8">
+      <SectionHeader title="Sistem yang dekat dengan alur kerja Anda" />
+      <VisualFeatureRows class="mt-10" accent="blue" items={[{ title: "BukuBatik: operasional harian", body: "Penjualan, pembelian, piutang, dan rekonsiliasi bank dalam satu alur.", bullets: ["Multi-cabang dan multi-gudang", "Barcode dan printer termal", "Laporan siap audit"], media: { kind: "screenshot", image: penjualanScreen, alt: "Modul penjualan BukuBatik", caption: "BukuBatik - modul penjualan" }, href: "/bukubatik", hrefLabel: "Lihat modul" }, { title: "RKSWorkmate: presensi dan payroll", body: "Absensi GPS dan wajah, gaji dihitung otomatis.", bullets: ["Anti fake GPS", "Payroll satu klik", "Ekspor batch bank"], media: { kind: "mobile", images: [{ image: mobileAbsensi, alt: "Presensi face recognition RKSWorkmate" }, { image: mobileHome, alt: "Beranda RKSWorkmate" }] }, href: "/rksworkmate", hrefLabel: "Lihat RKSWorkmate" }]} />
     </div>
   </section>
 
-  <!-- SISTEM RIIL YANG SUDAH JALAN (Case Studies Tabs) -->
-  <section class="py-16 md:py-24 bg-slate-50 border-y border-slate-200/80 px-5 lg:px-8">
-    <div class="max-w-6xl mx-auto">
-      <div class="max-w-2xl mb-12">
-        <h2 class="text-xs md:text-sm font-bold uppercase tracking-wider text-blue-600">Sistem Nyata</h2>
-        <p class="mt-2 text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Software produksi yang telah kami bangun dan jalankan
-        </p>
-        <p class="mt-3 text-slate-600 text-sm md:text-base">
-          Bukan sekadar prototipe mockup, ini adalah platform operasional riil yang memproses ratusan ribu transaksi dan data setiap harinya.
-        </p>
-      </div>
-
-      <CaseStudyTabs client:load />
+  <section class="bg-slate-50 border-y border-slate-200/80 py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-5 lg:px-8">
+      <SectionHeader title="Stack yang kami pakai setiap hari" />
+      <TechLogoStrip logos={logos} class="mt-10" />
     </div>
   </section>
 
-  <!-- TRUST & LEADERSHIP: DIRECT WITH ARCHITECT -->
-  <section class="py-16 md:py-20 bg-white px-5 lg:px-8">
-    <div class="max-w-4xl mx-auto">
-      <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-800">
-        <div class="grid md:grid-cols-12 gap-8 items-center">
-          <div class="md:col-span-4 text-center md:text-left">
-            <div class="w-24 h-24 rounded-2xl bg-orange-500/20 text-orange-400 mx-auto md:mx-0 flex items-center justify-center text-3xl font-extrabold border-2 border-orange-500/30">
-              AR
-            </div>
-            <h3 class="text-lg font-extrabold text-white mt-4">Ach Rizal, S.Kom., M.Kom.</h3>
-            <p class="text-xs text-orange-300 font-semibold mt-0.5">Direktur & Lead Architect</p>
-            <div class="mt-3 flex justify-center md:justify-start gap-3">
-              <a href="https://linkedin.com/in/achrizal15" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 text-base" aria-label="LinkedIn">
-                <Icon name="mdi:linkedin" />
-              </a>
-              <a href="https://github.com/achrizal15" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 text-base" aria-label="GitHub">
-                <Icon name="mdi:github" />
-              </a>
-            </div>
-          </div>
 
-          <div class="md:col-span-8 space-y-3">
-            <h4 class="text-xl md:text-2xl font-bold text-white leading-snug">
-              "Anda berdiskusi langsung dengan software engineer yang merancang sistem Anda."
-            </h4>
-            <p class="text-slate-300 text-sm leading-relaxed">
-              Kami tidak menggunakan perantara sales yang hanya menjanjikan fitur tanpa paham teknis. Setiap kebutuhan sistem dikaji langsung oleh tim arsitek berpengalaman agar arsitektur database, keamanan, dan kecepatan aplikasi Anda kokoh sejak hari pertama.
-            </p>
-          </div>
-        </div>
-      </div>
+  <section class="bg-slate-50 border-y border-slate-200/80 py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-5 lg:px-8">
+      <SectionHeader title="Pertanyaan yang sering ditanyakan" align="center" />
+      <FaqAccordion items={faqs} class="mt-10" />
     </div>
   </section>
 
-  <!-- FAQ SECTION GAYA FLIP (Bersih & Informatif) -->
-  <section class="py-16 md:py-24 bg-slate-50 border-t border-slate-200/80 px-5 lg:px-8">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-xs md:text-sm font-bold uppercase tracking-wider text-orange-600">Pertanyaan Umum</h2>
-        <p class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          Hal yang sering ditanyakan sebelum memulai
-        </p>
-      </div>
-
-      <div class="space-y-4">
-        {faqs.map((faq) => (
-          <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm">
-            <h3 class="text-base font-bold text-slate-900 flex items-start gap-3">
-              <span class="text-orange-600 font-bold shrink-0">Q.</span>
-              <span>{faq.q}</span>
-            </h3>
-            <p class="mt-2.5 text-slate-600 text-sm leading-relaxed pl-6">
-              {faq.a}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA BANNER BAWAH: HANGAT & TEGAS SEPERTI FLIP -->
-  <section class="py-16 md:py-20 bg-orange-600 text-white px-5 lg:px-8">
-    <div class="max-w-4xl mx-auto text-center space-y-6">
-      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-        Punya ide aplikasi atau butuh sistem baru?
-      </h2>
-      <p class="text-orange-100 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-        Ceritakan alur bisnis atau kendala yang dihadapi. Kami bantu berikan rekomendasi solusi teknologi terbaik tanpa biaya konsultasi awal.
-      </p>
-
-      <div class="pt-4 flex flex-wrap justify-center items-center gap-4">
-        <a
-          href="https://api.whatsapp.com/send?phone=6289512589756&text=Halo%20Pak%20Rizal,%20saya%20mau%20diskusi%20kebutuhan%20pembuatan%20software/aplikasi."
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-orange-700 font-bold text-sm sm:text-base shadow-md hover:bg-orange-50 transition-colors"
-        >
-          <Icon name="mdi:whatsapp" class="text-xl text-emerald-600" />
-          <span>Hubungi via WhatsApp</span>
-        </a>
-
-        <a
-          href="mailto:contact@rengganikaryasemesta.com"
-          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-orange-700 hover:bg-orange-800 text-white font-bold text-sm sm:text-base border border-orange-500 transition-colors"
-        >
-          <Icon name="mdi:email-outline" class="text-xl" />
-          <span>Kirim Email Penawaran</span>
-        </a>
-      </div>
-
-      <div class="pt-6 flex flex-wrap justify-center items-center gap-6 text-xs text-orange-200">
-        <span>✓ Konsultasi Awal Gratis</span>
-        <span>✓ Pembayaran Bertahap Milestone</span>
-        <span>✓ Garansi Bug & Maintenance</span>
-      </div>
-    </div>
-  </section>
+  <CtaBand title="Punya proses yang masih manual?" line="Ceritakan alurnya, kami petakan sistem yang pas." primary={{ label: "Konsultasi via WhatsApp", href: whatsappHref }} secondary={{ label: "Kirim email", href: "mailto:contact@rengganikaryasemesta.com" }} accent="blue" />
 </Layout>

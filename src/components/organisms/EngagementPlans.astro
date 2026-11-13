@@ -1,0 +1,44 @@
+---
+import { Icon } from "astro-icon/components";
+import CtaButton from "@components/atoms/CtaButton.astro";
+import SectionHeader from "@components/molecules/SectionHeader.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  plans: { name: string; kind: string; priceLine: string; note?: string; bullets: string[]; ctaLabel: string; ctaHref: string; featured?: boolean }[];
+  id?: string;
+  class?: string;
+}
+
+const { title, description, plans, id, class: customClass = "" } = Astro.props;
+---
+
+<section id={id} class:list={["py-16 md:py-24", customClass]}>
+  <div class="max-w-6xl mx-auto px-5 lg:px-8">
+    <SectionHeader title={title} description={description} />
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {plans.map((plan) => (
+        <article class:list={["flex flex-col rounded-3xl bg-white p-7", plan.featured ? "border-2 border-blue-600 shadow-lg" : "border border-slate-200/90 shadow-sm"]}>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-blue-600">{plan.kind}</p>
+            <h3 class="mt-2 text-2xl font-extrabold text-slate-900">{plan.name}</h3>
+            <p class="mt-5 rounded-2xl bg-slate-50 p-4 text-sm font-semibold text-slate-800">{plan.priceLine}</p>
+            {plan.note && <p class="mt-2 text-xs text-slate-500">{plan.note}</p>}
+            <ul class="mt-6 space-y-3">
+              {plan.bullets.slice(0, 3).map((bullet) => (
+                <li class="flex items-start gap-2.5 text-sm text-slate-600">
+                  <Icon name="mdi:check-circle" class="mt-0.5 shrink-0 text-lg text-blue-600" />
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-slate-100">
+            <CtaButton href={plan.ctaHref} variant={plan.featured ? "blue" : "white"} size="md" class="w-full">{plan.ctaLabel}</CtaButton>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

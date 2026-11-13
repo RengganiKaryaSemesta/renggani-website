@@ -1,0 +1,25 @@
+---
+import SectionHeader from "@components/molecules/SectionHeader.astro";
+import ProductTile from "@components/molecules/ProductTile.astro";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  title: string;
+  items: { title: string; line: string; href: string; linkLabel: string; image: ImageMetadata; alt: string }[];
+  accent: "orange" | "blue";
+  class?: string;
+}
+
+const { title, items, accent, class: customClass = "" } = Astro.props;
+---
+
+<section class:list={["py-16 md:py-24", customClass]}>
+  <div class="max-w-6xl mx-auto px-5 lg:px-8">
+    <SectionHeader title={title} />
+    <div class="mt-10 grid gap-6 lg:grid-cols-3 lg:grid-rows-2">
+      {items.slice(0, 3).map((item, index) => (
+        <ProductTile {...item} span={index === 0 ? "wide" : "normal"} accent={accent} />
+      ))}
+    </div>
+  </div>
+</section>

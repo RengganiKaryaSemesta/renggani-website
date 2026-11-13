@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  logos: { src: ImageMetadata; alt: string; name: string }[];
+  class?: string;
+}
+
+const { logos, class: customClass = "" } = Astro.props;
+---
+
+<div class:list={["grid grid-cols-3 gap-3 sm:grid-cols-5", customClass]}>
+  {logos.map((logo) => (
+    <div class="flex h-16 items-center justify-center rounded-2xl bg-white border border-slate-200/70 px-4">
+      <Image
+        src={logo.src}
+        alt={logo.alt}
+        title={logo.name}
+        width={96}
+        height={32}
+        class="max-h-8 w-auto object-contain"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  ))}
+</div>

@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import logoColor from "@assets/logo_color.webp";
-import logoWhite from "@assets/logo_white.webp";
 import NavList from "@components/molecules/NavList";
 import SideBarMenu from "@components/molecules/SideBarMenu";
 import HeaderButtonContactUs from "@components/atoms/HeaderButtonContactUs";
@@ -11,19 +10,10 @@ import LanguageSwitcher from "@components/atoms/LanguageSwitcher";
 interface Props {
     isSolid?: boolean;
 }
+
 const { isSolid: isSolidProp } = Astro.props;
 const currentPathName = Astro.url.pathname;
-const isSolid = isSolidProp 
-    || currentPathName.startsWith('/en')
-    || currentPathName.startsWith('/bukubatik') 
-    || currentPathName.startsWith('/rksworkmate') 
-    || currentPathName.startsWith('/services') 
-    || currentPathName.startsWith('/blogs') 
-    || currentPathName.startsWith('/about-us') 
-    || currentPathName.startsWith('/portfolios') 
-    || currentPathName.startsWith('/contact-us') 
-    || currentPathName.startsWith('/kebijakan-privasi') 
-    || currentPathName.startsWith('/privacy-policy');
+const isSolid = isSolidProp || currentPathName.startsWith("/en");
 ---
 
 <div class="relative">
@@ -31,79 +21,44 @@ const isSolid = isSolidProp
         id="navbar"
         role="navigation"
         data-is-solid={isSolid ? "true" : "false"}
-        class={`py-3 px-5 lg:px-20 fixed top-0 left-0 right-0 z-50 flex items-center justify-between transition-all duration-300 ${isSolid ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 dark:border-slate-800' : 'bg-transparent'}`}
+        class="fixed left-1/2 top-3 z-50 flex w-[calc(100%-1.5rem)] max-w-7xl -translate-x-1/2 items-center justify-between rounded-full bg-white/90 px-3 py-2.5 shadow-[0_14px_40px_rgba(15,23,42,0.10)] ring-1 ring-slate-200/80 backdrop-blur-xl transition-all duration-300 lg:top-5 lg:px-4"
     >
-        <Image
-            loading={"eager"}
-            src={logoWhite}
-            alt={"logo renggani karya semesta"}
-            width={logoWhite.width}
-            height={logoWhite.height}
-            id="logo-white"
-            quality={100}
-            class={`w-32 h-auto ${isSolid ? 'hidden' : 'dark:block'}`}
-        />
-        <Image
-            loading={"eager"}
-            src={logoColor}
-            alt={"logo renggani karya semesta"}
-            width={logoColor.width}
-            height={logoColor.height}
-            id="logo-color"
-            class={`w-32 h-auto ${isSolid ? 'block' : 'hidden dark:hidden'}`}
-        />
-        <NavList client:load currentPathName={currentPathName} isSolid={isSolid} />
-        <div class="hidden lg:flex items-center gap-4">
-            <LanguageSwitcher client:load currentPathName={currentPathName} isSolid={isSolid} />
-            <HeaderButtonContactUs client:load className="hidden lg:block" isSolid={isSolid} currentPathName={currentPathName} />
+        <a href={currentPathName.startsWith("/en") ? "/en/" : "/"} aria-label="Renggani Karya Semesta home" class="shrink-0 rounded-full p-1 transition-transform duration-200 hover:scale-[1.03]">
+            <Image
+                loading="eager"
+                src={logoColor}
+                alt="Logo Renggani Karya Semesta"
+                width={logoColor.width}
+                height={logoColor.height}
+                quality={100}
+                class="block h-auto w-28 sm:w-32"
+            />
+        </a>
+        <NavList client:load currentPathName={currentPathName} isSolid={true} />
+        <div class="hidden items-center gap-2 lg:flex">
+            <LanguageSwitcher client:load currentPathName={currentPathName} isSolid={true} />
+            <HeaderButtonContactUs client:load className="hidden lg:block" isSolid={true} currentPathName={currentPathName} />
         </div>
-        <div class="flex items-center gap-2 lg:hidden">
-            <LanguageSwitcher client:load currentPathName={currentPathName} isSolid={isSolid} isMobile={true} />
-            <SideBarButton client:load isSolid={isSolid} />
+        <div class="flex items-center gap-1 lg:hidden">
+            <LanguageSwitcher client:load currentPathName={currentPathName} isSolid={true} isMobile={true} />
+            <SideBarButton client:load isSolid={true} />
         </div>
     </nav>
     <SideBarMenu client:load currentPathName={currentPathName} />
 </div>
 
 <script>
-    document.addEventListener("astro:page-load", function () {
-        const logoWhite = document.getElementById("logo-white");
-        const logoColor = document.getElementById("logo-color");
+    document.addEventListener("astro:page-load", () => {
         const navbar = document.getElementById("navbar");
-        const path = window.location.pathname;
-        const isSolid = navbar?.dataset.isSolid === 'true' 
-            || path.startsWith('/en')
-            || path.startsWith('/bukubatik')
-            || path.startsWith('/rksworkmate')
-            || path.startsWith('/services')
-            || path.startsWith('/blogs')
-            || path.startsWith('/about-us')
-            || path.startsWith('/portfolios')
-            || path.startsWith('/contact-us')
-            || path.startsWith('/kebijakan-privasi')
-            || path.startsWith('/privacy-policy');
-        
-        function updateNavbar() {
-            if (window.scrollY > 50 || isSolid) {
-                navbar?.classList.add("bg-white/95", "dark:bg-gray-900/95", "backdrop-blur-md", "shadow-sm", "border-b", "border-slate-200/80", "dark:border-slate-800");
-                navbar?.classList.remove("bg-transparent");
-                
-                logoColor?.classList.remove("hidden");
-                logoColor?.classList.add("block");
-                logoWhite?.classList.add("hidden");
-                logoWhite?.classList.remove("dark:block");
-            } else {
-                navbar?.classList.remove("bg-white/95", "dark:bg-gray-900/95", "backdrop-blur-md", "shadow-sm", "border-b", "border-slate-200/80", "dark:border-slate-800");
-                navbar?.classList.add("bg-transparent");
-                
-                logoColor?.classList.add("hidden");
-                logoColor?.classList.remove("block");
-                logoWhite?.classList.remove("hidden");
-                logoWhite?.classList.add("dark:block");
-            }
-        }
+        if (!navbar || navbar.dataset.motionReady === "true") return;
+        navbar.dataset.motionReady = "true";
 
-        window.addEventListener("scroll", updateNavbar);
+        const updateNavbar = () => {
+            navbar.classList.toggle("-translate-y-1", window.scrollY > 16);
+            navbar.classList.toggle("shadow-[0_18px_48px_rgba(15,23,42,0.14)]", window.scrollY > 16);
+        };
+
+        window.addEventListener("scroll", updateNavbar, { passive: true });
         updateNavbar();
     });
 </script>

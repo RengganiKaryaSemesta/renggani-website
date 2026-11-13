@@ -61,7 +61,6 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             : 'text-slate-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400'
         }`}
       >
-        <span className="text-[11px]">🇮🇩</span>
         <span>ID</span>
       </a>
       <a
@@ -77,7 +76,6 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
             : 'text-slate-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400'
         }`}
       >
-        <span className="text-[11px]">🇦🇺</span>
         <span>EN</span>
       </a>
     </div>
