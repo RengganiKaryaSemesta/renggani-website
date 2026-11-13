@@ -19,6 +19,13 @@ const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
 export default defineConfig({
   site: 'https://rengganikaryasemesta.com',
   trailingSlash: 'always',
+  i18n: {
+    defaultLocale: 'id',
+    locales: ['id', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   prefetch: {
     prefetchAll: false,
     defaultStrategy: 'tap',
@@ -28,6 +35,9 @@ export default defineConfig({
     dangerouslyProcessSVG: true,
   },
   vite: {
+    server: {
+      allowedHosts: true,
+    },
     customLogger: {
       warn(msg, options) {
         if (typeof msg === 'string' && (msg.includes('deprecated') || msg.includes('esbuildOptions'))) return;

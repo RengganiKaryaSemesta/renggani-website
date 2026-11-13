@@ -27,6 +27,24 @@ const NavList: React.FC<NavListProps> = ({ isMobile = false, currentPathName = '
     ? currentPathName.slice(0, -1)
     : currentPathName;
 
+  const isEn = cleanPath === '/en' || cleanPath.startsWith('/en/');
+
+  if (isEn) {
+    const isEnHomeActive = cleanPath === '/en';
+    const isCaseStudiesActive = cleanPath === '/en/case-studies' || cleanPath.startsWith('/en/case-studies/');
+    const isServicesActive = cleanPath === '/en/services' || cleanPath.startsWith('/en/services/');
+
+    return (
+      <ul className={`${isMobile ? 'flex flex-col justify-start gap-6' : 'lg:flex items-center hidden'} xl:gap-5 lg:gap-3 font-roboto`}>
+        <NavLink scrolledDefault={isMobile || isSolid} href="/en/" isActive={isEnHomeActive}>Home</NavLink>
+        <NavLink scrolledDefault={isMobile || isSolid} href="/en/#case-studies" isActive={isCaseStudiesActive}>Case Studies</NavLink>
+        <NavLink scrolledDefault={isMobile || isSolid} href="/en/#services" isActive={isServicesActive}>Capabilities</NavLink>
+        <NavLink scrolledDefault={isMobile || isSolid} href="/en/#why-us" isActive={false}>Why Us</NavLink>
+        <NavLink scrolledDefault={isMobile || isSolid} href="/en/#contact" isActive={false}>Contact</NavLink>
+      </ul>
+    );
+  }
+
   const isHomeActive = cleanPath === '' || cleanPath === '/';
   const isBlogsActive = cleanPath === '/blogs' || cleanPath.startsWith('/blogs/');
   const isAboutActive = cleanPath === '/about-us' || cleanPath.startsWith('/about-us/');

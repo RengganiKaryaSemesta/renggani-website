@@ -1,0 +1,628 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import dashboardScreen from '@assets/buku-batik/dashboard-screen.png';
+import CaseStudyTabs from '@components/organisms/CaseStudyTabs';
+
+const aussieSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://rengganikaryasemesta.com/en/#website",
+      "url": "https://rengganikaryasemesta.com/en/",
+      "name": "Renggani — Engineering Partner for Australian Digital Agencies",
+      "description": "Expand your development team without the 80/hr contractor overhead. Clean Laravel, Go, Next.js, and Mobile apps with real-time Australian timezone overlap.",
+      "inLanguage": "en-AU"
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://rengganikaryasemesta.com/en/#business",
+      "name": "CV. Renggani Karya Semesta",
+      "image": "https://rengganikaryasemesta.com/logo_color.webp",
+      "url": "https://rengganikaryasemesta.com/en/",
+      "telephone": "+6289512589756",
+      "priceRange": "8454 (AUD)",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Banyuwangi",
+        "addressRegion": "East Java",
+        "addressCountry": "ID"
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "Australia" }
+      ]
+    }
+  ]
+};
+
+const painPoints = [
+  {
+    before: "Local Australian senior contractors cost 40–20/hour, squeezing project margins.",
+    after: "Senior fullstack talent at 5–5/hour (,500–,500 AUD/month), preserving your agency's margin."
+  },
+  {
+    before: "Offshore teams in India or Eastern Europe mean 8–12 hour delays for every reply or code review.",
+    after: "0h difference with Perth (AWST) and 4–5 synchronous hours with Sydney & Melbourne (AEST)."
+  },
+  {
+    before: "Freelancers who disappear mid-sprint or junior code you have to rewrite from scratch.",
+    after: "Direct collaboration with our founder & lead architect (Master's in CS) with 30-day bug warranties."
+  }
+];
+
+const faqs = [
+  {
+    q: "How does communication work during Australian business hours?",
+    a: "We join your existing workflow directly. If your agency uses Slack, Microsoft Teams, GitHub, and Jira, we create accounts inside your workspace. Standups, PR reviews, and urgent fixes happen live in real-time."
+  },
+  {
+    q: "How are intellectual property (IP) and client confidentiality handled?",
+    a: "We sign a comprehensive Mutual NDA before any project discussion. All source code, Git commits, documentation, and architecture we produce belong 100% to you and your client upon invoice settlement."
+  },
+  {
+    q: "How do we pay you in AUD from Australia?",
+    a: "We provide an Australian bank account with a local BSB Code and Account Number via Wise Business. You transfer directly in AUD from your Australian bank (CommBank, NAB, ANZ, Westpac) without international wire fees."
+  },
+  {
+    q: "Can we start with a small trial project first?",
+    a: "Yes. Most Australian agencies start with a 2-week paid pilot sprint (or a defined backlog feature) so you can evaluate our code quality, communication speed, and Git hygiene before committing to a longer retainer."
+  }
+];
+---
+
+<Layout
+  lang="en"
+  title="Renggani — Dedicated Software Engineering Partner for Australian Agencies"
+  description="Scale your development capacity without the 80/hr local contractor overhead. Senior Laravel, Go, Next.js, and Mobile engineers with real-time Australian timezone overlap."
+  keywords="software engineering partner australia, hire laravel developer australia, white label digital agency partner, golang developers perth sydney, cv renggani karya semesta"
+  isSolid={true}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(aussieSchema)} slot="head" />
+
+  <!-- HERO SECTION (Light, Clean, Trustworthy like Flip) -->
+  <section class="pt-28 pb-16 md:pt-36 md:pb-24 bg-gradient-to-b from-blue-50/50 via-white to-slate-50 border-b border-slate-200/80">
+    <div class="max-w-6xl mx-auto px-5 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-blue-900 text-xs md:text-sm font-semibold">
+            <span class="text-base">🇦🇺</span>
+            <span>Dedicated Tech Partner for Australian Digital Agencies</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+            Scale your dev team without paying <span class="text-blue-600 underline decoration-blue-200 decoration-wavy underline-offset-8">$180/hour</span> for local contractors.
+          </h1>
+
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
+            We provide senior fullstack engineers (Laravel, Go, Next.js, Flutter) who integrate directly into your agency’s Slack and GitHub. <strong>0 hours time difference with Perth</strong> and <strong>4–5 hours synchronous overlap with Sydney & Melbourne</strong>.
+          </p>
+
+          <!-- Quick trust badges -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+            <div class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200/90 shadow-sm">
+              <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                <Icon name="mdi:check-circle" class="text-xl" />
+              </div>
+              <div class="text-xs">
+                <div class="font-bold text-slate-900">Real-Time Sync</div>
+                <div class="text-slate-500">Same-day replies</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200/90 shadow-sm">
+              <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                <Icon name="mdi:bank-outline" class="text-xl" />
+              </div>
+              <div class="text-xs">
+                <div class="font-bold text-slate-900">Pay in AUD</div>
+                <div class="text-slate-500">Local BSB via Wise</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200/90 shadow-sm col-span-2 sm:col-span-1">
+              <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                <Icon name="mdi:shield-lock-outline" class="text-xl" />
+              </div>
+              <div class="text-xs">
+                <div class="font-bold text-slate-900">100% IP Transfer</div>
+                <div class="text-slate-500">Mutual NDA backed</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="pt-4 flex flex-wrap items-center gap-4">
+            <a
+              href="https://api.whatsapp.com/send?phone=6289512589756&text=Hi%20Ach%20Rizal,%20we%20are%20an%20Australian%20agency%20interested%20in%20scaling%20our%20dev%20capacity."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-200"
+            >
+              <Icon name="mdi:calendar-check" class="text-lg" />
+              <span>Book a 20-Min Intro Call</span>
+            </a>
+
+            <a
+              href="#case-studies"
+              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm sm:text-base border border-slate-300 shadow-sm transition-all duration-200"
+            >
+              <span>Explore Live Systems</span>
+              <Icon name="mdi:arrow-down" class="text-sm" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Visual: Real Product Dashboard Preview -->
+        <div class="lg:col-span-5">
+          <div class="relative">
+            <!-- Decorative badge card -->
+            <div class="absolute -top-4 -left-4 z-20 bg-white px-4 py-2.5 rounded-2xl border border-slate-200 shadow-lg flex items-center gap-3">
+              <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+              <div class="text-xs">
+                <span class="font-bold text-slate-900">Perth & Sydney</span>
+                <span class="text-slate-500"> • Online & Active Now</span>
+              </div>
+            </div>
+
+            <!-- Main dashboard mockup card -->
+            <div class="bg-white rounded-3xl p-3 border border-slate-200/90 shadow-2xl overflow-hidden">
+              <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-100 bg-slate-50/80 rounded-t-2xl">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                  <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                </div>
+                <span class="text-xs font-mono text-slate-500 font-medium">BukuBatik SaaS • Invoicing Module</span>
+                <span class="text-[11px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Production</span>
+              </div>
+
+              <Image
+                src={dashboardScreen}
+                alt="BukuBatik production accounting software by Renggani"
+                width={800}
+                height={500}
+                quality={90}
+                class="w-full h-auto rounded-b-xl border-t border-slate-100"
+                loading="eager"
+              />
+            </div>
+
+            <!-- Floating metric pill bottom -->
+            <div class="mt-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-slate-200 shadow-md flex items-center justify-between">
+              <div>
+                <div class="text-xs text-slate-500">SaaS Throughput Benchmark</div>
+                <div class="text-base font-extrabold text-slate-900">100,000+ Invoices/Month</div>
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-slate-500">Avg API Latency</div>
+                <div class="text-base font-extrabold text-emerald-600">&lt; 80ms (Go + Redis)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM / SOLUTION COMPARISON (Clear & Honest) -->
+  <section class="py-16 md:py-24 bg-white px-5 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-3xl mb-12">
+        <h2 class="text-xs md:text-sm font-bold uppercase tracking-wider text-blue-600">The Problem Australian Agencies Face</h2>
+        <p class="mt-2 text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Why traditional outsourcing fails, and how we fix it.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {painPoints.map((item) => (
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-4">
+                <span class="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold shrink-0">✕</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-red-600">The Old Way</span>
+              </div>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                "{item.before}"
+              </p>
+
+              <hr class="border-slate-200 mb-6" />
+
+              <div class="flex items-center gap-2 mb-4">
+                <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">With Renggani</span>
+              </div>
+              <p class="text-slate-900 font-medium text-sm leading-relaxed">
+                {item.after}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMEZONE MAP / OVERLAP (Visual Proof) -->
+  <section id="timezone" class="py-16 md:py-24 bg-slate-50 border-y border-slate-200/80 px-5 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-xs md:text-sm font-bold uppercase tracking-wider text-blue-600">Timezone Compatibility</h2>
+        <p class="mt-2 text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Real-time daily collaboration without the 8-hour lag.
+        </p>
+        <p class="mt-3 text-slate-600 text-sm md:text-base">
+          Our headquarters is in Banyuwangi, East Java (WIB / UTC+7). Here is how our daily working hours align with your office:
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Perth Card -->
+        <div class="bg-white p-7 rounded-2xl border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                100% Identical Hours
+              </span>
+              <span class="text-2xl">🇦🇺</span>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900">Perth (AWST / UTC+8)</h3>
+            <p class="text-sm font-semibold text-emerald-600 mt-1">0 to 1 Hour Difference</p>
+            <p class="text-slate-600 text-sm mt-4 leading-relaxed">
+              When your team sits down at 9:00 AM in Perth, our engineers are already logged on. Morning standups, live debugging, and ad-hoc Slack sync occur in lockstep throughout your full business day.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <span>Perth: <strong>09:00 AM – 05:00 PM</strong></span>
+            <span>Renggani: <strong>08:00 AM – 04:00 PM</strong></span>
+          </div>
+        </div>
+
+        <!-- Sydney Card -->
+        <div class="bg-white p-7 rounded-2xl border-2 border-blue-600 shadow-md flex flex-col justify-between relative">
+          <div class="absolute -top-3 right-6 bg-blue-600 text-white text-[11px] font-bold uppercase px-3 py-0.5 rounded-full tracking-wider shadow">
+            Prime Overlap
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                4–5 Hours Synchronous Overlap
+              </span>
+              <span class="text-2xl">🇦🇺</span>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900">Sydney & Melbourne (AEST)</h3>
+            <p class="text-sm font-semibold text-blue-600 mt-1">+3 to +4 Hours Difference</p>
+            <p class="text-slate-600 text-sm mt-4 leading-relaxed">
+              When it's 11:30 AM in Sydney, we are online. We hold sync meetings before your lunch, push code during your afternoon, and have fresh PRs ready for review before you start the next morning.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <span>Sydney: <strong>11:00 AM – 06:00 PM</strong></span>
+            <span>Active Real-Time Overlap: <strong>5 Hours</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES / INTERACTIVE TABS (Real Production Systems) -->
+  <section id="case-studies" class="py-16 md:py-24 bg-white px-5 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-xs md:text-sm font-bold uppercase tracking-wider text-blue-600">Production Systems</h2>
+        <p class="mt-2 text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Battle-tested systems we have designed and built.
+        </p>
+        <p class="mt-3 text-slate-600 text-sm md:text-base">
+          Click between tabs below to inspect real systems in active production — from multi-tenant SaaS accounting to airport cargo and barcode warehouse logistics.
+        </p>
+      </div>
+
+      <CaseStudyTabs client:load />
+    </div>
+  </section>
+
+  <!-- TECH STACK CAPABILITIES (Clean Grid) -->
+  <section id="services" class="py-16 md:py-24 bg-slate-50 border-t border-slate-200/80 px-5 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-xs md:text-sm font-bold uppercase tracking-wider text-blue-600">Our Stack & Engineering Disciplines</h2>
+        <p class="mt-2 text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Enterprise stacks we write every day.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-2xl mb-4 font-bold">
+            <Icon name="mdi:language-php" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Laravel 11 / 12 & PHP 8.4</h3>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+            Clean service-repository architecture, Eloquent optimization, queued jobs, automated PHPUnit tests, and robust REST/GraphQL endpoints.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-2xl mb-4 font-bold">
+            <Icon name="mdi:language-go" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Go (Golang) Microservices</h3>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+            High-concurrency background processors, sub-50ms API gateways, memory-safe daemon services, and custom device I/O protocols.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-4 font-bold">
+            <Icon name="mdi:react" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Next.js, React & Astro</h3>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+            Strict TypeScript, server-side rendering (SSR), Tailwind CSS styling, responsive desktop/mobile layouts, and 100/100 Core Web Vitals.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-2xl mb-4 font-bold">
+            <Icon name="mdi:cellphone" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Flutter Mobile (iOS & Android)</h3>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+            Cross-platform production apps with offline SQLite sync, camera/barcode hardware integration, push notifications, and App Store publishing.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl mb-4 font-bold">
+            <Icon name="mdi:database" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">PostgreSQL, MySQL & Redis</h3>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+            Indexed schema design, partitioned high-volume tables, transactional concurrency locks, and cache-aside key-value caching.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-2xl mb-4 font-bold">
+            <Icon name="mdi:docker" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">CI/CD & DevOps Automation</h3>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+            Docker containers, automated GitHub Actions testing and zero-downtime deployment pipelines, Caddy reverse-proxying, and Linux server management.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING & ENGAGEMENT (Transparent & Clear like Flip) -->
+  <section id="pricing" class="py-16 md:py-24 bg-white px-5 lg:px-8 border-t border-slate-200/80">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-xs md:text-sm font-bold uppercase tracking-wider text-blue-600">Transparent Engagement</h2>
+        <p class="mt-2 text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Predictable rates. Zero hidden markups.
+        </p>
+        <p class="mt-3 text-slate-600 text-sm md:text-base">
+          Direct monthly invoicing in AUD via Wise Business. No long-term lock-in contracts.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Retainer Plan -->
+        <div class="bg-white rounded-3xl p-8 border-2 border-blue-600 shadow-xl flex flex-col justify-between relative">
+          <div class="absolute -top-3.5 right-6 bg-blue-600 text-white text-xs font-bold uppercase px-3.5 py-1 rounded-full shadow">
+            Most Popular for Agencies
+          </div>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-blue-600">Dedicated Capacity</div>
+            <h3 class="text-2xl font-extrabold text-slate-900 mt-1">Full-Time Dedicated Engineer</h3>
+            <p class="text-slate-500 text-sm mt-1">Full-time engineer dedicated solely to your agency's sprint tickets.</p>
+
+            <div class="my-6 p-4 rounded-2xl bg-blue-50/60 border border-blue-100">
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl sm:text-4xl font-extrabold text-slate-900">,500 – ,500</span>
+                <span class="text-sm font-semibold text-slate-600">AUD / month</span>
+              </div>
+              <p class="text-xs text-emerald-700 font-semibold mt-1">
+                ✓ Compares to 1,000+ AUD/month for an Australian local contractor
+              </p>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-600">
+              <li class="flex items-center gap-2.5">
+                <Icon name="mdi:check-circle" class="text-blue-600 text-lg shrink-0" />
+                <span>160 hours/month of senior development (Laravel, Go, or Next.js)</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <Icon name="mdi:check-circle" class="text-blue-600 text-lg shrink-0" />
+                <span>Synchronous Australian working hours overlap</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <Icon name="mdi:check-circle" class="text-blue-600 text-lg shrink-0" />
+                <span>Direct Slack, GitHub, Jira & daily standup integration</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <Icon name="mdi:check-circle" class="text-blue-600 text-lg shrink-0" />
+                <span>100% intellectual property (IP) transfer to your agency</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <Icon name="mdi:check-circle" class="text-blue-600 text-lg shrink-0" />
+                <span>Monthly billing with 14-day notice to pause or cancel</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-100">
+            <a
+              href="https://api.whatsapp.com/send?phone=6289512589756&text=Hi%20Ach%20Rizal,%20we%20want%20to%20reserve%20a%20dedicated%20developer%20retainer%20for%20our%20agency."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors shadow-sm"
+            >
+              <span>Discuss Dedicated Engineer</span>
+              <Icon name="mdi:arrow-right" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Sprint Plan -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Fixed Scope</div>
+            <h3 class="text-2xl font-extrabold text-slate-900 mt-1">Project Sprint / Turnkey Build</h3>
+            <p class="text-slate-500 text-sm mt-1">Defined milestones for new custom web apps, ERP modules, or MVPs.</p>
+
+            <div class="my-6 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl sm:text-4xl font-extrabold text-slate-900">Milestone-Based</span>
+              </div>
+              <p class="text-xs text-blue-700 font-semibold mt-1">
+                ✓ Guaranteed scope delivery with clear sign-off criteria
+              </p>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-600">
+              <li class="flex items-center gap-2.5">
+                <Icon name="mdi:check-circle" class="text-emerald-600 text-lg shrink-0" />
+                <span>Detailed Statement of Work (SOW) & delivery sprint schedule</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <Icon name="mdi:check-circle" class="text-emerald-600 text-lg shrink-0" />
+                <span>Complete backend, frontend, database & API development</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <Icon name="mdi:check-circle" class="text-emerald-600 text-lg shrink-0" />
+                <span>Automated unit tests & Playwright end-to-end verification</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <Icon name="mdi:check-circle" class="text-emerald-600 text-lg shrink-0" />
+                <span>30-Day post-deployment bug fix warranty included</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <Icon name="mdi:check-circle" class="text-emerald-600 text-lg shrink-0" />
+                <span>Invoiced 50% upfront deposit / 50% on final milestone</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-100">
+            <a
+              href="https://api.whatsapp.com/send?phone=6289512589756&text=Hi%20Ach%20Rizal,%20I%20have%20a%20project%20spec%20to%20quote%20for%20a%20fixed-scope%20sprint."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-semibold transition-colors"
+            >
+              <span>Get a Sprint Quote</span>
+              <Icon name="mdi:arrow-right" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP & FOUNDER CREDIBILITY -->
+  <section id="why-us" class="py-16 md:py-24 bg-slate-50 border-t border-slate-200/80 px-5 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white rounded-3xl p-8 md:p-12 border border-slate-200/90 shadow-sm">
+        <div class="grid md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-4 text-center md:text-left">
+            <div class="w-28 h-28 rounded-2xl bg-blue-100 text-blue-700 mx-auto md:mx-0 flex items-center justify-center text-3xl font-extrabold border-2 border-blue-200">
+              AR
+            </div>
+            <h3 class="text-lg font-extrabold text-slate-900 mt-4">Ach Rizal, S.Kom., M.Kom.</h3>
+            <p class="text-xs text-blue-600 font-semibold mt-0.5">Director & Lead Architect</p>
+            <div class="mt-3 flex justify-center md:justify-start gap-3">
+              <a href="https://linkedin.com/in/achrizal15" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-600 text-base" aria-label="LinkedIn">
+                <Icon name="mdi:linkedin" />
+              </a>
+              <a href="https://github.com/achrizal15" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-base" aria-label="GitHub">
+                <Icon name="mdi:github" />
+              </a>
+            </div>
+          </div>
+
+          <div class="md:col-span-8 space-y-3">
+            <h4 class="text-xl md:text-2xl font-bold text-slate-900 leading-snug">
+              "You speak directly with the senior engineer who architects your software."
+            </h4>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              At Renggani, we don’t hire non-technical sales intermediaries to sit between you and your code. Every project is overseen by an engineer with a Master’s degree in Computer Science and over 8 years of enterprise software architecture experience.
+            </p>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              When you raise an architectural question or require a critical refactor, you get an immediate, technically sound answer, not a promise to "check with the team."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION (Clean Accordion / Cards like Flip) -->
+  <section class="py-16 md:py-24 bg-white border-t border-slate-200/80 px-5 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-xs md:text-sm font-bold uppercase tracking-wider text-blue-600">Frequently Asked Questions</h2>
+        <p class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Common questions from Australian agencies
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80">
+            <h3 class="text-base font-bold text-slate-900 flex items-start gap-3">
+              <span class="text-blue-600 font-bold shrink-0">Q.</span>
+              <span>{faq.q}</span>
+            </h3>
+            <p class="mt-2.5 text-slate-600 text-sm leading-relaxed pl-6">
+              {faq.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA BANNER (Clean & Direct) -->
+  <section id="contact" class="py-16 md:py-20 bg-blue-600 text-white px-5 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center space-y-6">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        Ready to expand your agency's dev capacity?
+      </h2>
+      <p class="text-blue-100 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+        Let’s hop on a 20-minute call to discuss your current sprint backlog and explore how we can support your delivery.
+      </p>
+
+      <div class="pt-4 flex flex-wrap justify-center items-center gap-4">
+        <a
+          href="https://api.whatsapp.com/send?phone=6289512589756&text=Hi%20Ach%20Rizal,%20we%20would%20like%20to%20schedule%20a%2020-min%20call%20regarding%20dev%20capacity."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-blue-900 font-bold text-sm sm:text-base shadow-md hover:bg-blue-50 transition-colors"
+        >
+          <Icon name="mdi:whatsapp" class="text-xl text-emerald-600" />
+          <span>Chat on WhatsApp Directly</span>
+        </a>
+
+        <a
+          href="mailto:contact@rengganikaryasemesta.com?subject=Partnership%20Inquiry%20from%20Australia&body=Hi%20Ach%20Rizal,%0A%0AWe%20would%20like%20to%20discuss%20developer%20capacity%20for%20our%20agency.%0A%0AThanks!"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm sm:text-base border border-blue-500 transition-colors"
+        >
+          <Icon name="mdi:email-outline" class="text-xl" />
+          <span>Send an Email</span>
+        </a>
+      </div>
+
+      <div class="pt-6 flex flex-wrap justify-center items-center gap-6 text-xs text-blue-200">
+        <span>✓ Mutual NDA signed first</span>
+        <span>✓ Invoiced in AUD via Wise</span>
+        <span>✓ 2-Week paid pilot available</span>
+      </div>
+    </div>
+  </section>
+</Layout>

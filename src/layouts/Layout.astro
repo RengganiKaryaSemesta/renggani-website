@@ -13,6 +13,7 @@ interface Props {
     type?: string;
     isSolid?: boolean;
     keywords?: string;
+    lang?: string;
 }
 
 const { 
@@ -21,7 +22,8 @@ const {
     image = "/og-image.jpg", 
     type = "website",
     isSolid,
-    keywords = "CV Renggani Karya Semesta, pengembangan web, pengembangan perangkat lunak, software house, e-commerce, website gratis, jasa pembuatan website, pembuatan aplikasi, IT solutions, solusi teknologi, teknologi informasi, web development, software development, mobile app development, jasa IT, digital marketing, desain web, website profesional, hosting web, manajemen konten, integrasi sistem, layanan IT, Banyuwangi, Bali"
+    keywords = "CV Renggani Karya Semesta, pengembangan web, pengembangan perangkat lunak, software house, e-commerce, website gratis, jasa pembuatan website, pembuatan aplikasi, IT solutions, solusi teknologi, teknologi informasi, web development, software development, mobile app development, jasa IT, digital marketing, desain web, website profesional, hosting web, manajemen konten, integrasi sistem, layanan IT, Banyuwangi, Bali",
+    lang = Astro.currentLocale ?? "id",
 } = Astro.props;
 
 const siteURL = Astro.site ? Astro.site.origin : "https://rengganikaryasemesta.com";
@@ -31,15 +33,23 @@ if (!pathname.endsWith("/")) {
 }
 const canonicalURL = new URL(pathname, siteURL).href;
 const imageURL = image.startsWith("http") ? image : new URL(image, siteURL).href;
+
+const isEn = lang === "en" || pathname.startsWith("/en/");
+const ogLocale = isEn ? "en_AU" : "id_ID";
+const enPathname = pathname.startsWith("/en/") ? pathname : `/en${pathname}`;
+const idPathname = pathname.startsWith("/en/") ? pathname.replace(/^\/en/, "") || "/" : pathname;
 ---
 
 <!doctype html>
-<html lang="id" class="light">
+<html lang={lang} class="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
         <link rel="canonical" href={canonicalURL} />
+        <link rel="alternate" hreflang="id" href={new URL(idPathname, siteURL).href} />
+        <link rel="alternate" hreflang="en" href={new URL(enPathname, siteURL).href} />
+        <link rel="alternate" hreflang="x-default" href={new URL(idPathname, siteURL).href} />
         <meta name="generator" content={Astro.generator} />
         <ClientRouter />
 
@@ -62,7 +72,7 @@ const imageURL = image.startsWith("http") ? image : new URL(image, siteURL).href
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:alt" content={title} />
-        <meta property="og:locale" content="id_ID" />
+        <meta property="og:locale" content={ogLocale} />
         <meta property="fb:app_id" content="852463347946532" />
 
         <!-- Twitter Meta Tags -->

@@ -6,6 +6,7 @@ import NavList from "@components/molecules/NavList";
 import SideBarMenu from "@components/molecules/SideBarMenu";
 import HeaderButtonContactUs from "@components/atoms/HeaderButtonContactUs";
 import SideBarButton from "@components/atoms/SideBarButton";
+import LanguageSwitcher from "@components/atoms/LanguageSwitcher";
 
 interface Props {
     isSolid?: boolean;
@@ -13,6 +14,7 @@ interface Props {
 const { isSolid: isSolidProp } = Astro.props;
 const currentPathName = Astro.url.pathname;
 const isSolid = isSolidProp 
+    || currentPathName.startsWith('/en')
     || currentPathName.startsWith('/bukubatik') 
     || currentPathName.startsWith('/rksworkmate') 
     || currentPathName.startsWith('/services') 
@@ -51,8 +53,14 @@ const isSolid = isSolidProp
             class={`w-32 h-auto ${isSolid ? 'block' : 'hidden dark:hidden'}`}
         />
         <NavList client:load currentPathName={currentPathName} isSolid={isSolid} />
-        <HeaderButtonContactUs client:load className="hidden lg:block" isSolid={isSolid} />
-        <SideBarButton client:load isSolid={isSolid} />
+        <div class="hidden lg:flex items-center gap-4">
+            <LanguageSwitcher client:load currentPathName={currentPathName} isSolid={isSolid} />
+            <HeaderButtonContactUs client:load className="hidden lg:block" isSolid={isSolid} currentPathName={currentPathName} />
+        </div>
+        <div class="flex items-center gap-2 lg:hidden">
+            <LanguageSwitcher client:load currentPathName={currentPathName} isSolid={isSolid} isMobile={true} />
+            <SideBarButton client:load isSolid={isSolid} />
+        </div>
     </nav>
     <SideBarMenu client:load currentPathName={currentPathName} />
 </div>
@@ -64,6 +72,7 @@ const isSolid = isSolidProp
         const navbar = document.getElementById("navbar");
         const path = window.location.pathname;
         const isSolid = navbar?.dataset.isSolid === 'true' 
+            || path.startsWith('/en')
             || path.startsWith('/bukubatik')
             || path.startsWith('/rksworkmate')
             || path.startsWith('/services')

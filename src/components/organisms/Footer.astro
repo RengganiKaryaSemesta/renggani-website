@@ -14,6 +14,8 @@ const footerBGOptiomized = await getImage({
 const currentYear = new Date().getFullYear();
 const email1 = `${"cvrengganikaryasemesta"}@${"gmail.com"}`;
 const email2 = `${"contact"}@${"rengganikaryasemesta.com"}`;
+const pathname = Astro.url.pathname;
+const isEn = pathname.startsWith('/en');
 ---
 
 <footer
@@ -34,7 +36,17 @@ const email2 = `${"contact"}@${"rengganikaryasemesta.com"}`;
             />
         <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-5 font-roboto text-white mt-10">
             <div class="space-y-5 col-span-2">
-                <p>Jl. Kemiren, Kemiren, Kec. Glagah, Kabupaten Banyuwangi, <br> Jawa Timur 68432</p>
+                <p>
+                    {isEn ? (
+                        <>
+                            <span class="font-bold text-lg text-white">CV. Renggani Karya Semesta</span><br />
+                            Dedicated Software Engineering Partner for Australian Digital Agencies & Scale-ups.<br />
+                            Banyuwangi, East Java, Indonesia
+                        </>
+                    ) : (
+                        <>Jl. Kemiren, Kemiren, Kec. Glagah, Kabupaten Banyuwangi, <br /> Jawa Timur 68432</>
+                    )}
+                </p>
                 <!--email_off-->
                 <ul class="space-y-2 text-sm">
                     <li>
@@ -65,15 +77,29 @@ const email2 = `${"contact"}@${"rengganikaryasemesta.com"}`;
                 </ul>
             </div>
             <div class="space-y-5">
-                <p class="font-semibold">INFORMASI</p>
+                <p class="font-semibold">{isEn ? 'NAVIGATION' : 'INFORMASI'}</p>
                 <ul class="space-y-2">
-                    <li><a href="/" >Beranda</a> </li>
-                    <li><a href="/services" >Layanan</a> </li>
-                    <li><a href="/blogs">Blog</a> </li>
-                    <li><a href="/bukubatik">BukuBatik</a> </li>
-                    <li><a href="/rksworkmate">RKSWorkmate</a> </li>
-                    <li><a href="/about-us">Tentang</a> </li>
-                    <li><a href="/kebijakan-privasi">Kebijakan Privasi</a> </li>
+                    {isEn ? (
+                        <>
+                            <li><a href="/en/">Home</a></li>
+                            <li><a href="/en/#case-studies">Case Studies</a></li>
+                            <li><a href="/en/#services">Capabilities</a></li>
+                            <li><a href="/en/#timezone">Timezone Overlap</a></li>
+                            <li><a href="/en/#pricing">Engagement Models</a></li>
+                            <li><a href="/en/#contact">Book a Call</a></li>
+                            <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        </>
+                    ) : (
+                        <>
+                            <li><a href="/" >Beranda</a> </li>
+                            <li><a href="/services" >Layanan</a> </li>
+                            <li><a href="/blogs">Blog</a> </li>
+                            <li><a href="/bukubatik">BukuBatik</a> </li>
+                            <li><a href="/rksworkmate">RKSWorkmate</a> </li>
+                            <li><a href="/about-us">Tentang</a> </li>
+                            <li><a href="/kebijakan-privasi">Kebijakan Privasi</a> </li>
+                        </>
+                    )}
                 </ul> 
             </div>
             <div class="space-y-5">
